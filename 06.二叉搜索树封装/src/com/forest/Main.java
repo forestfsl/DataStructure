@@ -67,7 +67,7 @@ public class Main {
 	//前序遍历
 	static void testPreOrder() {
 		Integer data[] = new Integer[] {
-				7,4,9,2,1
+				7,4,9,2,5
 		};
 		
 		//创建二叉树
@@ -76,27 +76,25 @@ public class Main {
 			bst.add(data[i]);
 		}
 		BinaryTrees.println(bst);
-//		System.out.println(bst.isComplete());
+		System.out.println(bst.isComplete());
 		
 		bst.preorder(new Visitor<Integer>() {
 			
 			@Override
-			public boolean visit(Integer element) {
+			public void visit(Integer element) {
 				// TODO Auto-generated method stub
 				System.out.print("_" + element + "_");
-				return element == 2 ? true : false;
 			}
 		});
-		System.out.println();
 		
-//		System.out.println("树的高度是"+ bst.height());
+		System.out.println("树的高度是"+ bst.height());
 		
 	}
 	
 	//中序遍历
 	static void testInorder() {
 		Integer data[] = new Integer[] {
-				7,4,9,2,1
+				7,4,9,2,5
 		};
 		
 		//创建二叉树
@@ -104,26 +102,23 @@ public class Main {
 		for (int i = 0; i < data.length; i++) {
 			bst.add(data[i]);
 		}
-//		BinaryTrees.println(bst);
-//		System.out.println(bst.isComplete());
+		BinaryTrees.println(bst);
+		System.out.println(bst.isComplete());
 		
 		bst.inorder(new Visitor<Integer>() {
 
 			@Override
-			public boolean visit(Integer element) {
+			public void visit(Integer element) {
 				// TODO Auto-generated method stub
 				System.out.print("_" + element + "_");
-				return element == 4 ? true : false;
-
 			}
 		});
-		System.out.println();
 	}
 	
 	//后续遍历
 	static void testPostorder() {
 		Integer data[] = new Integer[] {
-				7,4,9,2,1
+				7,4,9,2,5
 		};
 		
 		//创建二叉树
@@ -131,25 +126,22 @@ public class Main {
 		for (int i = 0; i < data.length; i++) {
 			bst.add(data[i]);
 		}
-//		BinaryTrees.println(bst);
-//		System.out.println(bst.isComplete());
+		BinaryTrees.println(bst);
+		System.out.println(bst.isComplete());
 		
 		bst.postorder(new Visitor<Integer>() {
 
 			@Override
-			public boolean visit(Integer element) {
+			public void visit(Integer element) {
 				// TODO Auto-generated method stub
 				System.out.print("_" + element + "_");
-				return element == 4 ? true : false;
-
 			}
 		});
-		System.out.println();
 	}
 	//层序遍历
 	static void testLevelorder() {
 		Integer data[] = new Integer[] {
-				7,4,9,2,1
+				7,4,9,2,5
 		};
 		
 		//创建二叉树
@@ -163,14 +155,11 @@ public class Main {
 		bst.levelOrder(new Visitor<Integer>() {
 
 			@Override
-			public boolean visit(Integer element) {
+			public void visit(Integer element) {
 				// TODO Auto-generated method stub
 				System.out.print("_" + element + "_");
-				return element == 9 ? true : false;
-
 			}
 		});
-		System.out.println();
 	}
 	
 	//测试删除
@@ -195,11 +184,11 @@ public class Main {
 //		testBinarySearchTree();
 //		testPrinterTool();
 //		testPerson();
-		testPreOrder();
-		testInorder();
-		testPostorder();
-		testLevelorder();
-//		testRemove();
+//		testPreOrder();
+//		testPostorder();
+//		testLevelorder();
+//		testInorder();
+		testRemove();
 	}
 
 }

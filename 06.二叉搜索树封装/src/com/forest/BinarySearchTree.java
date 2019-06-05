@@ -122,7 +122,6 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 	 * 暴露前序遍历方法
 	 */
 	public void preorder(Visitor<E>visitor) {
-		if(visitor == null) return;
 		preorder(root,visitor);
 	}
 	
@@ -131,10 +130,9 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 	 * @return
 	 */
 	private void preorder(Node<E> node, Visitor<E>visitor) {
-		if(node == null || visitor.stop) return;
+		if(node == null || visitor == null) return;
 		
-		if(visitor.stop) return;
-		visitor.stop = visitor.visit(node.element);
+		visitor.visit(node.element);
 		preorder(node.leftNode, visitor);
 		preorder(node.rightNode, visitor);
 	}
@@ -143,7 +141,6 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 	 * 暴露中序遍历方法
 	 */
 	public void inorder(Visitor<E>visitor) {
-		if(visitor == null) return;
 		inorder(root, visitor);
 	}
 	
@@ -152,11 +149,10 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 	 * @return
 	 */
 	private void inorder(Node<E>node, Visitor<E>visitor) {
-		if (node == null || visitor.stop) return;
+		if (node == null || visitor == null) return;
 		
 		inorder(node.leftNode, visitor);
-		if(visitor.stop) return;
-		visitor.stop = visitor.visit(node.element);
+		visitor.visit(node.element);
 		inorder(node.rightNode, visitor);
 	}
 	
@@ -164,7 +160,6 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 	 * 暴露后序遍历方法
 	 */
 	public void postorder(Visitor<E> visitor) {
-		if (visitor == null) return;
 		postorder(root,visitor);
 	}
 	
@@ -173,12 +168,10 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 	 * @return
 	 */
 	private void postorder(Node<E>node,Visitor<E>visitor) {
-		if (node == null || visitor.stop) return;
-		
+		if (node == null || visitor == null) return;
 		postorder(node.leftNode, visitor);
 		postorder(node.rightNode, visitor);
-		if(visitor.stop) return;
-		visitor.stop = visitor.visit(node.element);
+		visitor.visit(node.element);
 	}
 	/**
 	 * 层级遍历
@@ -190,7 +183,7 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 		queue.offer(root);
 		while (!queue.isEmpty()) {
 			Node<E> node = queue.poll();
-			if(visitor.visit(node.element)) return;
+			visitor.visit(node.element);
 			if (node.leftNode != null) {
 				queue.offer(node.leftNode);
 			}
@@ -221,41 +214,11 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 			}else {
 				//后面遍历的节点都必需是叶子节点
 				leaf = true;
-				if(node.leftNode != null) {
-					queue.offer(node.leftNode);
-				}
 			}
 		}
 		return true;
 	}
 	
-	public boolean isComplete2() {
-		if (root == null) return false;
-		Queue<Node<E>> queue = new LinkedList<>();
-		queue.offer(root);
-		boolean leaf = false;
-		while (!queue.isEmpty()) {
-			Node<E> node = queue.poll();
-			if(leaf && !node.isLeaf()) return false;
-			//首先保证所有节点都能入队，如果左节点有值就将左节点入队，右节点有值就将右节点入队
-			if(node.leftNode != null) {
-				queue.offer(node.leftNode);
-			}else if(node.rightNode != null) {
-				//node.leftNode == null && node.right != null
-				return false;
-				
-			}
-			if(node.rightNode != null) {
-				queue.offer(node.rightNode);
-			}else {
-				//node.left == null && node.right == null
-				//node.left != null && node.right == null
-				leaf = true;
-			}
-		}
-		return true;
-	}
-
 	
 	public int height() {
 		if (root == null) return 0;
@@ -360,14 +323,8 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 	}
 	
 	//一个遍历的的二叉树接口
-	public static abstract class Visitor<E>{
-		boolean stop;
-		/**
-		 * 如果返回true，代表停止
-		 * @param element
-		 * @return
-		 */
-		abstract boolean visit(E element);
+	public static interface Visitor<E>{
+		void visit(E element);
 	}
 	
 	private static class Node<E>{
