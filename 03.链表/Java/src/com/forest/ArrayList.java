@@ -1,9 +1,7 @@
-package com.forest;
-
-import com.forest.AbstracList;;
+package com.forest;;
 
 @SuppressWarnings("unchecked")
-public class ArrayList<E> extends AbstracList<E> {
+public class ArrayList<E> extends AbstractList<E> {
 	/**
 	 * 所有的元素
 	 */

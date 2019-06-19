@@ -1,12 +1,12 @@
 package com.forest.circle;
 
-import com.forest.AbstracList;
+import com.forest.AbstractList;
 
 
 
 
 @SuppressWarnings("unused")
-public class CircleLinkedList<E>extends AbstracList<E> {
+public class CircleLinkedList<E>extends AbstractList<E> {
 	private Node<E> first;
 	private Node<E> last;
 	private Node<E> current;

@@ -1,10 +1,10 @@
 package com.forest.circle;
 
-import com.forest.AbstracList;
+import com.forest.AbstractList;
 
 
 
-public class SingleCircleLinkList<E> extends AbstracList<E> {
+public class SingleCircleLinkList<E> extends AbstractList<E> {
 	private Node<E> first;
 	private static class Node<E> {
 		

@@ -1,4 +1,4 @@
-package com.forest;
+package com.forest.list;
 
 public abstract class AbstracList<E> implements List<E> {
 	/**

@@ -1,6 +1,6 @@
 package com.forest.single;
 
-import com.forest.AbstracList;
+import com.forest.AbstractList;
 
 /**
  * 增加一个虚拟头结点
@@ -8,7 +8,7 @@ import com.forest.AbstracList;
  *
  * @param <E>
  */
-public class SingleLinkedList2<E> extends AbstracList<E> {
+public class SingleLinkedList2<E> extends AbstractList<E> {
 	private Node<E> first;
 	
 	public SingleLinkedList2() {

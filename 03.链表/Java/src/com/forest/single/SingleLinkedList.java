@@ -1,11 +1,11 @@
 package com.forest.single;
 
-import com.forest.AbstracList;
+ import com.forest.AbstractList;
 import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 @SuppressWarnings("unused")
 public
- class SingleLinkedList<E> extends AbstracList<E> {
+ class SingleLinkedList<E> extends AbstractList<E> {
 	
 	private Node<E> first;
 	
