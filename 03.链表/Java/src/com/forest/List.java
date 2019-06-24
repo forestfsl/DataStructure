@@ -1,4 +1,4 @@
-package com.mj;
+package com.forest;
 
 public interface List<E> {
 	static final int ELEMENT_NOT_FOUND = -1;

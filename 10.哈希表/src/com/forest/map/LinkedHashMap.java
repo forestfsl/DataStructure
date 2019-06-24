@@ -38,7 +38,6 @@ public class LinkedHashMap<K, V> extends HashMap<K, V> {
 	protected void afterRemove(Node<K, V> willNode, Node<K, V> removedNode) {
 		LinkedNode<K, V> node1 = (LinkedNode<K, V>) willNode;
 		LinkedNode<K, V> node2 = (LinkedNode<K, V>) removedNode;
-		
 		if (node1 != node2) {
 			// 交换linkedWillNode和linkedRemovedNode在链表中的位置
 			// 交换prev

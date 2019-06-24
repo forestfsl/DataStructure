@@ -39,7 +39,7 @@ public class Main {
 	}
 	
 	static void test1() {
-		String filepath = "/Users/songlin/DataStructure";
+		String filepath = "/Users/forest/DataStructure";
 		FileInfo fileInfo = Files.read(filepath, null);
 		String[] words = fileInfo.words();
 
@@ -130,6 +130,7 @@ public class Main {
 		Asserts.test(map.get(new SubKey1(1)) == 5);
 		Asserts.test(map.get(new SubKey2(1)) == 5);
 		Asserts.test(map.size() == 20);
+		map.print();
 	}
 	
 	public static void main(String[] args) { 
@@ -139,14 +140,14 @@ public class Main {
 //		test4(new HashMap<>());
 //		test5(new HashMap<>());
 		
-		test1();
+//		test1();
 		test2(new LinkedHashMap<>());
-		test3(new LinkedHashMap<>());
-		test4(new LinkedHashMap<>());
-		test5(new LinkedHashMap<>());
-		
-		java.util.HashMap<String, String> map;
-		java.util.LinkedHashMap<String, String> map2;
+//		test3(new LinkedHashMap<>());
+//		test4(new LinkedHashMap<>());
+//		test5(new LinkedHashMap<>());
+//		
+//		java.util.HashMap<String, String> map;
+//		java.util.LinkedHashMap<String, String> map2;
 	}
 
 }

@@ -42,7 +42,6 @@ public class HashMap<K, V> implements Map<K, V> {
 	@Override
 	public V put(K key, V value) {
 		resize();
-		
 		int index = index(key);
 		// 取出index位置的红黑树根节点
 		Node<K, V> root = table[index];
@@ -53,7 +52,6 @@ public class HashMap<K, V> implements Map<K, V> {
 			fixAfterPut(root);
 			return null;
 		}
-		
 		// 添加新的节点到红黑树上面
 		Node<K, V> parent = root;
 		Node<K, V> node = root;
@@ -89,7 +87,6 @@ public class HashMap<K, V> implements Map<K, V> {
 					cmp = System.identityHashCode(k1) - System.identityHashCode(k2);
 				}
 			}
-			
 			if (cmp > 0) {
 				node = node.right;
 			} else if (cmp < 0) {
@@ -102,7 +99,6 @@ public class HashMap<K, V> implements Map<K, V> {
 				return oldValue;
 			}
 		} while (node != null);
-
 		// 看看插入到父节点的哪个位置
 		Node<K, V> newNode = createNode(key, value, parent);
 		if (cmp > 0) {
@@ -111,7 +107,6 @@ public class HashMap<K, V> implements Map<K, V> {
 			parent.left = newNode;
 		}
 		size++;
-		
 		// 新添加节点之后的处理
 		fixAfterPut(newNode);
 		return null;
@@ -288,7 +283,7 @@ public class HashMap<K, V> implements Map<K, V> {
 			}
 		} while (node != null);
 
-		// 看看插入到父节点的哪个位置
+		// 看看插入到父节点的哪个位置，不再用之前的new Node构造函数是因为不需要重新创建对象，节省内存
 		newNode.parent = parent;
 		if (cmp > 0) {
 			parent.right = newNode;
@@ -390,19 +385,19 @@ public class HashMap<K, V> implements Map<K, V> {
 		while (node != null) {
 			K k2 = node.key;
 			int h2 = node.hash;
-			// 先比较哈希值
+			// 先比较哈希值,不直接用h1-h2是因为担心h2是负数的情况，h1-h2(h2是一个很大的负数的时候，可能会导致结果溢出，结果变成负数)
 			if (h1 > h2) {
 				node = node.right;
 			} else if (h1 < h2) {
 				node = node.left;
-			} else if (Objects.equals(k1, k2)) {
+			} else if (Objects.equals(k1, k2)) {//哈希值相等，key不相等
 				return node;
 			} else if (k1 != null && k2 != null 
 					&& k1 instanceof Comparable
 					&& k1.getClass() == k2.getClass()
 					&& (cmp = ((Comparable)k1).compareTo(k2)) != 0) {
 				node = cmp > 0 ? node.right : node.left;
-			} else if (node.right != null && (result = node(node.right, k1)) != null) { 
+			} else if (node.right != null && (result = node(node.right, k1)) != null) { //扫描
 				return result;
 			} else { // 只能往左边找
 				node = node.left;
