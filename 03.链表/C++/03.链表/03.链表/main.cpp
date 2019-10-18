@@ -27,6 +27,11 @@ public:
         }
         return false;
     }
+    friend ostream &operator<<(ostream &stream, const Person *p)
+    {
+        stream << p->name << "的年龄是"<< p->age << endl;
+        return stream;
+    }
 };
 
 void test2(){
@@ -67,8 +72,28 @@ void test1(){
 }
 
 
+class Person1
+{
 
+public:
+    int age;
+    string name;
+    
+    void SetAge(int age)
+    {
+        this->age = age;
+    }
+    friend ostream &operator<<(ostream &stream, const Person1 &p)
+    {
+        stream << p.age << endl;
+        return stream;
+    }
+};
 int main(int argc, const char * argv[]) {
+//    Person1 a;
+//    a.SetAge(10);
+//    cout << a << endl;
+    
     // insert code here...
     test2();
    
