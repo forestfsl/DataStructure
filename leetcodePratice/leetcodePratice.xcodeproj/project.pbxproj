@@ -10,6 +10,7 @@
 		07AC2E2A2359B27300AF9400 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AC2E292359B27300AF9400 /* main.cpp */; };
 		07AC2E332359B33700AF9400 /* DeleteList237.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AC2E312359B33700AF9400 /* DeleteList237.cpp */; };
 		07AC2E372359BFD100AF9400 /* ReverseList206.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AC2E352359BFD100AF9400 /* ReverseList206.cpp */; };
+		07AC2E3A2359D37700AF9400 /* CycleList141.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AC2E382359D37700AF9400 /* CycleList141.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		07AC2E322359B33700AF9400 /* DeleteList237.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DeleteList237.hpp; sourceTree = "<group>"; };
 		07AC2E352359BFD100AF9400 /* ReverseList206.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ReverseList206.cpp; sourceTree = "<group>"; };
 		07AC2E362359BFD100AF9400 /* ReverseList206.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ReverseList206.hpp; sourceTree = "<group>"; };
+		07AC2E382359D37700AF9400 /* CycleList141.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CycleList141.cpp; sourceTree = "<group>"; };
+		07AC2E392359D37700AF9400 /* CycleList141.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CycleList141.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +79,8 @@
 				07AC2E322359B33700AF9400 /* DeleteList237.hpp */,
 				07AC2E352359BFD100AF9400 /* ReverseList206.cpp */,
 				07AC2E362359BFD100AF9400 /* ReverseList206.hpp */,
+				07AC2E382359D37700AF9400 /* CycleList141.cpp */,
+				07AC2E392359D37700AF9400 /* CycleList141.hpp */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -139,6 +144,7 @@
 				07AC2E2A2359B27300AF9400 /* main.cpp in Sources */,
 				07AC2E332359B33700AF9400 /* DeleteList237.cpp in Sources */,
 				07AC2E372359BFD100AF9400 /* ReverseList206.cpp in Sources */,
+				07AC2E3A2359D37700AF9400 /* CycleList141.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
