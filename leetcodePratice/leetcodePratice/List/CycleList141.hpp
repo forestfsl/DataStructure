@@ -21,9 +21,9 @@ struct ListNode141 {
 
 class Solution141 {
 public:
-    ListNode141 *reverseList(ListNode141 *head);
-    ListNode141 *reverseList2(ListNode141 *head);
+    bool cycleList(ListNode141 *head);
     
     void static test141();
 };
 #endif /* CycleList141_hpp */
+

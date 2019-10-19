@@ -9,6 +9,8 @@
 #include <iostream>
 #include "DeleteList237.hpp"
 #include "ReverseList206.hpp"
+#include "CycleList141.hpp"
+
 
 using namespace std;
 
@@ -21,10 +23,16 @@ void test237DeleteListNode(){
 void test206ReverseList(){
     Solution206::test206();
 }
+//https://leetcode-cn.com/problems/linked-list-cycle/
+void test141CycleList(){
+    Solution141::test141();
+}
+
 int main(int argc, const char * argv[]) {
     // insert code here...
 //    test237DeleteListNode();
     
-    test206ReverseList();
+//    test206ReverseList();
+    test141CycleList();
     return 0;
 }
