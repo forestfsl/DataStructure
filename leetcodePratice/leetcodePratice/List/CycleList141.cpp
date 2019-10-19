@@ -42,7 +42,7 @@ void Solution141::test141(){
     fourthNode->next = fifthNode;
     fifthNode->next = sixNode;
     sixNode->next = sevenNode;
-    sevenNode->next = firstNode;
+//    sevenNode->next = firstNode;
     Solution141 solution = Solution141();
-    cout << "true：代表有环，no：代表没有" << solution.cycleList(firstNode) << endl;
+    cout << "1：代表有环，0：代表没有"<< endl << solution.cycleList(firstNode) << endl;
 }
