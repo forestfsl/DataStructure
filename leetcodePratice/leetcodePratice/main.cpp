@@ -10,6 +10,7 @@
 #include "DeleteList237.hpp"
 #include "ReverseList206.hpp"
 #include "CycleList141.hpp"
+#include "EvalRPN150.hpp"
 
 
 using namespace std;
@@ -27,12 +28,15 @@ void test206ReverseList(){
 void test141CycleList(){
     Solution141::test141();
 }
+//https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/comments/
+void test150EvalRPN(){
+    Solution150::test150();
+}
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
 //    test237DeleteListNode();
-    
 //    test206ReverseList();
-    test141CycleList();
+//    test141CycleList();
+    test150EvalRPN();
     return 0;
 }
