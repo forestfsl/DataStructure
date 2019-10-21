@@ -10,6 +10,8 @@
 #include "DeleteList237.hpp"
 #include "ReverseList206.hpp"
 #include "CycleList141.hpp"
+#include "MergeList21.hpp"
+#include "MergeKList23.hpp"
 
 
 using namespace std;
@@ -27,12 +29,20 @@ void test206ReverseList(){
 void test141CycleList(){
     Solution141::test141();
 }
+//https://leetcode-cn.com/problems/merge-two-sorted-lists/
+void test21MergeTwoList(){
+    Solution21::test21();
+}
+//https://leetcode-cn.com/problems/merge-k-sorted-lists/
+void test23MergeKList(){
+    Solution23::test23();
+}
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
 //    test237DeleteListNode();
-    
 //    test206ReverseList();
-    test141CycleList();
+//    test141CycleList();
+//    test21MergeTwoList();
+    test23MergeKList();
     return 0;
 }
