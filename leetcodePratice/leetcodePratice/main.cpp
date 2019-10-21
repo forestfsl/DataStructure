@@ -11,6 +11,8 @@
 #include "ReverseList206.hpp"
 #include "CycleList141.hpp"
 #include "EvalRPN150.hpp"
+#include "MergeList21.hpp"
+#include "MergeKList23.hpp"
 
 
 using namespace std;
@@ -28,15 +30,30 @@ void test206ReverseList(){
 void test141CycleList(){
     Solution141::test141();
 }
+
 //https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/comments/
 void test150EvalRPN(){
     Solution150::test150();
+}
+
+//https://leetcode-cn.com/problems/merge-two-sorted-lists/
+void test21MergeTwoList(){
+    Solution21::test21();
+}
+//https://leetcode-cn.com/problems/merge-k-sorted-lists/
+void test23MergeKList(){
+    Solution23::test23();
 }
 
 int main(int argc, const char * argv[]) {
 //    test237DeleteListNode();
 //    test206ReverseList();
 //    test141CycleList();
-    test150EvalRPN();
+
+//    test150EvalRPN();
+
+//    test21MergeTwoList();
+    test23MergeKList();
+
     return 0;
 }

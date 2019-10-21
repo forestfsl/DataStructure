@@ -12,6 +12,9 @@
 		07AC2E332359B33700AF9400 /* DeleteList237.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AC2E312359B33700AF9400 /* DeleteList237.cpp */; };
 		07AC2E372359BFD100AF9400 /* ReverseList206.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AC2E352359BFD100AF9400 /* ReverseList206.cpp */; };
 		07AC2E3A2359D37700AF9400 /* CycleList141.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AC2E382359D37700AF9400 /* CycleList141.cpp */; };
+		07AC2E3D235D559F00AF9400 /* MergeList21.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AC2E3B235D559F00AF9400 /* MergeList21.cpp */; };
+		07AC2E40235D55D600AF9400 /* ListNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AC2E3E235D55D600AF9400 /* ListNode.cpp */; };
+		07AC2E43235D99FF00AF9400 /* MergeKList23.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AC2E41235D99FF00AF9400 /* MergeKList23.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,6 +39,12 @@
 		07AC2E362359BFD100AF9400 /* ReverseList206.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ReverseList206.hpp; sourceTree = "<group>"; };
 		07AC2E382359D37700AF9400 /* CycleList141.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CycleList141.cpp; sourceTree = "<group>"; };
 		07AC2E392359D37700AF9400 /* CycleList141.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CycleList141.hpp; sourceTree = "<group>"; };
+		07AC2E3B235D559F00AF9400 /* MergeList21.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MergeList21.cpp; sourceTree = "<group>"; };
+		07AC2E3C235D559F00AF9400 /* MergeList21.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MergeList21.hpp; sourceTree = "<group>"; };
+		07AC2E3E235D55D600AF9400 /* ListNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ListNode.cpp; sourceTree = "<group>"; };
+		07AC2E3F235D55D600AF9400 /* ListNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ListNode.hpp; sourceTree = "<group>"; };
+		07AC2E41235D99FF00AF9400 /* MergeKList23.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MergeKList23.cpp; sourceTree = "<group>"; };
+		07AC2E42235D99FF00AF9400 /* MergeKList23.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MergeKList23.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +70,6 @@
 			isa = PBXGroup;
 			children = (
 				07AC2E282359B27300AF9400 /* leetcodePratice */,
-				07AC2E272359B27300AF9400 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +79,7 @@
 				07AC2E262359B27300AF9400 /* leetcodePratice */,
 			);
 			name = Products;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		07AC2E282359B27300AF9400 /* leetcodePratice */ = {
@@ -92,6 +101,13 @@
 				07AC2E362359BFD100AF9400 /* ReverseList206.hpp */,
 				07AC2E382359D37700AF9400 /* CycleList141.cpp */,
 				07AC2E392359D37700AF9400 /* CycleList141.hpp */,
+				07AC2E3B235D559F00AF9400 /* MergeList21.cpp */,
+				07AC2E3C235D559F00AF9400 /* MergeList21.hpp */,
+				07AC2E3E235D55D600AF9400 /* ListNode.cpp */,
+				07AC2E3F235D55D600AF9400 /* ListNode.hpp */,
+				07AC2E41235D99FF00AF9400 /* MergeKList23.cpp */,
+				07AC2E42235D99FF00AF9400 /* MergeKList23.hpp */,
+				07AC2E272359B27300AF9400 /* Products */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -152,11 +168,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07AC2E3D235D559F00AF9400 /* MergeList21.cpp in Sources */,
 				07AC2E2A2359B27300AF9400 /* main.cpp in Sources */,
 				07AC2E332359B33700AF9400 /* DeleteList237.cpp in Sources */,
+				07AC2E40235D55D600AF9400 /* ListNode.cpp in Sources */,
 				07AC2E372359BFD100AF9400 /* ReverseList206.cpp in Sources */,
 				071D11DF235C1C9C0037BBC4 /* EvalRPN150.hpp in Sources */,
 				07AC2E3A2359D37700AF9400 /* CycleList141.cpp in Sources */,
+				07AC2E43235D99FF00AF9400 /* MergeKList23.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
