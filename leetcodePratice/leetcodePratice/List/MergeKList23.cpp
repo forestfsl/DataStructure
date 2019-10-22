@@ -84,10 +84,24 @@ struct cmp {
 };
 
 ListNode * Solution23::mergerKList3(vector<ListNode *> &lists){
-    if (&lists || lists.size() == 0) return nullptr;
+    if (!&lists || lists.size() == 0) return nullptr;
     ListNode *head = new ListNode(0);
     ListNode *currentHead = head;
     priority_queue<ListNode*,vector<ListNode*>,cmp> q;
+    long length = lists.size();
+    for (int i = 0; i < length; i++) {
+        if (lists[i] != nullptr) {
+            q.push(lists[i]);
+        }
+    }
+    while (!q.empty()) {
+        ListNode *headNode = q.top();
+        q.pop();
+        if (headNode->next != nullptr) {
+            q.push(headNode->next);
+        }
+        currentHead = currentHead->next = headNode;
+    }
 
     
     return head->next;
