@@ -31,6 +31,7 @@ ListNode static * RecursiveMergeTwoList(ListNode *l1, ListNode *l2){
 }
 
 
+
 ListNode static *mergeTwoList(ListNode *l1, ListNode *l2){
     if (l1 == nullptr) return l2;
     if (l2 == nullptr) return l1;
@@ -60,9 +61,14 @@ ListNode static *mergeTwoList(ListNode *l1, ListNode *l2){
     }
     
     return head;
-    
 }
-
+/*时间复杂度是
+ 假设有K条链表，有n个节点，那么每条链表可以理解成n/k个节点，那么
+ 第一次合并：n/k + n/k
+ 第二次合并:(n/k + n/k) + n/k = 2 * n/k + n/k
+ 第k次合并:(n/k) + 前面(k - 1) 次的和
+ ----> 2*n/k + 3*n/k + ...k*n/k = ((2 + k) * (k - 1)) * n/k--->O(k^2 * n/k)  ----> O(kn)
+ */
 ListNode * Solution23::mergerKList2(vector<ListNode *> &lists){
     if (lists.size() == 0) {
         return nullptr;
@@ -70,10 +76,29 @@ ListNode * Solution23::mergerKList2(vector<ListNode *> &lists){
 
     //采取两两合并操作，可以使用合并2个有序链表的操作方法
     long length = lists.size() ;
-    for (int i = 0;i< length;i++) {//k 次遍历
-        lists[0] = mergeTwoList(lists[0], lists[i + 1]);
+    for (int i = 1;i< length;i++) {//k 次遍历
+        lists[0] = mergeTwoList(lists[0], lists[i]);
     }
    
+    return lists[0];
+}
+
+//时间复杂度是O(nlogk)
+ListNode * Solution23::mergeKList4(vector<ListNode *> &lists){
+    if (lists.size() == 0) return nullptr;
+    long length = lists.size();
+    //需要一个变量来结束循环
+    int step = 1;
+    while (step < length) {
+        int nextStep = step << 1;
+        for (int i = 0; i + step < length; i = i + nextStep) {
+            //需要merge logk次，megeTwoList需要遍历n次获取节点
+            lists[i] = mergeTwoList(lists[i], lists[i + step]);
+        }
+        step = nextStep;
+    }
+    
+  
     return lists[0];
 }
 
@@ -84,7 +109,7 @@ struct cmp {
 };
 
 ListNode * Solution23::mergerKList3(vector<ListNode *> &lists){
-    if (!&lists || lists.size() == 0) return nullptr;
+    if (lists.size() == 0) return nullptr;
     ListNode *head = new ListNode(0);
     ListNode *currentHead = head;
     priority_queue<ListNode*,vector<ListNode*>,cmp> q;
@@ -204,7 +229,10 @@ void Solution23::test23(){
 //    ListNode *thirdHead = solution.mergerKList2(listModel);
 //    cout << thirdHead << endl;
     
-    ListNode *fourthHead = solution.mergerKList3(listModel);
-    cout << fourthHead << endl;
+//    ListNode *fourthHead = solution.mergerKList3(listModel);
+//    cout << fourthHead << endl;
+    
+    ListNode *fifthHead = solution.mergeKList4(listModel);
+    cout << fifthHead << endl;
     
 }

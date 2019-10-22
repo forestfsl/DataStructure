@@ -13,6 +13,7 @@
 #include "EvalRPN150.hpp"
 #include "MergeList21.hpp"
 #include "MergeKList23.hpp"
+#include "ValidBST98.hpp"
 
 
 using namespace std;
@@ -36,7 +37,7 @@ void test150EvalRPN(){
     Solution150::test150();
 }
 
-//https://leetcode-cn.com/problems/merge-two-sorted-lists/
+//21 https://leetcode-cn.com/problems/merge-two-sorted-lists/
 void test21MergeTwoList(){
     Solution21::test21();
 }
@@ -44,16 +45,19 @@ void test21MergeTwoList(){
 void test23MergeKList(){
     Solution23::test23();
 }
+//98 https://leetcode-cn.com/problems/validate-binary-search-tree/
+void test98ValidBST(){
+    Solution98::test98();
+}
 
 int main(int argc, const char * argv[]) {
 //    test237DeleteListNode();
 //    test206ReverseList();
 //    test141CycleList();
-
 //    test150EvalRPN();
-
 //    test21MergeTwoList();
-    test23MergeKList();
+//    test23MergeKList();
+    test98ValidBST();
 
     return 0;
 }

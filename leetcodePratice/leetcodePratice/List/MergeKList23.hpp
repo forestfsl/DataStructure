@@ -20,6 +20,7 @@ public:
     ListNode *mergerKList(vector<ListNode *>& lists);
     ListNode *mergerKList2(vector<ListNode *>& lists);
     ListNode *mergerKList3(vector<ListNode *>& lists);
+    ListNode *mergeKList4(vector<ListNode *> & lists);
     ListNode *stupidMergerKList(vector<ListNode *>& lists);
     void static test23();
 };
