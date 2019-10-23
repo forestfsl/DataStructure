@@ -14,6 +14,7 @@
 #include "MergeList21.hpp"
 #include "MergeKList23.hpp"
 #include "ValidBST98.hpp"
+#include "DailyTemperatures739.hpp"
 
 
 using namespace std;
@@ -49,6 +50,10 @@ void test23MergeKList(){
 void test98ValidBST(){
     Solution98::test98();
 }
+//739 https://leetcode-cn.com/problems/daily-temperatures/
+void test739Tempatures(){
+    Solution739::test739();
+}
 
 int main(int argc, const char * argv[]) {
 //    test237DeleteListNode();
@@ -57,7 +62,8 @@ int main(int argc, const char * argv[]) {
 //    test150EvalRPN();
 //    test21MergeTwoList();
 //    test23MergeKList();
-    test98ValidBST();
+//    test98ValidBST();
+    test739Tempatures();
 
     return 0;
 }

@@ -17,6 +17,7 @@
 		07AC2E43235D99FF00AF9400 /* MergeKList23.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AC2E41235D99FF00AF9400 /* MergeKList23.cpp */; };
 		07AC2E47235EB0D700AF9400 /* ValidBST98.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AC2E45235EB0D700AF9400 /* ValidBST98.cpp */; };
 		07AC2E4A235EB10900AF9400 /* TreeNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AC2E48235EB10900AF9400 /* TreeNode.cpp */; };
+		07AC2EA8235FE8D700AF9400 /* DailyTemperatures739.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AC2EA6235FE8D700AF9400 /* DailyTemperatures739.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +52,8 @@
 		07AC2E46235EB0D700AF9400 /* ValidBST98.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ValidBST98.hpp; sourceTree = "<group>"; };
 		07AC2E48235EB10900AF9400 /* TreeNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TreeNode.cpp; sourceTree = "<group>"; };
 		07AC2E49235EB10900AF9400 /* TreeNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TreeNode.hpp; sourceTree = "<group>"; };
+		07AC2EA6235FE8D700AF9400 /* DailyTemperatures739.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DailyTemperatures739.cpp; sourceTree = "<group>"; };
+		07AC2EA7235FE8D700AF9400 /* DailyTemperatures739.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DailyTemperatures739.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,8 @@
 			isa = PBXGroup;
 			children = (
 				071D11DE235C1C9C0037BBC4 /* EvalRPN150.hpp */,
+				07AC2EA6235FE8D700AF9400 /* DailyTemperatures739.cpp */,
+				07AC2EA7235FE8D700AF9400 /* DailyTemperatures739.hpp */,
 			);
 			path = Stack;
 			sourceTree = "<group>";
@@ -187,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07AC2E3D235D559F00AF9400 /* MergeList21.cpp in Sources */,
+				07AC2EA8235FE8D700AF9400 /* DailyTemperatures739.cpp in Sources */,
 				07AC2E2A2359B27300AF9400 /* main.cpp in Sources */,
 				07AC2E47235EB0D700AF9400 /* ValidBST98.cpp in Sources */,
 				07AC2E332359B33700AF9400 /* DeleteList237.cpp in Sources */,
