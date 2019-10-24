@@ -8,7 +8,7 @@
 
 #include "DailyTemperatures739.hpp"
 
-//跳跃法 从右到左对比
+//跳跃法 从右到左对比 时间复杂度O(n) 空间复杂度O(1)
 vector<int> Solution739::dailyTemperatures(vector<int> &T){
     vector<int> result(T.size());
     //最后一个元素肯定为0，因为后面没有元素对比
@@ -34,6 +34,8 @@ vector<int> Solution739::dailyTemperatures(vector<int> &T){
     return result;
 }
 
+
+//以下两个空间和时间复杂度都是O(n)
 //栈对比法，只不过是反过来，里面保存着最大的元素，从右边开始，匹配到比top元素大的，就将top元素pop掉，然后将当前元素值入栈，当前元素值，是到最后一个元素的一个最大值，栈由此至终就最多存放一个元素
 vector<int> Solution739::dailyTemperatures3(vector<int> &T){
     stack<int> s;
