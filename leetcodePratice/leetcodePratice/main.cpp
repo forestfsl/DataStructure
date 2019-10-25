@@ -17,7 +17,7 @@
 #include "DailyTemperatures739.hpp"
 #include "MaxPathSum124.hpp"
 #include "Flatten114.hpp"
-
+#include "TwoSum1.hpp"
 
 using namespace std;
 
@@ -65,6 +65,11 @@ void test124MaxPathSum() {
 void test114Flatten(){
     Solution114::test114();
 }
+
+void test1TwoSum(){
+    Solution1::test1();
+}
+
 int main(int argc, const char * argv[]) {
 //    test237DeleteListNode();
 //    test206ReverseList();
@@ -75,7 +80,8 @@ int main(int argc, const char * argv[]) {
 //    test98ValidBST();
 //    test739Tempatures();
 //    test124MaxPathSum();
-    test114Flatten();
+//    test114Flatten();
+    test1TwoSum();
 
     return 0;
 }

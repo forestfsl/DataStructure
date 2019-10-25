@@ -20,6 +20,7 @@
 		07AC2EA8235FE8D700AF9400 /* DailyTemperatures739.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AC2EA6235FE8D700AF9400 /* DailyTemperatures739.cpp */; };
 		07AC2ECD23613C4E00AF9400 /* MaxPathSum124.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AC2ECB23613C4E00AF9400 /* MaxPathSum124.cpp */; };
 		07C48D4423614EF3007FAAAD /* Flatten114.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C48D4223614EF3007FAAAD /* Flatten114.cpp */; };
+		07C48D4A2361ADD3007FAAAD /* TwoSum1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C48D482361ADD3007FAAAD /* TwoSum1.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -60,6 +61,8 @@
 		07AC2ECC23613C4E00AF9400 /* MaxPathSum124.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MaxPathSum124.hpp; sourceTree = "<group>"; };
 		07C48D4223614EF3007FAAAD /* Flatten114.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Flatten114.cpp; sourceTree = "<group>"; };
 		07C48D4323614EF3007FAAAD /* Flatten114.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Flatten114.hpp; sourceTree = "<group>"; };
+		07C48D482361ADD3007FAAAD /* TwoSum1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TwoSum1.cpp; sourceTree = "<group>"; };
+		07C48D492361ADD3007FAAAD /* TwoSum1.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TwoSum1.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +105,7 @@
 		07AC2E282359B27300AF9400 /* leetcodePratice */ = {
 			isa = PBXGroup;
 			children = (
+				07C48D472361ADC4007FAAAD /* Other */,
 				07AC2E44235EB0BA00AF9400 /* Tree */,
 				071D11DD235C1C6D0037BBC4 /* Stack */,
 				07AC2E302359B2A700AF9400 /* List */,
@@ -143,6 +147,15 @@
 				07C48D4323614EF3007FAAAD /* Flatten114.hpp */,
 			);
 			path = Tree;
+			sourceTree = "<group>";
+		};
+		07C48D472361ADC4007FAAAD /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				07C48D482361ADD3007FAAAD /* TwoSum1.cpp */,
+				07C48D492361ADD3007FAAAD /* TwoSum1.hpp */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +220,7 @@
 				07C48D4423614EF3007FAAAD /* Flatten114.cpp in Sources */,
 				07AC2E2A2359B27300AF9400 /* main.cpp in Sources */,
 				07AC2E47235EB0D700AF9400 /* ValidBST98.cpp in Sources */,
+				07C48D4A2361ADD3007FAAAD /* TwoSum1.cpp in Sources */,
 				07AC2E332359B33700AF9400 /* DeleteList237.cpp in Sources */,
 				07AC2E40235D55D600AF9400 /* ListNode.cpp in Sources */,
 				07AC2E372359BFD100AF9400 /* ReverseList206.cpp in Sources */,
