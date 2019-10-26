@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070EF2EF23642D050073DD53 /* Rob198.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070EF2ED23642D050073DD53 /* Rob198.cpp */; };
 		071D11DF235C1C9C0037BBC4 /* EvalRPN150.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 071D11DE235C1C9C0037BBC4 /* EvalRPN150.hpp */; };
 		07AC2E2A2359B27300AF9400 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AC2E292359B27300AF9400 /* main.cpp */; };
 		07AC2E332359B33700AF9400 /* DeleteList237.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AC2E312359B33700AF9400 /* DeleteList237.cpp */; };
@@ -36,6 +37,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		070EF2ED23642D050073DD53 /* Rob198.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Rob198.cpp; sourceTree = "<group>"; };
+		070EF2EE23642D050073DD53 /* Rob198.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Rob198.hpp; sourceTree = "<group>"; };
 		071D11DE235C1C9C0037BBC4 /* EvalRPN150.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EvalRPN150.hpp; sourceTree = "<group>"; };
 		07AC2E262359B27300AF9400 /* leetcodePratice */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = leetcodePratice; sourceTree = BUILT_PRODUCTS_DIR; };
 		07AC2E292359B27300AF9400 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -76,6 +79,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		070EF2EC23642C390073DD53 /* 动态规划 */ = {
+			isa = PBXGroup;
+			children = (
+				070EF2ED23642D050073DD53 /* Rob198.cpp */,
+				070EF2EE23642D050073DD53 /* Rob198.hpp */,
+			);
+			path = "动态规划";
+			sourceTree = "<group>";
+		};
 		071D11DD235C1C6D0037BBC4 /* Stack */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +117,7 @@
 		07AC2E282359B27300AF9400 /* leetcodePratice */ = {
 			isa = PBXGroup;
 			children = (
+				070EF2EC23642C390073DD53 /* 动态规划 */,
 				07C48D472361ADC4007FAAAD /* Other */,
 				07AC2E44235EB0BA00AF9400 /* Tree */,
 				071D11DD235C1C6D0037BBC4 /* Stack */,
@@ -219,6 +232,7 @@
 				07AC2EA8235FE8D700AF9400 /* DailyTemperatures739.cpp in Sources */,
 				07C48D4423614EF3007FAAAD /* Flatten114.cpp in Sources */,
 				07AC2E2A2359B27300AF9400 /* main.cpp in Sources */,
+				070EF2EF23642D050073DD53 /* Rob198.cpp in Sources */,
 				07AC2E47235EB0D700AF9400 /* ValidBST98.cpp in Sources */,
 				07C48D4A2361ADD3007FAAAD /* TwoSum1.cpp in Sources */,
 				07AC2E332359B33700AF9400 /* DeleteList237.cpp in Sources */,

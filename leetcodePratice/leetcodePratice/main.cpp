@@ -18,6 +18,7 @@
 #include "MaxPathSum124.hpp"
 #include "Flatten114.hpp"
 #include "TwoSum1.hpp"
+#include "Rob198.hpp"
 
 using namespace std;
 
@@ -65,10 +66,17 @@ void test124MaxPathSum() {
 void test114Flatten(){
     Solution114::test114();
 }
-
+//求和1
 void test1TwoSum(){
     Solution1::test1();
 }
+
+
+//198. 打家劫舍 https://leetcode-cn.com/problems/house-robber/
+void test98Rob(){
+    Solution98::test98();
+}
+
 
 int main(int argc, const char * argv[]) {
 //    test237DeleteListNode();
@@ -81,7 +89,8 @@ int main(int argc, const char * argv[]) {
 //    test739Tempatures();
 //    test124MaxPathSum();
 //    test114Flatten();
-    test1TwoSum();
+//    test1TwoSum();
+    test98Rob();
 
     return 0;
 }
