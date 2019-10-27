@@ -19,6 +19,7 @@
 #include "Flatten114.hpp"
 #include "TwoSum1.hpp"
 #include "Rob198.hpp"
+#include "TopKFrequent347.hpp"
 
 using namespace std;
 
@@ -73,10 +74,14 @@ void test1TwoSum(){
 
 
 //198. 打家劫舍 https://leetcode-cn.com/problems/house-robber/
-void test98Rob(){
-    Solution98::test98();
+void test198Rob(){
+    Solution198::test198();
 }
 
+//374 leetcode_347_前K个高频元素 https://leetcode-cn.com/problems/top-k-frequent-elements/
+void test374KTop(){
+    Solution347::test347();
+}
 
 int main(int argc, const char * argv[]) {
 //    test237DeleteListNode();
@@ -90,7 +95,8 @@ int main(int argc, const char * argv[]) {
 //    test124MaxPathSum();
 //    test114Flatten();
 //    test1TwoSum();
-    test98Rob();
+//    test198Rob();
+    test374KTop();
 
     return 0;
 }

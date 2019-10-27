@@ -18,7 +18,7 @@ using namespace std;
 class Solution198 {
 public:
     int rob(vector<int>& nums);
-    void static test98();
+    void static test198();
 };
 
 #endif /* Rob198_hpp */

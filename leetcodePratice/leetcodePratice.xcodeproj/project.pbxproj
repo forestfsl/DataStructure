@@ -22,6 +22,7 @@
 		07AC2ECD23613C4E00AF9400 /* MaxPathSum124.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AC2ECB23613C4E00AF9400 /* MaxPathSum124.cpp */; };
 		07C48D4423614EF3007FAAAD /* Flatten114.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C48D4223614EF3007FAAAD /* Flatten114.cpp */; };
 		07C48D4A2361ADD3007FAAAD /* TwoSum1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C48D482361ADD3007FAAAD /* TwoSum1.cpp */; };
+		07EC11682365541E0069A138 /* TopKFrequent347.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EC11662365541E0069A138 /* TopKFrequent347.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -66,6 +67,8 @@
 		07C48D4323614EF3007FAAAD /* Flatten114.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Flatten114.hpp; sourceTree = "<group>"; };
 		07C48D482361ADD3007FAAAD /* TwoSum1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TwoSum1.cpp; sourceTree = "<group>"; };
 		07C48D492361ADD3007FAAAD /* TwoSum1.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TwoSum1.hpp; sourceTree = "<group>"; };
+		07EC11662365541E0069A138 /* TopKFrequent347.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TopKFrequent347.cpp; sourceTree = "<group>"; };
+		07EC11672365541E0069A138 /* TopKFrequent347.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TopKFrequent347.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,7 @@
 		07AC2E282359B27300AF9400 /* leetcodePratice */ = {
 			isa = PBXGroup;
 			children = (
+				07EC1165236554030069A138 /* heap */,
 				070EF2EC23642C390073DD53 /* 动态规划 */,
 				07C48D472361ADC4007FAAAD /* Other */,
 				07AC2E44235EB0BA00AF9400 /* Tree */,
@@ -169,6 +173,15 @@
 				07C48D492361ADD3007FAAAD /* TwoSum1.hpp */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		07EC1165236554030069A138 /* heap */ = {
+			isa = PBXGroup;
+			children = (
+				07EC11662365541E0069A138 /* TopKFrequent347.cpp */,
+				07EC11672365541E0069A138 /* TopKFrequent347.hpp */,
+			);
+			path = heap;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +250,7 @@
 				07C48D4A2361ADD3007FAAAD /* TwoSum1.cpp in Sources */,
 				07AC2E332359B33700AF9400 /* DeleteList237.cpp in Sources */,
 				07AC2E40235D55D600AF9400 /* ListNode.cpp in Sources */,
+				07EC11682365541E0069A138 /* TopKFrequent347.cpp in Sources */,
 				07AC2E372359BFD100AF9400 /* ReverseList206.cpp in Sources */,
 				071D11DF235C1C9C0037BBC4 /* EvalRPN150.hpp in Sources */,
 				07AC2E4A235EB10900AF9400 /* TreeNode.cpp in Sources */,
