@@ -12,6 +12,39 @@
 #include <map>
 
 
+vector<int> Solution347::topKFrequent3(vector<int> &nums, int k){
+    // 用哈希map记录每个数字出现的次数
+    unordered_map<int, int> hashmap;
+    vector<int> result;
+    int maxCount = 0;
+    for (int i = 0; i < nums.size(); i++){
+        hashmap[nums[i]]++;
+        maxCount = max(maxCount, hashmap[nums[i]]);
+    }
+    // 采用桶排序，对次数进行排序
+    // 桶的数量
+    int bucketCount = maxCount + 1;
+    vector<vector<int>> buckets(bucketCount);
+    for (auto it : hashmap){
+        buckets[it.second].push_back(it.first);
+    }
+    int length = (int)buckets.size() - 1;
+    for (int i = length; i >= 0; i--){
+        if (!buckets[i].empty()){
+            for (auto num : buckets[i]){
+                result.push_back(num);
+                if (result.size() == k){
+                    return result;
+                }
+            }
+        }
+    }
+    
+    return result;
+    
+}
+
+
 //小根堆模式 //全排序 时间复杂度优于O(nlogn) 空间复杂度是O(n)
 vector<int> Solution347::topKFrequent2(vector<int> &nums, int k){
     using E = pair<int, int>;
@@ -69,5 +102,5 @@ vector<int> Solution347::topKFrequent(vector<int> &nums, int k){
 void Solution347::test347(){
     Solution347 solution = Solution347();
     vector<int>nums = {1,1,1,1,2,2,3,2};
-    solution.topKFrequent3(nums,2);
+    solution.topKFrequent2(nums,2);
 }

@@ -10,13 +10,61 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "leetcodePratice/heap/TopKFrequent347.cpp"
-            timestampString = "593878594.11167"
+            timestampString = "594138811.390148"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "Solution347::topKFrequent2(vector&lt;int&gt; &amp;nums, int k)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "leetcodePratice/heap/TopKFrequent347.cpp"
+            timestampString = "594138820.0850331"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "Solution347::topKFrequent2(vector&lt;int&gt; &amp;nums, int k)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Solution347::topKFrequent2(std::__1::vector&lt;int, std::__1::allocator&lt;int&gt; &gt;&amp;, int)"
+                  moduleName = "leetcodePratice"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/forest/DataStructure/leetcodePratice/leetcodePratice/heap/TopKFrequent347.cpp"
+                  timestampString = "594138820.089854"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "208">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Solution347::topKFrequent2(std::__1::vector&lt;int, std::__1::allocator&lt;int&gt; &gt;&amp;, int)"
+                  moduleName = "leetcodePratice"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/forest/DataStructure/leetcodePratice/leetcodePratice/heap/TopKFrequent347.cpp"
+                  timestampString = "594138820.091803"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "313">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
