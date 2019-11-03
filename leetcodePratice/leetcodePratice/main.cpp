@@ -20,6 +20,8 @@
 #include "TwoSum1.hpp"
 #include "Rob198.hpp"
 #include "TopKFrequent347.hpp"
+#include "ValidSuduKu36.hpp"
+#include "ValidSuduKu36.hpp"
 
 using namespace std;
 
@@ -83,6 +85,11 @@ void test374KTop(){
     Solution347::test347();
 }
 
+//36. 有效的数独 https://leetcode-cn.com/problems/valid-sudoku/
+void test36ValidSudoku(){
+    Solution36::test36();
+}
+
 int main(int argc, const char * argv[]) {
 //    test237DeleteListNode();
 //    test206ReverseList();
@@ -96,7 +103,7 @@ int main(int argc, const char * argv[]) {
 //    test114Flatten();
 //    test1TwoSum();
 //    test198Rob();
-    test374KTop();
-
+//    test374KTop();
+    test36ValidSudoku();
     return 0;
 }

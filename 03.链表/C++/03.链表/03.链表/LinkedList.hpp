@@ -6,8 +6,15 @@
 //  Copyright © 2019 songlin. All rights reserved.
 //
 
+
+/**
+ * 当向链表
+ *
+ */
+
 #ifndef LinkedList_hpp
 #define LinkedList_hpp
+
 
 #include <stdio.h>
 #include <iostream>

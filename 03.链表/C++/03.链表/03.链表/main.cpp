@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "LinkedList.hpp"
+#include "LinkedList2.hpp"
 
 class Person {
 public:
@@ -34,6 +35,7 @@ public:
     }
 };
 
+//测试单向链表
 void test2(){
     LinkedList<Person *> *list = new LinkedList<Person *>();
     Person *p1 = new Person(string("fengsl"),20);
@@ -43,16 +45,43 @@ void test2(){
     list->add(p2);
     list->add(p3);
     list->toString();
-    int index = list->indexOf(p3);
-    cout  << index << endl;
-    
-    //因为java和c++不同，这里调用clear()方法Person对象的内存是不会销毁的，这个在第一天复杂度的时候有提到过，注意一下
-//    list->clear();
-    list->clear_element([] (Person *person){
-        delete person;
-    });
+//    int index = list->indexOf(p3);
+//    cout  << index << endl;
+//    
+//    //因为java和c++不同，这里调用clear()方法Person对象的内存是不会销毁的，这个在第一天复杂度的时候有提到过，注意一下
+////    list->clear();
+//    list->clear_element([] (Person *person){
+//        delete person;
+//    });
     
     delete list;
+}
+
+//测试双向链表
+void test3(){
+    LinkedList2<Person *> *list = new LinkedList2<Person *>();
+    Person *p1 = new Person(string("fengsl"),20);
+    Person *p2 = new Person(string("fengsl1"),40);
+    Person *p3 = new Person(string("fengsl2"),30);
+    Person *p4 = new Person(string("fengsl3"),60);
+    list->add(p1);
+    list->add(p2);
+    list->add(p3);
+    list->toString();
+    int index = list->indexOf(p3);
+    cout  << index << endl;
+    list->set(0,p4);
+    cout << "##################" << endl;
+    cout << list->get(0) << endl;
+    list->toString();
+
+    list->clearElement([] (Person *person){
+        delete person;
+    });
+     delete p1;
+     delete list;
+
+
 }
 
 void test1(){
@@ -94,8 +123,8 @@ int main(int argc, const char * argv[]) {
 //    a.SetAge(10);
 //    cout << a << endl;
     
-    // insert code here...
-    test2();
+   
+    test3();
    
     return 0;
 }

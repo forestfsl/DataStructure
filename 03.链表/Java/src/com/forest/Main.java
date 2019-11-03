@@ -65,11 +65,11 @@ public class Main {
 	public static void main(String[] args) {
 		//测试singleLinkList
 //		testSingleLinkList();
-//		testList(new LinkedList<Integer>());
+		testList(new LinkedList<Integer>());
 		
 //		testList(new SingleCircleLinkList<Integer>());
 //		testList(new CircleLinkedList<>());
-		josephus();
+//		josephus();
 
 	}
 	

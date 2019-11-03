@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070DF570236E510000132BF5 /* ValidSuduKu36.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070DF56E236E510000132BF5 /* ValidSuduKu36.cpp */; };
 		070EF2EF23642D050073DD53 /* Rob198.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070EF2ED23642D050073DD53 /* Rob198.cpp */; };
 		071D11DF235C1C9C0037BBC4 /* EvalRPN150.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 071D11DE235C1C9C0037BBC4 /* EvalRPN150.hpp */; };
 		07AC2E2A2359B27300AF9400 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AC2E292359B27300AF9400 /* main.cpp */; };
@@ -38,6 +39,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		070DF56E236E510000132BF5 /* ValidSuduKu36.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ValidSuduKu36.cpp; sourceTree = "<group>"; };
+		070DF56F236E510000132BF5 /* ValidSuduKu36.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ValidSuduKu36.hpp; sourceTree = "<group>"; };
 		070EF2ED23642D050073DD53 /* Rob198.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Rob198.cpp; sourceTree = "<group>"; };
 		070EF2EE23642D050073DD53 /* Rob198.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Rob198.hpp; sourceTree = "<group>"; };
 		071D11DE235C1C9C0037BBC4 /* EvalRPN150.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EvalRPN150.hpp; sourceTree = "<group>"; };
@@ -82,6 +85,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		070DF56D236E50C000132BF5 /* HashMap */ = {
+			isa = PBXGroup;
+			children = (
+				070DF56E236E510000132BF5 /* ValidSuduKu36.cpp */,
+				070DF56F236E510000132BF5 /* ValidSuduKu36.hpp */,
+			);
+			path = HashMap;
+			sourceTree = "<group>";
+		};
 		070EF2EC23642C390073DD53 /* 动态规划 */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +132,7 @@
 		07AC2E282359B27300AF9400 /* leetcodePratice */ = {
 			isa = PBXGroup;
 			children = (
+				070DF56D236E50C000132BF5 /* HashMap */,
 				07EC1165236554030069A138 /* heap */,
 				070EF2EC23642C390073DD53 /* 动态规划 */,
 				07C48D472361ADC4007FAAAD /* Other */,
@@ -253,6 +266,7 @@
 				07EC11682365541E0069A138 /* TopKFrequent347.cpp in Sources */,
 				07AC2E372359BFD100AF9400 /* ReverseList206.cpp in Sources */,
 				071D11DF235C1C9C0037BBC4 /* EvalRPN150.hpp in Sources */,
+				070DF570236E510000132BF5 /* ValidSuduKu36.cpp in Sources */,
 				07AC2E4A235EB10900AF9400 /* TreeNode.cpp in Sources */,
 				07AC2E3A2359D37700AF9400 /* CycleList141.cpp in Sources */,
 				07AC2E43235D99FF00AF9400 /* MergeKList23.cpp in Sources */,
@@ -376,6 +390,7 @@
 		07AC2E2E2359B27300AF9400 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -384,6 +399,7 @@
 		07AC2E2F2359B27300AF9400 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
