@@ -28,6 +28,8 @@
 		075CE7B6226CB893001D81A1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		075CE7BE226CB9CB001D81A1 /* LinkedList.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LinkedList.hpp; sourceTree = "<group>"; };
 		07950878236D27F5006ECAC7 /* LinkedList2.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LinkedList2.hpp; sourceTree = "<group>"; };
+		07DFE7F423701B30001C027F /* SingleCircleLinkedList.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SingleCircleLinkedList.hpp; sourceTree = SOURCE_ROOT; };
+		07DFE872237176ED001C027F /* DoubleCircleLinkedList.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DoubleCircleLinkedList.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,8 @@
 				075CE7B6226CB893001D81A1 /* main.cpp */,
 				075CE7BE226CB9CB001D81A1 /* LinkedList.hpp */,
 				07950878236D27F5006ECAC7 /* LinkedList2.hpp */,
+				07DFE7F423701B30001C027F /* SingleCircleLinkedList.hpp */,
+				07DFE872237176ED001C027F /* DoubleCircleLinkedList.hpp */,
 			);
 			path = "03.链表";
 			sourceTree = "<group>";
@@ -107,6 +111,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 075CE7AA226CB893001D81A1;
 			productRefGroup = 075CE7B4226CB893001D81A1 /* Products */;

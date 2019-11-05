@@ -9,6 +9,8 @@
 #include <iostream>
 #include "LinkedList.hpp"
 #include "LinkedList2.hpp"
+#include "SingleCircleLinkedList.hpp"
+#include "DoubleCircleLinkedList.hpp"
 
 class Person {
 public:
@@ -17,6 +19,7 @@ public:
     Person(string name,int age) {
         this->name = name;
         this->age = age;
+        cout << "Person()" << endl;
     }
     ~Person() {
         cout<<"~Person()"<<endl;
@@ -80,8 +83,19 @@ void test3(){
     });
      delete p1;
      delete list;
+}
 
-
+void josephuse(){
+    DoubleCircleLinkedList<int> *list = new DoubleCircleLinkedList<int>();
+    for (int i = 1; i <= 8; i++) {
+        list->add(i);
+    }
+    list->reset();
+    while (!list->isEmpty()) {
+        list->next();
+        list->next();
+        cout << list->remove() << endl;
+    }
 }
 
 void test1(){
@@ -100,7 +114,29 @@ void test1(){
    
 }
 
+void testSingleCircleList(){
+    SingleCircleLinkedList<Person *> *list = new SingleCircleLinkedList<Person *>();
+    Person *p1 = new Person(string("fengsl"),20);
+    Person *p2 = new Person(string("fengsl1"),40);
+    Person *p3 = new Person(string("fengsl2"),30);
+    Person *p4 = new Person(string("fengsl3"),60);
+    list->add(p1);
+    list->add(p2);
+    list->add(p3);
+    list->toString();
+    int index = list->indexOf(p3);
+    cout  << index << endl;
+    list->set(0,p4);
+    cout << "##################" << endl;
+    cout << list->get(0) << endl;
+    list->toString();
 
+    list->clearElement([] (Person *person){
+        delete person;
+    });
+    delete p1;
+    delete list;
+}
 class Person1
 {
 
@@ -124,7 +160,9 @@ int main(int argc, const char * argv[]) {
 //    cout << a << endl;
     
    
-    test3();
+//    test3();
+//    testSingleCircleList();
+    josephuse();
    
     return 0;
 }
