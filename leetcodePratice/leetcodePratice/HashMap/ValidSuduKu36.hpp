@@ -18,6 +18,8 @@ using namespace std;
 class Solution36 {
 public:
     bool isValidSudoku(vector<vector<char>>& board);
+    bool isValidSudoku2(vector<vector<char>>& board);
+    bool isValidSudoku3(vector<vector<char>>& board);
     void static test36();
 };
 
