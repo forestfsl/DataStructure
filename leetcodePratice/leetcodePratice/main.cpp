@@ -22,6 +22,7 @@
 #include "TopKFrequent347.hpp"
 #include "ValidSuduKu36.hpp"
 #include "ValidSuduKu36.hpp"
+#include "ValidSympol20.hpp"
 
 using namespace std;
 
@@ -90,6 +91,10 @@ void test36ValidSudoku(){
     Solution36::test36();
 }
 
+//20. 有效的括号 https://leetcode-cn.com/problems/valid-parentheses/
+void test20ValidSympol(){
+    Solution20::test20();
+}
 int main(int argc, const char * argv[]) {
 //    test237DeleteListNode();
 //    test206ReverseList();
@@ -104,6 +109,7 @@ int main(int argc, const char * argv[]) {
 //    test1TwoSum();
 //    test198Rob();
 //    test374KTop();
-    test36ValidSudoku();
+//    test36ValidSudoku();
+    test20ValidSympol();
     return 0;
 }
