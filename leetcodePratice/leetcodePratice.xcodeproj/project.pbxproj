@@ -24,6 +24,7 @@
 		07C48D4423614EF3007FAAAD /* Flatten114.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C48D4223614EF3007FAAAD /* Flatten114.cpp */; };
 		07C48D4A2361ADD3007FAAAD /* TwoSum1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C48D482361ADD3007FAAAD /* TwoSum1.cpp */; };
 		07DFE9062373BBDA001C027F /* ValidSympol20.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07DFE9042373BBDA001C027F /* ValidSympol20.cpp */; };
+		07DFE9092373CA7A001C027F /* StackRealizeQueue232.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07DFE9072373CA7A001C027F /* StackRealizeQueue232.cpp */; };
 		07EC11682365541E0069A138 /* TopKFrequent347.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EC11662365541E0069A138 /* TopKFrequent347.cpp */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,8 @@
 		07C48D492361ADD3007FAAAD /* TwoSum1.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TwoSum1.hpp; sourceTree = "<group>"; };
 		07DFE9042373BBDA001C027F /* ValidSympol20.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ValidSympol20.cpp; sourceTree = "<group>"; };
 		07DFE9052373BBDA001C027F /* ValidSympol20.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ValidSympol20.hpp; sourceTree = "<group>"; };
+		07DFE9072373CA7A001C027F /* StackRealizeQueue232.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StackRealizeQueue232.cpp; sourceTree = "<group>"; };
+		07DFE9082373CA7A001C027F /* StackRealizeQueue232.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StackRealizeQueue232.hpp; sourceTree = "<group>"; };
 		07EC11662365541E0069A138 /* TopKFrequent347.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TopKFrequent347.cpp; sourceTree = "<group>"; };
 		07EC11672365541E0069A138 /* TopKFrequent347.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TopKFrequent347.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,6 +117,8 @@
 				07AC2EA7235FE8D700AF9400 /* DailyTemperatures739.hpp */,
 				07DFE9042373BBDA001C027F /* ValidSympol20.cpp */,
 				07DFE9052373BBDA001C027F /* ValidSympol20.hpp */,
+				07DFE9072373CA7A001C027F /* StackRealizeQueue232.cpp */,
+				07DFE9082373CA7A001C027F /* StackRealizeQueue232.hpp */,
 			);
 			path = Stack;
 			sourceTree = "<group>";
@@ -267,6 +272,7 @@
 				07AC2E47235EB0D700AF9400 /* ValidBST98.cpp in Sources */,
 				07C48D4A2361ADD3007FAAAD /* TwoSum1.cpp in Sources */,
 				07AC2E332359B33700AF9400 /* DeleteList237.cpp in Sources */,
+				07DFE9092373CA7A001C027F /* StackRealizeQueue232.cpp in Sources */,
 				07AC2E40235D55D600AF9400 /* ListNode.cpp in Sources */,
 				07EC11682365541E0069A138 /* TopKFrequent347.cpp in Sources */,
 				07AC2E372359BFD100AF9400 /* ReverseList206.cpp in Sources */,
