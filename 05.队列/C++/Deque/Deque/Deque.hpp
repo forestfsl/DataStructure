@@ -20,7 +20,6 @@ template <class E>
 class Deque{
     private:
     LinkedList2<E> *list = new LinkedList2<E>();
-
     public:
     //元素的数量
     int size(){

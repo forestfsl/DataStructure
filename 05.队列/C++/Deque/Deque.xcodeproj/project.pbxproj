@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070DF57423764B5400132BF5 /* Queue.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BF718223751EA20016851B /* Queue.hpp */; };
+		070DF57523764B5400132BF5 /* CircleQueue.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 070DF5722376495F00132BF5 /* CircleQueue.hpp */; };
 		07BF717F23751BF20016851B /* LinkedList2.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EAC19323751AF500BB250B /* LinkedList2.hpp */; };
 		07BF718023751BF20016851B /* Deque.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EAC19523751B0C00BB250B /* Deque.hpp */; };
 		07EAC18D23751AD300BB250B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EAC18C23751AD300BB250B /* main.cpp */; };
@@ -25,6 +27,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		070DF5722376495F00132BF5 /* CircleQueue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CircleQueue.hpp; sourceTree = "<group>"; };
+		072A4B3D2378190D00CAC44D /* CircleDeque.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CircleDeque.hpp; sourceTree = "<group>"; };
 		07BF718223751EA20016851B /* Queue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Queue.hpp; sourceTree = "<group>"; };
 		07EAC18923751AD300BB250B /* Deque */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Deque; sourceTree = BUILT_PRODUCTS_DIR; };
 		07EAC18C23751AD300BB250B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 				07EAC19323751AF500BB250B /* LinkedList2.hpp */,
 				07EAC19523751B0C00BB250B /* Deque.hpp */,
 				07BF718223751EA20016851B /* Queue.hpp */,
+				070DF5722376495F00132BF5 /* CircleQueue.hpp */,
+				072A4B3D2378190D00CAC44D /* CircleDeque.hpp */,
 			);
 			path = Deque;
 			sourceTree = "<group>";
@@ -126,6 +132,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				070DF57423764B5400132BF5 /* Queue.hpp in Sources */,
+				070DF57523764B5400132BF5 /* CircleQueue.hpp in Sources */,
 				07BF717F23751BF20016851B /* LinkedList2.hpp in Sources */,
 				07BF718023751BF20016851B /* Deque.hpp in Sources */,
 				07EAC18D23751AD300BB250B /* main.cpp in Sources */,
