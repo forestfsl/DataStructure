@@ -50,8 +50,10 @@ void testCircle(){
 
 void testCircleDueue(){
     CircleDeque<int> *queue = new CircleDeque<int>();
-    
-    //头10 9 8 7 6 5 4 3 2 1 100 101 102 103 104 105 06 107 108 109
+//    5 4 3 2 1  100 101 102 103 104 105
+    //经历过第一次次扩容
+    // 头5 4 3 2 1  100 101 102 103 104 105 106 8 7 6 尾
+      //经历过第二次扩容
 //     头 8 7 6  5 4 3 2 1  100 101 102 103 104 105 106 107 108 109 null null 10 9 尾
     for (int i = 0; i < 10; i++) {
         queue->enQueueFront(i + 1);
