@@ -46,11 +46,39 @@ void testCircle(){
     while (!queue->isEmpty()) {
         cout << queue->deQueue() << endl;
     }
-   
+}
+
+void testCircleDueue(){
+    CircleDeque<int> *queue = new CircleDeque<int>();
+    
+    //头10 9 8 7 6 5 4 3 2 1 100 101 102 103 104 105 06 107 108 109
+//     头 8 7 6  5 4 3 2 1  100 101 102 103 104 105 106 107 108 109 null null 10 9 尾
+    for (int i = 0; i < 10; i++) {
+        queue->enQueueFront(i + 1);
+        queue->enQueueRear(i + 100);
+    }
+    queue->toString();
+    
+    // 头 null 7 6  5 4 3 2 1  100 101 102 103 104 105 106 null null null null null null null 尾
+    for (int i = 0; i < 3; i++) {
+        queue->deQueueFront();
+        queue->deQueueRear();
+    }
+      queue->toString();
+
+    queue->enQueueFront(11);
+    queue->enQueueFront(22);
+    // 头 11 7 6  5 4 3 2 1  100 101 102 103 104 105 106 null null null null null null 12 尾
+    while (!queue->isEmpty()) {
+        cout << queue->deQueueFront() << endl;
+    }
+    
+    
 }
 
 int main(int argc, const char * argv[]) {
 //    testDueue();
-    testCircle();
+//    testCircle();
+    testCircleDueue();
     return 0;
 }

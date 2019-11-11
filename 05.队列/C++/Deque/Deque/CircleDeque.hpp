@@ -49,7 +49,7 @@ public:
      */
     E deQueueFront(){
         E frontElement = elements[front];
-        elements[front] = nullptr;
+        elements[front] = NULL;
         front = realIndex(1);
         m_size--;
         return frontElement;
@@ -60,7 +60,7 @@ public:
     E deQueueRear(){
         int rearIndex = realIndex(m_size - 1);
         E rear = elements[rearIndex];
-        elements[rearIndex] = nullptr;
+        elements[rearIndex] = NULL;
         m_size--;
         return rear;
     }
@@ -68,7 +68,7 @@ public:
     /**
      * 从尾部入队
      */
-    E enQueueRear(E element){
+    void enQueueRear(E element){
         ensureCapacity(m_size + 1);
         elements[realIndex(m_size)] = element;
         m_size++;
@@ -77,7 +77,7 @@ public:
     /**
      * 从头部入队
      */
-    void enQueueenQueueFront(E element){
+    void enQueueFront(E element){
         ensureCapacity(m_size + 1);
         front = realIndex(-1);
         elements[front] = element;
@@ -97,7 +97,7 @@ public:
         if (index < 0) {
             return index + maxSize;
         }
-        int realIndex = index - (index > maxSize ? maxSize : 0);
+        int realIndex = index - (index >= maxSize ? maxSize : 0);
         return realIndex;
     }
     
@@ -107,8 +107,9 @@ public:
         //新容量为旧容量的1.5倍
         int newCapacity = oldCapacity + (oldCapacity >> 1);
        
-        E *newElements = new E[maxSize]{};
+        E *newElements = new E[newCapacity]{};
         for (int i = 0; i < m_size; i++) {
+            cout << "打印扩容元素值:" <<  elements[realIndex(i)] << endl;
             newElements[i] = elements[realIndex(i)];
         }
          maxSize = newCapacity;
@@ -120,7 +121,7 @@ public:
         cout << "size=" << m_size << endl;
         cout << "front=" << front << endl;
         cout << "[";
-        for (int i = 0; i < m_size; i++) {
+        for (int i = 0; i < maxSize; i++) {
             if (i != 0) {
                 cout << ",";
             }
