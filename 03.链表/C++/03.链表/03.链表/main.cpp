@@ -56,6 +56,7 @@ void test2(){
 //    list->clear_element([] (Person *person){
 //        delete person;
 //    });
+//    list->clear_element(void (*clearFunc)(Person *))
     
     delete list;
 }
