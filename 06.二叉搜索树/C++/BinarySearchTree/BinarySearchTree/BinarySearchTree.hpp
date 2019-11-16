@@ -11,28 +11,17 @@
 
 #include <stdio.h>
 #include <iostream>
+#include "Node.hpp"
+
 using namespace std;
 
 template<class E>
 class BinarySearchTree {
     typedef int(*CompareElement)(int,int);
 public:
-    static class Node{
-    public:
-        E element; //元素值
-        Node *left;//左子节点
-        Node *right;//右子节点
-        Node *parent;//父节点
-        //构造函数
-        Node(E element,Node *parent){
-            this->element = element;
-            this->parent = parent;
-            this->left = nullptr;
-            this->right = nullptr;
-        }
-    };
+   
     int m_size;
-    Node *root;
+    Node<E> *root;
     int compare_element(CompareElement);
     //函数指针
     CompareElement compareBlock;
@@ -59,13 +48,13 @@ public:
         elementNotNullCheck(element);
         //添加第一个节点
         if (root == nullptr || root == NULL) {
-            root = new Node(element,nullptr);
+            root = new Node<E>(element,nullptr);
             m_size++;
             return;
         }
         //添加的不是第一个节点
-        Node *parent = root;
-        Node *node = root;
+        Node<E> *parent = root;
+        Node<E> *node = root;
         int cmp = 0;
         //遍历tree
         do {
@@ -81,7 +70,7 @@ public:
             }
         } while (node != nullptr || node != NULL);
         //遍历完毕之后插入元素节点
-        Node *newNode = new Node(element,parent);
+        Node<E> *newNode = new Node<E>(element,parent);
         if (cmp > 0) {
             parent->right = newNode;
         }else{
@@ -103,8 +92,22 @@ public:
         return e1 - e2;
     }
  
-
+    Node<E> *leftNode(Node<E> *node){
+        return node->left;
+    }
+    Node <E> *rightNode(Node<E> *node){
+        return node->right;
+    }
+    Node<E>* rootNode(){
+        return this->root;
+    }
+    E nodeElement(Node<E>node){
+        return node->element;
+    }
+    
 };
+
+
 
 
 #endif /* BinarySearchTree_hpp */
