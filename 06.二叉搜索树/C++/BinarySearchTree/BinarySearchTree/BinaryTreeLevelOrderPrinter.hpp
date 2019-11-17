@@ -230,6 +230,52 @@ public:
         }
     }
     
+    void _cleanNodes(){
+        int rowCount = (int)_nodes->size();
+        if (rowCount < 2) return;
+        //最后一行的节点数量
+        int lastRowNodeCount = _nodes->back()->size();
+        //每个节点之间的间距
+        int nodeSpace = _maxWidth + 2;
+        //最后一行的长度
+        int lastRowLength = lastRowLength * _maxWidth + nodeSpace * (lastRowNodeCount - 1);
+        //空集合
+        for (int i = 0; i < rowCount; i++) {
+            vector<LevelOrderNode *>*rowNodes = _nodes[i];
+            int rowNodeCount = (int)rowNodes->size();
+            int allSpace = lastRowLength - (rowNodeCount - 1) * nodeSpace;
+            int cornerSpace = allSpace / rowNodeCount - _maxWidth;
+            cornerSpace >>= 1;
+            int rowLength = 0;
+            for (int j = 0; j < rowNodeCount; j++) {
+                if (j) {
+                    //每个节点之间的间距
+                    rowLength += nodeSpace;
+                }
+                rowLength += cornerSpace;
+                LevelOrderNode *node = rowNodes[j];
+                if (node) {
+                    //居中(由于奇偶数的问题，可能有1个符号的误差)
+                    int deltaX = (_maxWidth - node->_width) >> 1;
+                    node->_x = rowLength + deltaX;
+                    node->_y = i;
+                }
+                rowLength += _maxWidth;
+                rowLength += cornerSpace;
+            }
+            vector<LevelOrderNode *>*tempList;
+            //删除所有的null
+            for (int i = 0; i <rowNodes->size(); i++) {
+                if (rowNodes[i] != nullptr || rowNodes[i] != NULL) {
+                    tempList->push_back(rowNodes[i]);
+                }
+            }
+            rowNodes->clear();
+            rowNodes = tempList;
+           
+        }
+    }
+    
     LevelOrderNode *_addNode(vector<LevelOrderNode *>*nodes,Node<E>*btNode){
         LevelOrderNode *node = nullptr;
         if (btNode) {
