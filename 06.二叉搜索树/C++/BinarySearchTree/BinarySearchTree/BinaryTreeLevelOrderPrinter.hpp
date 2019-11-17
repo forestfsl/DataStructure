@@ -24,9 +24,9 @@ using namespace std;
 template <class E>
 class BinaryTreeLevelOrderPrinter{
 public:
-    static class LevelOrderNode{
+     class LevelOrderNode{
     public:
-        static class BSLevelInfo{
+         class BSLevelInfo{
         public:
             int _leftX;
             int _rightX;
@@ -173,7 +173,7 @@ public:
                 string = " ";
             }
             this->_string = string;
-            this->_width = string.size();
+            this->_width = (int)string.size();
         }
       
         LevelOrderNode(Node<E> *btNode,BinarySearchTree<E> *tree){
@@ -190,7 +190,7 @@ public:
     vector<vector<LevelOrderNode *> *> *_nodes;
     static int const MIN_SPACE = 1;
     BinaryTreeLevelOrderPrinter(BinarySearchTree<E> *tree){
-        this->_root = LevelOrderNode(tree->rootNode(),tree);
+        this->_root = new LevelOrderNode(tree->rootNode(),tree);
         this->_maxWidth = this->_root->_width;
     }
     
@@ -205,6 +205,7 @@ public:
             vector<LevelOrderNode *> *preRowNodes = _nodes->back();
             vector<LevelOrderNode *> *rowNodes;
             bool notNull = false;
+            
             for (LevelOrderNode *node : preRowNodes) {
                 if (node == nullptr || node == NULL) {
                     rowNodes->push_back(nullptr);
@@ -230,18 +231,67 @@ public:
         }
     }
     
+    void _compressNodes(){
+        int rowCount = (int)_nodes->size();
+        if (rowCount < 2) return;
+        for (int i = rowCount - 2; i >= 0; i--) {
+            vector<LevelOrderNode *>*rowNodes = _nodes[i];
+            for (LevelOrderNode *node : rowNodes) {
+                LevelOrderNode *left = node->_left;
+                LevelOrderNode *right = node->_right;
+                if (!left && !right) continue;
+                if (left && right){
+                    //让左右节点对称
+                    node->balance(left, right);
+                    
+                    //left和right之间可以挪动的最小间距
+                    int leftEmpty = node->leftBoundEmptyLength();
+                    int rightEmpty = node->rightBoundEmptyLength();
+                    int empty = min(leftEmpty,rightEmpty);
+                    empty = min(empty,(right->_x - left->rightX()) >> 1);
+                    //left,right的子节点之间可以挪动的最小间距
+                    int space = left->minLevelSpaceToRight(right) - MIN_SPACE;
+                    
+                    //left,right 往中间挪动
+                    if (space > 0) {
+                        left->translateX(space);
+                        right->translateX(-space);
+                    }
+                    
+                    //继续挪动
+                    space = left->minLevelSpaceToRight(right) - MIN_SPACE;
+                    if (space > 0) continue;
+                    
+                    //可以继续挪动的间距
+                    leftEmpty = node->leftBoundEmptyLength();
+                    rightEmpty = node->rightBoundEmptyLength();
+                    
+                    if (leftEmpty > rightEmpty) {
+                        left->translateX(min(leftEmpty, space));
+                    }else{
+                        right->translateX(-min(rightEmpty,space));
+                    }
+                }else if (left){
+                    left->translateX(node->leftBoundEmptyLength());
+                }else{//right != null
+                    right->translateX(-node->rightBoundEmptyLength());
+                }
+            }
+        }
+    }
+    
     void _cleanNodes(){
         int rowCount = (int)_nodes->size();
         if (rowCount < 2) return;
         //最后一行的节点数量
-        int lastRowNodeCount = _nodes->back()->size();
+        int lastRowNodeCount = (int) _nodes->back()->size();
         //每个节点之间的间距
         int nodeSpace = _maxWidth + 2;
         //最后一行的长度
         int lastRowLength = lastRowLength * _maxWidth + nodeSpace * (lastRowNodeCount - 1);
         //空集合
         for (int i = 0; i < rowCount; i++) {
-            vector<LevelOrderNode *>*rowNodes = _nodes[i];
+            vector<LevelOrderNode *> rowNodes = _nodes[i];
             int rowNodeCount = (int)rowNodes->size();
             int allSpace = lastRowLength - (rowNodeCount - 1) * nodeSpace;
             int cornerSpace = allSpace / rowNodeCount - _maxWidth;
@@ -329,7 +379,7 @@ public:
         if (rowCount < 2 ) return;
         _minX = _root->_x;
         for (int i = 0; i < rowCount; i++) {
-            vector<LevelOrderNode *>rowNodes = _nodes[i];
+            vector<LevelOrderNode *> *rowNodes = _nodes[i];
             if (i == rowCount - 1) {
                 newNodes->push_back(rowNodes);
                 continue;
@@ -350,10 +400,45 @@ public:
         _nodes = newNodes;
     }
     
-    string *printString(){
+    string printString(){
+        _fillNodes();
+        _cleanNodes();
+        _compressNodes();
+        _addLineNodes();
         
+        int rowCount = (int)_nodes->size();
+        //构建字符串
+        string content;
+       
+        for (int i = 0; i < rowCount; i++) {
+            if (i) {
+                content.append("\n");
+            }
+            vector<LevelOrderNode *>*rowNodes = _nodes[i];
+            string rowString;
+            for (LevelOrderNode *node : rowNodes) {
+                int leftSpace = node->_x - rowString.size() - _minX;
+                rowString.append(blankString(leftSpace));
+                rowString.append(node->_string);
+            }
+            content.append(rowString);
+            
+        }
+        return content;
     }
     
+    string * blankString(int count){
+        string *string;
+        while (count-- > 0) {
+            string->append(" ");
+        }
+        return string;
+    }
+    
+    static string printerWithTree(BinarySearchTree<E> * tree){
+        BinaryTreeLevelOrderPrinter *printer = new BinaryTreeLevelOrderPrinter(tree);
+      return  printer->printString();
+    }
 };
 
 #endif /* BinaryTreeLevelOrderPrinter_hpp */

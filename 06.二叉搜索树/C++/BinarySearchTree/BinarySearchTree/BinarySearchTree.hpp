@@ -80,16 +80,16 @@ public:
     }
     
     void elementNotNullCheck(E element){
-        if (!element) {
+        if (element.size() == 0) {
             throw "element must not be null";
         }
     }
     
     int compare(E e1, E e2){
         if (compareBlock != nullptr) {
-            return compareBlock(e1,e2);
+            return compareBlock(atoi(e1.c_str()),atoi(e2.c_str()));
         }
-        return e1 - e2;
+        return atoi(e1.c_str()),atoi(e2.c_str());
     }
  
     Node<E> *leftNode(Node<E> *node){
@@ -101,8 +101,9 @@ public:
     Node<E>* rootNode(){
         return this->root;
     }
-    E nodeElement(Node<E>node){
+    E nodeElement(Node<E> *node){
         return node->element;
+    
     }
     
 };
