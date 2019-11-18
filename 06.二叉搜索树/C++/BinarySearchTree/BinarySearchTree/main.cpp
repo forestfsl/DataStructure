@@ -28,7 +28,7 @@ int main(int argc, const char * argv[]) {
     for (int i = 0; i < len; i++) {
            tree->add(data[i]);
        }
-//    BinaryTreeLevelOrderPrinter<string>::printerWithTree(tree);
+    BinaryTreeLevelOrderPrinter<string>::printerWithTree(tree);
     cout << "debug test node element" << endl;
     
     return 0;

@@ -136,9 +136,9 @@ public:
             if (level < 0) return nullptr;
             int levelY = _y + level;
             if (level >= this->treeHeight(this)) return nullptr;
-            vector<LevelOrderNode *>*list;
+            vector<LevelOrderNode *>*list = nullptr;
             
-            queue<LevelOrderNode*> *queue;
+            queue<LevelOrderNode*> *queue = nullptr;
             queue->push(this);
             while (queue->size()) {
                 LevelOrderNode *node = queue->front();
@@ -155,7 +155,7 @@ public:
             }
             LevelOrderNode *left = list->front();
             LevelOrderNode *right = list->back();
-            return BSLevelInfo(left, right);
+            return new BSLevelInfo(left, right);
         }
         int minLevelSpaceToRight(LevelOrderNode *right){
             int thisHeight = this->treeHeight(this);
@@ -196,17 +196,17 @@ public:
     
     void _fillNodes(){
         //第一行
-        vector<LevelOrderNode *>*firstRowNodes;
+        vector<LevelOrderNode *>*firstRowNodes = nullptr;
         firstRowNodes->push_back(_root);
         _nodes->push_back(firstRowNodes);
         
         //其他行
         while (true) {
             vector<LevelOrderNode *> *preRowNodes = _nodes->back();
-            vector<LevelOrderNode *> *rowNodes;
+            vector<LevelOrderNode *> *rowNodes = nullptr;
             bool notNull = false;
-            
-            for (LevelOrderNode *node : preRowNodes) {
+            for (int i = 0; i < preRowNodes->size(); i++) {
+                LevelOrderNode *node = (*preRowNodes)[i];
                 if (node == nullptr || node == NULL) {
                     rowNodes->push_back(nullptr);
                     rowNodes->push_back(nullptr);
@@ -217,7 +217,7 @@ public:
                         left->_parent = node;
                         notNull = true;
                     }
-                    LevelOrderNode *right = _addNode(rowNodes, this->tree->rightNode(node->_right));
+                    LevelOrderNode *right = _addNode(rowNodes, this->tree->rightNode(node->_btNode));
                     if (right) {
                         node->_right = right;
                         right->_parent = node;
@@ -225,6 +225,8 @@ public:
                     }
                 }
             }
+            
+           
             //全是null,就退出
             if (!notNull) break;
             _nodes->push_back(rowNodes);
@@ -235,8 +237,9 @@ public:
         int rowCount = (int)_nodes->size();
         if (rowCount < 2) return;
         for (int i = rowCount - 2; i >= 0; i--) {
-            vector<LevelOrderNode *>*rowNodes = _nodes[i];
-            for (LevelOrderNode *node : rowNodes) {
+            vector<LevelOrderNode *>*rowNodes = (*_nodes)[i];
+            for (int i = 0; i < rowNodes->size(); i++) {
+                LevelOrderNode *node = (*rowNodes)[i];
                 LevelOrderNode *left = node->_left;
                 LevelOrderNode *right = node->_right;
                 if (!left && !right) continue;
@@ -277,6 +280,7 @@ public:
                     right->translateX(-node->rightBoundEmptyLength());
                 }
             }
+            
         }
     }
     
@@ -288,10 +292,10 @@ public:
         //每个节点之间的间距
         int nodeSpace = _maxWidth + 2;
         //最后一行的长度
-        int lastRowLength = lastRowLength * _maxWidth + nodeSpace * (lastRowNodeCount - 1);
+        int lastRowLength = lastRowNodeCount * _maxWidth + nodeSpace * (lastRowNodeCount - 1);
         //空集合
         for (int i = 0; i < rowCount; i++) {
-            vector<LevelOrderNode *> rowNodes = _nodes[i];
+            vector<LevelOrderNode *> *rowNodes = (*_nodes)[i];
             int rowNodeCount = (int)rowNodes->size();
             int allSpace = lastRowLength - (rowNodeCount - 1) * nodeSpace;
             int cornerSpace = allSpace / rowNodeCount - _maxWidth;
@@ -303,7 +307,7 @@ public:
                     rowLength += nodeSpace;
                 }
                 rowLength += cornerSpace;
-                LevelOrderNode *node = rowNodes[j];
+                LevelOrderNode *node = (*rowNodes)[j];
                 if (node) {
                     //居中(由于奇偶数的问题，可能有1个符号的误差)
                     int deltaX = (_maxWidth - node->_width) >> 1;
@@ -313,11 +317,11 @@ public:
                 rowLength += _maxWidth;
                 rowLength += cornerSpace;
             }
-            vector<LevelOrderNode *>*tempList;
+            vector<LevelOrderNode *>*tempList = nullptr;
             //删除所有的null
             for (int i = 0; i <rowNodes->size(); i++) {
-                if (rowNodes[i] != nullptr || rowNodes[i] != NULL) {
-                    tempList->push_back(rowNodes[i]);
+                if ((*rowNodes)[i] != nullptr || (*rowNodes)[i] != NULL) {
+                    tempList->push_back((*rowNodes)[i]);
                 }
             }
             rowNodes->clear();
@@ -329,7 +333,7 @@ public:
     LevelOrderNode *_addNode(vector<LevelOrderNode *>*nodes,Node<E>*btNode){
         LevelOrderNode *node = nullptr;
         if (btNode) {
-            node = LevelOrderNode(btNode,this->_tree);
+            node = new LevelOrderNode(btNode,tree);
             _maxWidth = max(_maxWidth,node->_width);
             nodes->push_back(node);
         }else{
@@ -339,7 +343,7 @@ public:
     }
     
     void _addXLineNode(vector<LevelOrderNode *>*curRow,LevelOrderNode *parent,int x){
-        LevelOrderNode *line = LevelOrderNode("-");
+        LevelOrderNode *line = new LevelOrderNode("-");
         line->_x = x;
         line->_y = parent->_y;
         curRow->push_back(line);
@@ -349,7 +353,7 @@ public:
         LevelOrderNode *top = nullptr;
         int topX = child->topLineX();
         if (child == parent->_left) {
-            top = LevelOrderNode("┌");
+            top = new LevelOrderNode("┌");
             curRow->push_back(top);
             for (int x = topX + 1; x < parent->_x; x++) {
                 _addXLineNode(curRow, parent, x);
@@ -358,7 +362,7 @@ public:
             for (int x = parent->rightX(); x < topX; x++) {
                 _addXLineNode(curRow, parent, x);
             }
-            top = LevelOrderNode("┐");
+            top = new LevelOrderNode("┐");
             curRow->push_back(top);
         }
         //坐标
@@ -368,32 +372,35 @@ public:
         _minX = min(_minX,child->_x);
         
         //竖线
-        LevelOrderNode *bottom = LevelOrderNode("|");
+        LevelOrderNode *bottom = new LevelOrderNode("|");
         bottom->_x = topX;
         bottom->_y = parent->_y + 1;
         nextRow->push_back(bottom);
+        return top;
     }
     void _addLineNodes(){
-        vector<LevelOrderNode *>*newNodes;
+        vector<vector<LevelOrderNode *>*>*newNodes = nullptr;
         int rowCount =(int) _nodes->size();
         if (rowCount < 2 ) return;
         _minX = _root->_x;
         for (int i = 0; i < rowCount; i++) {
-            vector<LevelOrderNode *> *rowNodes = _nodes[i];
+            vector<LevelOrderNode *> *rowNodes = (*_nodes)[i];
             if (i == rowCount - 1) {
                 newNodes->push_back(rowNodes);
                 continue;
             }
-            vector<LevelOrderNode *>*newRowNodes;
+            vector<LevelOrderNode *>*newRowNodes = nullptr;
             newNodes->push_back(newRowNodes);
-            vector<LevelOrderNode *>lineNodes;
+            vector<LevelOrderNode *>*lineNodes = nullptr;
             newNodes->push_back(lineNodes);
-            for (LevelOrderNode *node : rowNodes) {
-//                  newRowNodes -->curRow 存放点内容是[┌ ----] lineNodes-->nextRow 存放内容是[|]
+            for (int i = 0; i < rowNodes->size(); i++) {
+                LevelOrderNode *node = (*rowNodes)[i];
+//                newRowNodes -->curRow 存放点内容是[┌ ----] lineNodes-->nextRow 存放内容是[|]
                 _addLineNode(newRowNodes, lineNodes, node, node->_left);
                 newRowNodes->push_back(node);
                 _addLineNode(newRowNodes, lineNodes, node, node->_right);
             }
+            
         }
         _nodes->clear();
         //转换完之后，最后_nodes 存放的是(MJLOLevelOrderNodePNode)(x,y,width,string)┌____111
@@ -414,23 +421,25 @@ public:
             if (i) {
                 content.append("\n");
             }
-            vector<LevelOrderNode *>*rowNodes = _nodes[i];
+            vector<LevelOrderNode *>*rowNodes = (*_nodes)[i];
             string rowString;
-            for (LevelOrderNode *node : rowNodes) {
-                int leftSpace = node->_x - rowString.size() - _minX;
+            for (int i = 0; i < rowNodes->size(); i++) {
+                LevelOrderNode *node = (*rowNodes)[i];
+                int leftSpace = node->_x - (int)rowString.size() - _minX;
                 rowString.append(blankString(leftSpace));
                 rowString.append(node->_string);
             }
+            
             content.append(rowString);
             
         }
         return content;
     }
     
-    string * blankString(int count){
-        string *string;
+    string  blankString(int count){
+        string string;
         while (count-- > 0) {
-            string->append(" ");
+            string.append(" ");
         }
         return string;
     }
