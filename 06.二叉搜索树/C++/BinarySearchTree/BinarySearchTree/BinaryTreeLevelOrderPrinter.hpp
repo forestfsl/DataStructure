@@ -24,9 +24,9 @@ using namespace std;
 template <class E>
 class BinaryTreeLevelOrderPrinter{
 public:
-     class LevelOrderNode{
+     struct LevelOrderNode{
     public:
-         class BSLevelInfo{
+         struct BSLevelInfo{
         public:
             int _leftX;
             int _rightX;
@@ -136,9 +136,9 @@ public:
             if (level < 0) return nullptr;
             int levelY = _y + level;
             if (level >= this->treeHeight(this)) return nullptr;
-            vector<LevelOrderNode *>*list = nullptr;
+            vector<LevelOrderNode *>*list =  new vector<LevelOrderNode *>{};
             
-            queue<LevelOrderNode*> *queue = nullptr;
+            queue<LevelOrderNode*> *queue;
             queue->push(this);
             while (queue->size()) {
                 LevelOrderNode *node = queue->front();
@@ -167,18 +167,29 @@ public:
             }
             return minSpace;
         }
+         
+         LevelOrderNode(){
+             
+         }
 
         LevelOrderNode(string string){
             if (string.size() == 0) {
                 string = " ";
             }
-            this->_string = string;
-            this->_width = (int)string.size();
+            _string = string;
+            _width = (int)string.size();
         }
       
+         
         LevelOrderNode(Node<E> *btNode,BinarySearchTree<E> *tree){
-            LevelOrderNode(tree->nodeElement(btNode));
-            this->_btNode = btNode;
+           
+            string content = tree->nodeElement(btNode);
+            if (content.size() == 0) {
+                content = " ";
+            }
+            _string = content;
+            _width = (int)content.size();
+            _btNode = btNode;
         }
     };
     
@@ -187,23 +198,23 @@ public:
     int _maxWidth;
     int _minX;
     BinarySearchTree<E>*tree;
-    vector<vector<LevelOrderNode *> *> *_nodes;
+    vector<vector<LevelOrderNode *> *> *_nodes =  new vector<vector<LevelOrderNode *> *>{};
     static int const MIN_SPACE = 1;
     BinaryTreeLevelOrderPrinter(BinarySearchTree<E> *tree){
-        this->_root = new LevelOrderNode(tree->rootNode(),tree);
-        this->_maxWidth = this->_root->_width;
+        _root = new LevelOrderNode(tree->rootNode(),tree);
+        _maxWidth = _root->_width;
     }
     
     void _fillNodes(){
         //第一行
-        vector<LevelOrderNode *>*firstRowNodes = nullptr;
+        vector<LevelOrderNode *>*firstRowNodes = new vector<LevelOrderNode *>{};
         firstRowNodes->push_back(_root);
         _nodes->push_back(firstRowNodes);
         
         //其他行
         while (true) {
             vector<LevelOrderNode *> *preRowNodes = _nodes->back();
-            vector<LevelOrderNode *> *rowNodes = nullptr;
+            vector<LevelOrderNode *> *rowNodes =  new vector<LevelOrderNode *>{};
             bool notNull = false;
             for (int i = 0; i < preRowNodes->size(); i++) {
                 LevelOrderNode *node = (*preRowNodes)[i];
@@ -296,6 +307,7 @@ public:
         //空集合
         for (int i = 0; i < rowCount; i++) {
             vector<LevelOrderNode *> *rowNodes = (*_nodes)[i];
+            
             int rowNodeCount = (int)rowNodes->size();
             int allSpace = lastRowLength - (rowNodeCount - 1) * nodeSpace;
             int cornerSpace = allSpace / rowNodeCount - _maxWidth;
@@ -317,15 +329,30 @@ public:
                 rowLength += _maxWidth;
                 rowLength += cornerSpace;
             }
-            vector<LevelOrderNode *>*tempList = nullptr;
+            vector<LevelOrderNode *>*tempList =  new vector<LevelOrderNode *>{};
+            vector<LevelOrderNode *>*tempList2 = new vector<LevelOrderNode *>{};
             //删除所有的null
             for (int i = 0; i <rowNodes->size(); i++) {
                 if ((*rowNodes)[i] != nullptr || (*rowNodes)[i] != NULL) {
                     tempList->push_back((*rowNodes)[i]);
                 }
+                tempList2->push_back((*rowNodes)[i]);
             }
-            rowNodes->clear();
-            rowNodes = tempList;
+            for (auto nodeIter = rowNodes->begin(); nodeIter != rowNodes->end();)
+            {
+                if(*nodeIter == nullptr)
+                {
+                    nodeIter = rowNodes->erase(nodeIter);
+                }else
+                {
+                    nodeIter++;
+                }
+            }
+
+            
+
+//            rowNodes->clear();
+//            rowNodes = tempList;
            
         }
     }
@@ -379,7 +406,7 @@ public:
         return top;
     }
     void _addLineNodes(){
-        vector<vector<LevelOrderNode *>*>*newNodes = nullptr;
+        vector<vector<LevelOrderNode *>*>*newNodes =  new vector<vector<LevelOrderNode *> *>{};
         int rowCount =(int) _nodes->size();
         if (rowCount < 2 ) return;
         _minX = _root->_x;
@@ -389,9 +416,9 @@ public:
                 newNodes->push_back(rowNodes);
                 continue;
             }
-            vector<LevelOrderNode *>*newRowNodes = nullptr;
+            vector<LevelOrderNode *>*newRowNodes =  new vector<LevelOrderNode *>{};
             newNodes->push_back(newRowNodes);
-            vector<LevelOrderNode *>*lineNodes = nullptr;
+            vector<LevelOrderNode *>*lineNodes =  new vector<LevelOrderNode *>{};
             newNodes->push_back(lineNodes);
             for (int i = 0; i < rowNodes->size(); i++) {
                 LevelOrderNode *node = (*rowNodes)[i];
