@@ -137,7 +137,6 @@ public:
             int levelY = _y + level;
             if (level >= this->treeHeight(this)) return nullptr;
             vector<LevelOrderNode *>*list =  new vector<LevelOrderNode *>{};
-            
             queue<LevelOrderNode*> *queue;
             queue->push(this);
             while (queue->size()) {
@@ -190,6 +189,8 @@ public:
             _string = content;
             _width = (int)content.size();
             _btNode = btNode;
+            _left = nullptr;
+            _right = nullptr;
         }
     };
     
