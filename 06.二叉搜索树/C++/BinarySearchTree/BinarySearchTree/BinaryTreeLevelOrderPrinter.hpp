@@ -60,7 +60,8 @@ public:
             }
             delta >>= 1;
             if (_parent && this == _parent->_left) {
-                return this->rightX() - 1 - delta;
+                return rightX() - 1 - delta;
+                
             }else{
                 return _x + delta;
             }
@@ -84,7 +85,8 @@ public:
         
         //x ~ 左边界之间的长度(包括z左边界字符)
         int leftBoundLength(){
-            return _x + this->leftBound();
+//            cout << "x" << _x <<"leftBound" << this->leftBound() << endl;
+            return _x - this->leftBound();
         }
         /**
          * rightX ~ 右边界之间的长度（包括右边界字符）
@@ -94,6 +96,7 @@ public:
         }
         //左边界可以清空的长度
         int leftBoundEmptyLength(){
+            cout << "leftBoundLength" << this->leftBoundLength() << endl;
             return this->leftBoundLength() - 1 - TOP_LINE_SPACE;
         }
         //右边界可以清空的长度
@@ -118,7 +121,7 @@ public:
             int deltaRight = right->_x - this->rightX();
             int delta = max(deltaLeft,deltaRight);
             int newRightX = this->rightX() + delta;
-            right->translateX(newRightX - left->_x);
+            right->translateX(newRightX - right->_x);
             
             int newLeftX = _x - delta - left->_width;
             left->translateX(newLeftX - left->_x);
@@ -137,19 +140,19 @@ public:
             int levelY = _y + level;
             if (level >= this->treeHeight(this)) return nullptr;
             vector<LevelOrderNode *>*list =  new vector<LevelOrderNode *>{};
-            queue<LevelOrderNode*> *queue;
-            queue->push(this);
-            while (queue->size()) {
-                LevelOrderNode *node = queue->front();
-                queue->pop();
+            queue<LevelOrderNode*> queue;
+            queue.push(this);
+            while (queue.size()) {
+                LevelOrderNode *node = queue.front();
+                queue.pop();
                 if (levelY == node->_y) {
                     list->push_back(node);
                 }else if (node->_y > levelY) break;
                 if (node->_left){
-                    queue->push(node->_left);
+                    queue.push(node->_left);
                 }
                 if (node->_right) {
-                    queue->push(node->_right);
+                    queue.push(node->_right);
                 }
             }
             LevelOrderNode *left = list->front();
@@ -158,7 +161,7 @@ public:
         }
         int minLevelSpaceToRight(LevelOrderNode *right){
             int thisHeight = this->treeHeight(this);
-            int rightHeight = this->treeHeight(this);
+            int rightHeight = this->treeHeight(right);
             int minSpace = INT_MAX;
             for (int i = 0; i < thisHeight && i < rightHeight; i++) {
                 int space = (right->levelInfo(i))->_leftX - (this->levelInfo(i)->_rightX);
@@ -168,6 +171,12 @@ public:
         }
          
          LevelOrderNode(){
+             _left = nullptr;
+             _right = nullptr;
+             _parent = nullptr;
+             _treeHeight = 0;
+             _width = 0;
+             _btNode = nullptr;
              
          }
 
@@ -177,6 +186,12 @@ public:
             }
             _string = string;
             _width = (int)string.size();
+            _left = nullptr;
+            _right = nullptr;
+            _parent = nullptr;
+            _treeHeight = 0;
+            _width = 0;
+            _btNode = nullptr;
         }
       
          
@@ -189,8 +204,10 @@ public:
             _string = content;
             _width = (int)content.size();
             _btNode = btNode;
+            _parent = nullptr;
             _left = nullptr;
             _right = nullptr;
+            _treeHeight = 0;
         }
     };
     
@@ -266,6 +283,7 @@ public:
                     empty = min(empty,(right->_x - left->rightX()) >> 1);
                     //left,right的子节点之间可以挪动的最小间距
                     int space = left->minLevelSpaceToRight(right) - MIN_SPACE;
+                    space = min(space >> 1, empty);
                     
                     //left,right 往中间挪动
                     if (space > 0) {
@@ -275,11 +293,13 @@ public:
                     
                     //继续挪动
                     space = left->minLevelSpaceToRight(right) - MIN_SPACE;
-                    if (space > 0) continue;
+                    if (space < 1) continue;
                     
                     //可以继续挪动的间距
                     leftEmpty = node->leftBoundEmptyLength();
                     rightEmpty = node->rightBoundEmptyLength();
+                    
+                    if (leftEmpty < 1 && rightEmpty < 1) continue;
                     
                     if (leftEmpty > rightEmpty) {
                         left->translateX(min(leftEmpty, space));
@@ -371,7 +391,7 @@ public:
     }
     
     void _addXLineNode(vector<LevelOrderNode *>*curRow,LevelOrderNode *parent,int x){
-        LevelOrderNode *line = new LevelOrderNode("-");
+        LevelOrderNode *line = new LevelOrderNode("─");
         line->_x = x;
         line->_y = parent->_y;
         curRow->push_back(line);
@@ -451,11 +471,55 @@ public:
             }
             vector<LevelOrderNode *>*rowNodes = (*_nodes)[i];
             string rowString;
+            bool isMinus = false;
+            int minusLenght = 0;
+             int leftSpace = 0;
+            int elememtL = 0;
             for (int i = 0; i < rowNodes->size(); i++) {
+             
                 LevelOrderNode *node = (*rowNodes)[i];
-                int leftSpace = node->_x - (int)rowString.size() - _minX;
+               
+                if (isMinus) {
+                    if (node->_string == "|") {
+                        elememtL = (int)rowString.size() ;
+                    }else {
+                        
+//                        if (rowString.find("|") != -1 || rowString.find("┌") != -1 || rowString.find("┐") != -1 || rowString.find( "─") != -1) {
+//                             elememtL = abs((int)rowString.size() + minusLenght - 2 * i);
+//                        }else{
+//                             elememtL = abs((int)rowString.size() - 2 * i);
+//                        }
+                         elememtL = abs((int)rowString.size() + minusLenght - 2 * i);
+                    }
+                     leftSpace = node->_x - elememtL - _minX;
+//                    isMinus = false;
+                }else{
+                    if (node->_string == "|") {
+                        elememtL = (int)rowString.size();
+                    }else {
+                        elememtL = abs((int)rowString.size() - 2 * i);
+                    }
+                    leftSpace = node->_x - elememtL - _minX;
+                }
+                
+               
+//                cout << "rowString1----" << rowString.size();
+                if (node->_width > 0) {
+                    isMinus = true;
+                    minusLenght += node->_width;
+                }
+                cout << "leftSpace:" << leftSpace << endl;
                 rowString.append(blankString(leftSpace));
+//                 cout << "rowString2----" << rowString.size();
+//                string stl_str("┌");
+//                char ch = ‘┌';
+//                cout << stl_str.length() << endl;
+//                 cout << "node->_string----" << node->_string.length();
                 rowString.append(node->_string);
+//                if (node->_string == "┌") {
+//
+//                }
+//                 cout << "rowString3----" << rowString.size();
             }
             
             content.append(rowString);
@@ -472,9 +536,9 @@ public:
         return string;
     }
     
-    static string printerWithTree(BinarySearchTree<E> * tree){
+    static void printerWithTree(BinarySearchTree<E> * tree){
         BinaryTreeLevelOrderPrinter *printer = new BinaryTreeLevelOrderPrinter(tree);
-      return  printer->printString();
+        cout << printer->printString() << endl;
     }
 };
 
