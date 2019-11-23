@@ -21,7 +21,7 @@ int main(int argc, const char * argv[]) {
         return  a - b;
     };
     
-    string data [] = { "38", "18", "4", "69", "85", "71", "34", "36", "29", "100" };
+    string data [] = { "38", "18", "04", "69", "85", "71", "34", "36", "29", "100" };
     int len = sizeof(data) / sizeof(string);
     
     BinarySearchTree<string> *tree = new BinarySearchTree<string>(lamb);
