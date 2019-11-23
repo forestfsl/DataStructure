@@ -492,7 +492,7 @@ public:
                          elememtL = abs((int)rowString.size() + minusLenght - 2 * i);
                     }
                      leftSpace = node->_x - elememtL - _minX;
-//                    isMinus = false;
+
                 }else{
                     if (node->_string == "|") {
                         elememtL = (int)rowString.size();
