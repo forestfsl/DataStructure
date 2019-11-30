@@ -70,17 +70,17 @@ int main(int argc, const char * argv[]) {
        }
     BinaryTreeLevelOrderPrinter<string>::printerWithTree(tree);
     
-//    testPreOrder(tree);
-//
-//    testInOrder(tree);
-//
-//    testPostOrder(tree);
-//
-//    testLevelOrder(tree);
-//
-//    cout << "树的高度是" << tree->heightRecursive() << endl;
-//    cout << "树的高度是" << tree->heightLevelOrder() << endl;
-//    cout << "树是否是完全二叉树:" << tree->isCompleteTree() << endl;
+    testPreOrder(tree);
+
+    testInOrder(tree);
+
+    testPostOrder(tree);
+
+    testLevelOrder(tree);
+
+    cout << "树的高度是" << tree->heightRecursive() << endl;
+    cout << "树的高度是" << tree->heightLevelOrder() << endl;
+    cout << "树是否是完全二叉树:" << tree->isCompleteTree() << endl;
     
     
     tree->remove("11");

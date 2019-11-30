@@ -196,9 +196,9 @@ public class Main {
 //		testPrinterTool();
 //		testPerson();
 		testPreOrder();
-		testInorder();
-		testPostorder();
-		testLevelorder();
+//		testInorder();
+//		testPostorder();
+//		testLevelorder();
 //		testRemove();
 	}
 
