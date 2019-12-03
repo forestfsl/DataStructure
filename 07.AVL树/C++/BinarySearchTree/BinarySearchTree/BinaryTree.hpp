@@ -211,7 +211,7 @@ public:
         
     }
     
-    Node<E>* createNode(E element,Node<E> *parent){
+   virtual Node<E>* createNode(E element,Node<E> *parent){
         return new Node<E>(element,parent);
     }
 

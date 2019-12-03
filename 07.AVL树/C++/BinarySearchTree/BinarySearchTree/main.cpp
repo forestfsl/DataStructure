@@ -32,7 +32,7 @@ void testInOrder(BinarySearchTree<string> *tree){
         cout << element << " ";
         return false;
     });
-    
+
      cout << "中序遍历结束" << endl;
 }
 
@@ -42,7 +42,7 @@ void testPostOrder(BinarySearchTree<string> *tree){
         cout << element << " ";
         return false;
     });
-    
+
     cout << "后续遍历结束" << endl;
 }
 
@@ -55,22 +55,21 @@ void testLevelOrder(BinarySearchTree<string> *tree){
      cout << "层序遍历结束" << endl;
 }
 
-int main(int argc, const char * argv[]) {
-    auto lamb = [] (int a,int b) -> int{
-        return  a - b;
-    };
-    
-//    string data [] = { "38", "18", "04","03","05", "69","68", "85", "71", "34", "36", "29", "100" };
-//    string data [] = { "04", "01", "08","02","07", "10","03", "05", "09", "11", "06" };
-     string data [] = { "08", "04", "13","02","06", "10","01", "03", "05", "07", "09" ,"12","11"};
+auto lamb = [] (int a,int b) -> int{
+    return  a - b;
+};
+
+void testBST(){
+
+    string data [] = { "08", "04", "13","02","06", "10","01", "03", "05", "07", "09" ,"12","11"};
     int len = sizeof(data) / sizeof(string);
-    
+
     BinarySearchTree<string> *tree = new BinarySearchTree<string>(lamb);
     for (int i = 0; i < len; i++) {
-           tree->add(data[i]);
-       }
+        tree->add(data[i]);
+    }
     BinaryTreeLevelOrderPrinter<string>::printerWithTree(tree);
-    
+
     testPreOrder(tree);
 
     testInOrder(tree);
@@ -82,14 +81,30 @@ int main(int argc, const char * argv[]) {
     cout << "树的高度是" << tree->heightRecursive() << endl;
     cout << "树的高度是" << tree->heightLevelOrder() << endl;
     cout << "树是否是完全二叉树:" << tree->isCompleteTree() << endl;
-    
-    
+
+
     tree->remove("11");
+
+    BinaryTreeLevelOrderPrinter<string>::printerWithTree(tree);
+}
+
+int main(int argc, const char * argv[]) {
+   
     
-     BinaryTreeLevelOrderPrinter<string>::printerWithTree(tree);
+//    string data [] = { "38", "18", "04","03","05", "69","68", "85", "71", "34", "36", "29", "100" };
+//    string data [] = { "04", "01", "08","02","07", "10","03", "05", "09", "11", "06" };
+
+    string data [] = {"01","02","03"};
+    int len = sizeof(data) / sizeof(string);
     
     
     AVLTree<string> *avlTree = new AVLTree<string>(lamb);
+    
+    for (int i = 0; i < len; i++) {
+        avlTree->add(data[i]);
+//        avlTree->testAdd();
+    }
+     BinaryTreeLevelOrderPrinter<string>::printerWithTree(avlTree);
     
     return 0;
 }

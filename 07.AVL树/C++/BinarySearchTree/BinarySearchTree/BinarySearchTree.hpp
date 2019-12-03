@@ -21,7 +21,7 @@
 
 
 template<class E>
-class BinarySearchTree :public BinaryTree<E>{
+class BinarySearchTree: public BinaryTree<E> {
     typedef int(*CompareElement)(int,int);
 public:
     //函数指针
@@ -32,22 +32,32 @@ public:
         BinarySearchTree(NULL);
     }
     BinarySearchTree<E>(CompareElement compare){
-        this->compareBlock = compare;
+        compareBlock = compare;
         this->root = nullptr;
         isFinish = false;
     }
    
+    
+//    //删除节点之后的处理
+    virtual void afterRemove(Node<E> *node){
+         cout << "BinarySearchTree afterRemove" << endl;
+    }
     //新添加节点之后的处理
-    void afterAdd(Node<E> *){
-        
-    };
-    //删除节点之后的处理
-    void afterRemove(Node<E> *){
-        
+    virtual void afterAdd(Node<E> *node){
+         cout << "BinarySearchTree afterAdd" << endl;
     }
     
-    //添加
+    virtual void testAfterAdd(){
+        cout << "testAfterAdd BinarySearchTree" << endl;
+    }
+    
+    void testAdd(){
+        afterAdd(nullptr);
+    }
+    
+//    添加
     void add(E element){
+        
         elementNotNullCheck(element);
         //添加第一个节点
         if (this->root == nullptr || this->root == NULL) {
