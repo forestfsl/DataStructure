@@ -94,7 +94,7 @@ int main(int argc, const char * argv[]) {
 //    string data [] = { "38", "18", "04","03","05", "69","68", "85", "71", "34", "36", "29", "100" };
 //    string data [] = { "04", "01", "08","02","07", "10","03", "05", "09", "11", "06" };
 
-    string data [] = {"01","02","03"};
+    string data [] = {"01","02","03","04"};
     int len = sizeof(data) / sizeof(string);
     
     
@@ -105,6 +105,9 @@ int main(int argc, const char * argv[]) {
 //        avlTree->testAdd();
     }
      BinaryTreeLevelOrderPrinter<string>::printerWithTree(avlTree);
+    
+    avlTree->remove("01");
+    BinaryTreeLevelOrderPrinter<string>::printerWithTree(avlTree);
     
     return 0;
 }

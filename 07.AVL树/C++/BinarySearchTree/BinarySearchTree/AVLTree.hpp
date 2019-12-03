@@ -176,15 +176,15 @@ public:
     //删除节点之后的处理
     void afterRemove(Node<E> *node){
         //         cout << "remove AVL" << endl;
-        //        while ((node = node->parent) != nullptr) {
-        //            if (isBalanced(node)) {
-        //                //更新高度
-        //                updateHeight(node);
-        //            }else{
-        //                //恢复平衡
-        //                rebalance(node);
-        //            }
-        //        }
+        while ((node = node->parent) != nullptr) {
+            if (isBalanced(node)) {
+                //更新高度
+                updateHeight(node);
+            }else{
+                //恢复平衡
+                rebalance(node);
+            }
+        }
     }
     
     //是否是平衡因子
