@@ -66,9 +66,9 @@ public:
         //parent 的right将会成为新的子节点
         Node<E> *child = parent->right;
         grand->left = child;
-        grand->right = grand;
+        parent->right = grand;
         //还需要维护的内容T2,p,g的parent
-        subAfterRotate(grand, parent, child);
+        this->subAfterRotate(grand, parent, child);
     }
     
     virtual void subAfterRotate(Node<E> *grand,Node<E> *parent,Node<E> *child){

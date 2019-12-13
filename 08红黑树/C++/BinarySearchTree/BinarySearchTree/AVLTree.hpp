@@ -20,6 +20,10 @@ public:
     public:
         int height = 1;
         
+         int id()
+        {
+           return 1;
+        }
         AVLNode(E element,Node<E> *parent) : Node<E>(element,parent) {
             this->height = 1;
         }

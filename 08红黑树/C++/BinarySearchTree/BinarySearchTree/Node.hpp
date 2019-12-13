@@ -48,6 +48,11 @@ public:
         }
         return nullptr;
     }
+    
+     virtual int id()
+         {
+            return 0;
+         }
 };
 
 #endif /* Node_hpp */

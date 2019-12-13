@@ -9,10 +9,12 @@
 #ifndef RBTree_hpp
 #define RBTree_hpp
 
+
 static bool RED = false;
 static bool BLACK = true;
 
 #include <stdio.h>
+#include "RBNode.hpp"
 
 template<class E>
 class RBTree : public BBST<E> {
@@ -26,15 +28,19 @@ public:
      *5.从任意节点到叶子节点的所有路径上不能有2个连续的RED节点
      *
      */
-    class RBNode:Node<E>{
-    public:
-        bool color = RED;
-        RBNode(E element,Node<E>* parent):Node<E>(element,parent){
-            
-        }
-        
-    };
-    
+//    class RBNode:Node<E>{
+//    public:
+//        bool color = RED;
+//        RBNode(E element,Node<E>* parent):Node<E>(element,parent){
+//            
+//        }
+//         int id()
+//        {
+//           return 2;
+//        }
+//        
+//    };
+//    
     //函数指针
     CompareElement compareBlock;
     RBTree<E>(){
@@ -49,7 +55,7 @@ public:
     //染色方法
     Node<E>* color(Node<E> *node,bool color){
         if (node == nullptr) return node;
-        ((RBNode *)node)->color = color;
+        ((RBNode<E> *)node)->color = color;
         return node;
     }
     
@@ -74,12 +80,12 @@ public:
     }
     //返回节点的颜色
     bool colorOf(Node<E> *node){
-        return node == nullptr ? BLACK : ((RBNode*)node)->color;
+        return node == nullptr ? BLACK : ((RBNode<E>*)node)->color;
     }
     
     
     Node<E>* createNode(E element,Node<E> *parent){
-           RBNode *rbNode = new RBNode(element,parent);
+           RBNode<E> *rbNode = new RBNode<E>(element,parent);
            return (Node<E>*)rbNode;
        }
     
@@ -138,7 +144,11 @@ public:
         
     }
     
-    
+    void subAfterRotate(Node<E> *grand,Node<E> *parent,Node<E> *child){
+         
+         this->afterRotate(grand,parent,child);
+       
+    }
 };
 
 #endif /* RBTree_hpp */

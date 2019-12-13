@@ -12,6 +12,7 @@
 #include <iostream>
 #include "Node.hpp"
 #include <queue>
+#include "RBNode.hpp"
 
 using namespace std;
 
@@ -207,6 +208,15 @@ public:
         return this->root;
     }
     E nodeElement(Node<E> *node){
+        //加上去之后打印错乱，所以还是放弃
+//        if (node->id() == 2) {//说明是rbtree
+//            if( ((RBNode<E>*)node)->color == false){
+//                return "R_" +  node->element;
+//            }else{
+//                return "B_" +  node->element;
+//            }
+//        }
+ 
         return node->element;
         
     }
