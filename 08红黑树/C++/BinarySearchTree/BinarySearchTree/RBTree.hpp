@@ -144,6 +144,97 @@ public:
         
     }
     
+    //删除节点，B数中删除元素删除的都是叶子节点，因为都是通过查找后继节点或者
+//    前驱节点，从而删除的
+    /*
+     
+           红<--------------黑-------------->红
+         /   \                             /  \
+        /     \                           /    \
+    红<-黑->红   黑->红                  红<-黑     黑
+   / \  |   / \ |    \                  /  |      |
+   1  2 *  3  4 *     5                6   *      *
+     数字代表删除节点是红色，*代表删除节点是黑色
+     */
+    void afterRemove(Node<E> *node){
+        //如果删除的节点是红色
+        //或者 用来取代删除节点的子节点是红色
+        if (isRed(node)) {
+            black(node);
+            return;
+        }
+        Node<E> *parent = node->parent;
+        //如果删除的是根节点
+        if (parent == nullptr ) return;
+        
+        //如果删除的是黑色叶子节点(会产生下溢操作)
+        //判断被删除的node是左还是右
+        bool left = parent->left == nullptr || node->isLeftChild();
+        Node<E>* sibling = left ? parent->right : parent->left;
+        if (left) {//被删除的节点在左边，兄弟节点在右边
+            if (isRed(sibling)) {//兄弟节点是红色
+                //如果sibling是RED，则需将sibling染成BLACK，parent染成RED，进行旋转即可，于是又回到了sibling是BLACK的情况
+                black(sibling);
+                red(parent);
+                this->rotateLeft(parent);
+                //更换兄弟
+                sibling = parent->right;
+            }
+            
+//            处理完之后，兄弟节点必然是黑色
+            if (isBlack(sibling->left) && isBlack(sibling->right)) {
+                //兄弟节点没有一个红色子节点，父亲节点如果是黑的，还要像下跟兄弟合并
+                bool parentBlack = isBlack(parent);
+                black(parent);
+                red(sibling);
+                if (parentBlack) {
+                    afterRemove(parent);
+                }
+            }else{
+                //兄弟节点至少有一个红色子节点，向兄弟节点借元素
+                //进行旋转操作，旋转之后的中心节点继承parent的颜色，旋转之后的左右节点染成BLACK
+                //只有一个红色子节点，可能是左或者是右，如果兄弟节点的左边是黑色
+                if (isBlack(sibling->right)) {
+                    this->rotateRight(sibling);
+                    sibling = parent->right;
+                }
+                color(sibling, colorOf(parent));
+                black(sibling->right);
+                black(parent);
+                this->rotateLeft(parent);
+            }
+        }else{
+            //被删除的节点在右边，兄弟节点在左边
+            if (isRed(sibling)) { //兄弟节点是红色
+                black(sibling);
+                red(parent);
+                this->rotateRight(parent);
+                //更换兄弟
+                sibling = parent->left;
+            }
+            //兄弟节点必然是黑色
+            if (isBlack(sibling->left) && isBlack(sibling->right)) {
+                //兄弟节点没有一个红色子节点，父节点需要向下跟兄弟节点合并
+                bool parentBlack = isBlack(parent);
+                black(parent);
+                red(sibling);
+                if (parentBlack) {
+                    afterRemove(parent);
+                }
+            }else{//兄弟节点至少有一个红色子节点，向兄弟节点借元素
+                //兄弟节点的左边是黑色，兄弟要先旋转
+                if (isBlack(sibling->left)) {
+                    this->rotateLeft(sibling);
+                    sibling = parent->left;
+                }
+                color(sibling, colorOf(parent));
+                black(sibling->left);
+                black(parent);
+                this->rotateRight(parent);
+            }
+        }
+    }
+    
     void subAfterRotate(Node<E> *grand,Node<E> *parent,Node<E> *child){
          
          this->afterRotate(grand,parent,child);

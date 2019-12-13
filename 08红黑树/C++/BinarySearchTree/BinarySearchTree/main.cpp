@@ -119,13 +119,33 @@ void testRBTree(){
     
 }
 
+void testRBTree1(){
+    string data [] = {"55","87","56","74","96","22","62","20","70","68","90","50"};
+     int len = sizeof(data) / sizeof(string);
+    RBTree<string> *rbTree = new RBTree<string>(lamb);
+    for (int i = 0; i < len; i++) {
+        rbTree->add(data[i]);
+    }
+     BinaryTreeLevelOrderPrinter<string>::printerWithTree(rbTree);
+    
+    for (int i = 0; i < len; i++) {
+          rbTree->add(data[i]);
+          rbTree->remove(data[i]);
+         cout << "------------------------------------------------" << endl;
+         cout << "[" << data[i] + "]" << endl;
+         BinaryTreeLevelOrderPrinter<string>::printerWithTree(rbTree);
+      }
+  
+    
+}
+
 int main(int argc, const char * argv[]) {
    
     
 //    string data [] = { "38", "18", "04","03","05", "69","68", "85", "71", "34", "36", "29", "100" };
 //    string data [] = { "04", "01", "08","02","07", "10","03", "05", "09", "11", "06" };
 //    avlTest();
-    testRBTree();
+    testRBTree1();
    
     
     return 0;
