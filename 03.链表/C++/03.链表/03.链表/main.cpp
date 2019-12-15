@@ -52,10 +52,10 @@ void test2(){
 //    cout  << index << endl;
 //    
 //    //因为java和c++不同，这里调用clear()方法Person对象的内存是不会销毁的，这个在第一天复杂度的时候有提到过，注意一下
-////    list->clear();
-//    list->clear_element([] (Person *person){
-//        delete person;
-//    });
+//    list->clear();
+    list->clear_element([] (Person *person){
+        delete person;
+    });
 //    list->clear_element(void (*clearFunc)(Person *))
     
     delete list;
