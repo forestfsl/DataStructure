@@ -18,7 +18,8 @@ using namespace std;
 class TimeTool{
 public:
     typedef void(*ExcuteFunction)(void);
-   static void spanTime(ExcuteFunction localExcute){
+ 
+    static void spanTime(ExcuteFunction localExcute,string title){
         auto beginTime = std::chrono::high_resolution_clock::now();
        
        if (localExcute) {
@@ -27,14 +28,14 @@ public:
       auto endTime = std::chrono::high_resolution_clock::now();
        
       auto elapsedTime= std::chrono::duration_cast<std::chrono::seconds>(endTime - beginTime);
-      std::cout << "elapsed time is " << elapsedTime.count() << " second" << std::endl;
+      std::cout << "title:"<<title<<"---" <<"elapsed time is " << elapsedTime.count() << " second" << std::endl;
       std::cin.get();
    
 //       return elapsedTime.count();
 
    }
     static void checkTime(string title,ExcuteFunction excute){
-        spanTime(excute);
+        spanTime(excute,title);
     }
 };
 

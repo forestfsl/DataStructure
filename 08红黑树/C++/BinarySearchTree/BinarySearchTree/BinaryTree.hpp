@@ -199,25 +199,37 @@ public:
     }
     
     Node<E> *leftNode(Node<E> *node){
-        return node->left;
+        if (node != nullptr) {
+             return node->left;
+        }
+        return nullptr;
+       
     }
     Node <E> *rightNode(Node<E> *node){
-        return node->right;
+        if (node != nullptr) {
+                     return node->right;
+               }
+               return nullptr;
+       
     }
     Node<E>* rootNode(){
         return this->root;
     }
     E nodeElement(Node<E> *node){
-        //加上去之后打印错乱，所以还是放弃
-//        if (node->id() == 2) {//说明是rbtree
-//            if( ((RBNode<E>*)node)->color == false){
-//                return "R_" +  node->element;
-//            }else{
-//                return "B_" +  node->element;
+        
+        if (node != nullptr) {
+            //加上去之后打印错乱，所以还是放弃
+//            if (node->id() == 2) {//说明是rbtree
+//                if( ((RBNode<E>*)node)->color == false){
+//                    return "R" +  node->element;
+//                }else{
+//                    return "B" +  node->element;
+//                }
 //            }
-//        }
- 
-        return node->element;
+              return node->element;
+        }
+        return "已经打印完毕";
+      
         
     }
     

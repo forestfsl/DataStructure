@@ -18,7 +18,7 @@
 #include <list>
 using namespace std;
 
-#define FILE_NAME "/Users/forest/work/Shell/sdk_script/pythonMethod/lexicon1.txt"
+#define FILE_NAME "/Users/songlin/work/Shell/sdk_script/pythonMethod/lexicon1.txt"
 
 class FileInfo {
 public:

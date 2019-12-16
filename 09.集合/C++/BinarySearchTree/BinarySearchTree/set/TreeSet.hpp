@@ -14,10 +14,24 @@
 
 template <class E>
 class TreeSet {
-    typedef bool(*VisitorSet)(E);
-    E keyStr;
-    E valueStr;
-    TreeMap<E, E> *map = new TreeMap<E, E>();
+public:
+    typedef  bool(*VisitorSet)(E);
+    TreeMap<E, E> *map;
+    typedef int(*CompareElement)(int,int);
+       
+       //函数指针
+    CompareElement compareBlock;
+
+    static VisitorSet visitorSet;
+    TreeSet<E>(){
+        map  = new TreeMap<E, E>();
+    }
+    
+    TreeSet<E>(CompareElement compareBlock){
+         map  = new TreeMap<E, E>(compareBlock);
+    }
+    
+   
     int size(){
         return map->size;
     }
@@ -34,22 +48,28 @@ class TreeSet {
     }
     
     void add(E element){
-        map->put(element,nullptr);
+        map->put(element,element);
     }
     
     void remove(E element){
         map->remove(element);
     }
     
-    bool block(VisitorSet visitor,E key){
-        visitor(key);
+    bool static block(E key,E value){
+        cout << "key=" << key << "----" <<"value=" << value << endl;
+        return false;
     }
     
-    void  traversal(VisitorSet visitor) {
+    void  traversal() {
+
         map->traversal1([] (E key,E value)  -> bool{
-//            visitor(key);
+      
+            return block(key,value);
+            
+            
         });
     }
+    
 };
 
 #endif /* TreeSet_hpp */

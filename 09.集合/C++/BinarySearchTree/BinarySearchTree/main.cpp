@@ -19,6 +19,7 @@
 #include "ListSet.hpp"
 #include "TreeMap.hpp"
 #include "TreeSet.hpp"
+#include <thread>
 
 using namespace std;
 
@@ -156,8 +157,53 @@ int fib1(int n){
 
 
 auto lamb1 = []  ()-> void{
-     fib1(50);
+     list<string>listWorld = FileInfo::fetchListWorld();
+     ListSet<string> *listSet = new ListSet<string>();
+    
+    auto it=listWorld.begin();
+      for(;it!=listWorld.end();it++)
+        {
+            string english = (string)*it;
+            listSet->add(english);
+        }
+       for(;it!=listWorld.end();it++)
+              {
+                  string english = (string)*it;
+                  listSet->contains(english);
+              }
+    for(;it!=listWorld.end();it++)
+      {
+          string english = (string)*it;
+          listSet->remove(english);
+      }
+    
 };
+
+auto lamb2 = []  ()-> void{
+       list<string>listWorld = FileInfo::fetchListWorld();
+      TreeSet<string> *treeSet = new TreeSet<string>(lamb);
+    
+       auto it=listWorld.begin();
+         for(;it!=listWorld.end();it++)
+           {
+               string english = (string)*it;
+               treeSet->add(english);
+           }
+   
+            for(;it!=listWorld.end();it++)
+              {
+                  string english = (string)*it;
+                  treeSet->contains(english);
+              }
+    for(;it!=listWorld.end();it++)
+      {
+          string english = (string)*it;
+          treeSet->remove(english);
+      }
+
+};
+
+
 
 void testListSet(){
     ListSet<int> *listSet = new ListSet<int>();
@@ -169,8 +215,63 @@ void testListSet(){
     
    listSet->traversal([] (int element) -> bool{
        cout << element << endl;;
-       return true;
+       return false;
    });
+}
+
+void testTreeSet(){
+    TreeSet<string> *treeSet = new TreeSet<string>(lamb);
+    treeSet->add("50");
+    treeSet->add("10");
+    treeSet->add("20");
+    treeSet->add("30");
+    treeSet->add("20");
+    treeSet->add("40");
+    treeSet->traversal();
+}
+
+void testTreeSet1(){
+    TreeSet<string> *treeSet = new TreeSet<string>();
+    treeSet->add("g");
+    treeSet->add("c");
+    treeSet->add("c");
+    treeSet->add("d");
+    treeSet->add("e");
+    treeSet->add("f");
+    treeSet->add("a");
+    treeSet->traversal();
+}
+
+
+void testTreeMap(){
+    TreeMap<string, int> *map = new TreeMap<string, int>();
+    map->put("c", 2);
+    map->put("a", 5);
+    map->put("b", 6);
+    map->put("a", 8);
+    map->traversal1([] (string key,int value) -> bool {
+        cout << key <<"_" << to_string(value) << endl;
+        return false;
+    });
+}
+void thread01()
+{
+//    for (int i = 0; i < 5; i++)
+//    {
+//        cout << "Thread 01 is working ！" << endl;
+//
+//    }
+    TimeTool::checkTime("ListSet", lamb1);
+}
+    
+void thread02()
+{
+//    for (int i = 0; i < 5; i++)
+//    {
+//        cout << "Thread 02 is working ！" << endl;
+//
+//    }
+    TimeTool::checkTime("TreeSet", lamb2);
 }
 
 int main(int argc, const char * argv[]) {
@@ -179,10 +280,18 @@ int main(int argc, const char * argv[]) {
 //    string data [] = { "38", "18", "04","03","05", "69","68", "85", "71", "34", "36", "29", "100" };
 //    string data [] = { "04", "01", "08","02","07", "10","03", "05", "09", "11", "06" };
 //    avlTest();
-//    TimeTool::checkTime("测试1", lamb1);
+//    TimeTool::checkTime("ListSet", lamb1);
+//    TimeTool::checkTime("TreeSet", lamb2);
+
 //    FileInfo::fetchWorld();
-//    FileInfo::fetchSetWorld();
-    testListSet();
-   
+//    testListSet();
+//    testTreeSet1();
+//    testRBTree1();
+//    testTreeMap();
+    
+    thread task01(thread01);
+    thread task02(thread02);
+    task01.join();
+    task02.join();
     return 0;
 }

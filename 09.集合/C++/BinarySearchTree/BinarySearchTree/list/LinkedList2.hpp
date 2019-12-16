@@ -129,22 +129,29 @@ void LinkedList2<E>::toString(){
 
 template <class E>
 int LinkedList2<E>::indexOf(E element){
-    if (element == NULL) {
-        Node *node = first;
-        for (int i = 0; i < size; i++) {
-            if (node->element == NULL) {
-                return i;
-            }
-            node = node->next;
+//    if (element == NULL) {
+//        Node *node = first;
+//        for (int i = 0; i < size; i++) {
+//            if (node->element == NULL) {
+//                return i;
+//            }
+//            node = node->next;
+//        }
+//    }else{
+//        Node *node = first;
+//        for (int i = 0; i < size; i++) {
+//            if (node->element == element) {
+//                return i;
+//            }
+//            node = node->next;
+//        }
+//    }
+    Node *node = first;
+    for (int i = 0; i < size; i++) {
+        if (node->element == element) {
+            return i;
         }
-    }else{
-        Node *node = first;
-        for (int i = 0; i < size; i++) {
-            if (node->element == element) {
-                return i;
-            }
-            node = node->next;
-        }
+        node = node->next;
     }
     return ELEMENT_NOT_FOUND2;
 }

@@ -11,13 +11,15 @@
 
 #include <stdio.h>
 
+
 static bool isFinishVisitor = false;
 
 
 template <class K,class V>
 class TreeMap {
 public:
-     typedef int(*CompareElement)(K,V);
+     typedef int(*CompareElement)(int,int);
+    
     //函数指针
        CompareElement compareBlock;
     typedef bool(*Visitor)(K,V);
@@ -25,15 +27,10 @@ public:
       const static bool BLACK = true;
       int size;
     
-    TreeMap(){
-        TreeMap(nullptr);
-    }
-    
-    TreeMap(CompareElement comparator){
-        this->compareBlock = comparator;
-    }
+   
     
      class TreeMapNode{
+     public:
         K key;
         V value;
         bool color = RED;
@@ -44,6 +41,9 @@ public:
             this->key = key;
             this->value = value;
             this->parent = parent;
+            this->left = nullptr;
+            this->right = nullptr;
+
         }
          bool isLeaf(){
              return left == nullptr && right == nullptr;
@@ -58,7 +58,7 @@ public:
              return parent != nullptr && this == parent->right;
          }
          TreeMapNode* sibling(){
-             if (this->isLeftChild) {
+             if (this->isLeftChild()) {
                  return parent->right;
              }
              if (this->isRightChild()) {
@@ -68,7 +68,16 @@ public:
              return nullptr;
          }
     };
-    TreeMapNode *root;
+    TreeMapNode *root = nullptr;
+    TreeMap(){
+           TreeMap(nullptr);
+       }
+       
+       TreeMap(CompareElement comparator){
+           compareBlock = comparator;
+           root = nullptr;
+           size = 0;
+       }
     
     int fetchSize(){
         return size;
@@ -81,7 +90,7 @@ public:
         size = 0;
     }
     
-    V put(K key, V value){
+    void put(K key, V value){
         keyNotNullCheck(key);
         //添加第一个节点
         if (root == nullptr) {
@@ -89,7 +98,7 @@ public:
             size++;
             //新添加节点之后的处理
             afterPut(root);
-            return  nullptr;
+            return;
         }
         
         //添加的不是第一个节点
@@ -109,7 +118,7 @@ public:
                 node->key = key;
                 V oldValue = node->value;
                 node->value = value;
-                return oldValue;
+                return;
             }
         } while (node != nullptr);
         // 看看插入到父节点的哪个位置
@@ -123,7 +132,7 @@ public:
         
         // 新添加节点之后的处理
         afterPut(newNode);
-        return nullptr;
+        return;
     }
     
     //获取value
@@ -418,20 +427,24 @@ public:
     }
     
     void afterRotate(TreeMapNode *grand,TreeMapNode *parent,TreeMapNode *child){
-        parent->parent = grand->parent;
-        if (grand->isLeftChild()) {
-            grand->parent->left = parent;
-        }else if (grand->isRightChild()){
-            grand->parent->right = parent;
-        }else{//grand 是root节点
-            this->root = parent;
-        }
-        //更新child 的parent
-        if (child == nullptr) {
-            child->parent = grand;
-        }
-        //更新grand的parent
-        grand->parent = parent;
+           // 让parent称为子树的根节点
+            parent->parent = grand->parent;
+            if (grand->isLeftChild()) {
+                grand->parent->left = parent;
+            } else if (grand->isRightChild()) {
+                grand->parent->right = parent;
+            } else { // grand是root节点
+                root = parent;
+            }
+            
+            // 更新child的parent
+            if (child != nullptr && child != NULL) {
+                child->parent = grand;
+            }
+            
+            // 更新grand的parent
+            grand->parent = parent;
+
     }
   
     TreeMapNode * color(TreeMapNode *node,bool color){
@@ -455,20 +468,28 @@ public:
     }
     
     bool isRed(TreeMapNode *node){
-        return colorOf(node) = RED;
+        return colorOf(node) == RED;
     }
     
     void keyNotNullCheck(K key){
-        if (key == nullptr) {
+        if (key == "") {
             cout << "key must not be null" << endl;
         }
     }
     
     int compare(K e1,K e2){
-        if (compareBlock != nullptr) {
-            compareBlock(e1, e2);
-        }
-        return e1 - e2;
+         if (compareBlock != nullptr) {
+                return compareBlock(atoi(e1.c_str()),atoi(e2.c_str()));
+         }else{
+             if (e1 > e2) {
+                 return 1;
+             }else if (e1 == e2){
+                 return 0;
+             }else{
+                 return -1;
+             }
+         }
+//        return atoi(e1.c_str()) - atoi(e2.c_str());
     }
     
 };
