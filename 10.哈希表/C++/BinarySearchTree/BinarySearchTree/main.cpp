@@ -28,6 +28,7 @@
 #include "SubKey1.hpp"
 #include "LinkHashMap.hpp"
 #include "HashMapV0.hpp"
+#include "HashMapV1.hpp"
 
 using namespace std;
 

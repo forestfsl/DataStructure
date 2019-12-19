@@ -19,7 +19,7 @@ public:
     HashNode<K, V> *table;
     static const int DEFAULT_LOAD_CAPACITY = 1 << 4;
     constexpr static const float DEFAULT_LOAD_FACTOR = 0.75f;
-    HashMapV0(){
+    HashMapV1(){
         table = new HashNode<K, V>[DEFAULT_LOAD_CAPACITY]{};
     }
     
