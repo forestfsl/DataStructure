@@ -12,6 +12,7 @@
 #include <stdio.h>
 
 
+
 static bool isFinishVisitor = false;
 
 
@@ -19,7 +20,7 @@ template <class K,class V>
 class TreeMap {
 public:
      typedef int(*CompareElement)(int,int);
-    
+   
     //函数指针
        CompareElement compareBlock;
     typedef bool(*Visitor)(K,V);

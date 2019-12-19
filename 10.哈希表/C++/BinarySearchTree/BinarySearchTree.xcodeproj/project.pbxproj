@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		07A7333F237A617200FE5E6A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A7333E237A617200FE5E6A /* main.cpp */; };
-		07F272CE23A7CF9A00B27338 /* Person.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F272CC23A7CF9A00B27338 /* Person.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,10 +36,19 @@
 		07A73346237A618400FE5E6A /* BinarySearchTree.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BinarySearchTree.hpp; sourceTree = "<group>"; };
 		07BDE45423801A8600708805 /* Node.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Node.hpp; sourceTree = "<group>"; };
 		07D4F42A23A344010038B768 /* RBNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RBNode.hpp; sourceTree = "<group>"; };
+		07D5BDE323A8F61C00896EDB /* Student.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Student.hpp; sourceTree = "<group>"; };
+		07D5BDE623A8F74000896EDB /* Key.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Key.hpp; sourceTree = "<group>"; };
+		07D5BDE923A8F81E00896EDB /* SubKey1.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SubKey1.hpp; sourceTree = "<group>"; };
+		07D5BDEC23A8F92F00896EDB /* SubKey2.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SubKey2.hpp; sourceTree = "<group>"; };
+		07D5BDEF23A8FADB00896EDB /* LinkHashMap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LinkHashMap.hpp; sourceTree = "<group>"; };
+		07D5BDF223A8FAF600896EDB /* HashMapV0.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HashMapV0.hpp; sourceTree = "<group>"; };
+		07D5BDF523A8FB1400896EDB /* HashMapV1.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HashMapV1.hpp; sourceTree = "<group>"; };
+		07D5BDF923A8FCC300896EDB /* MapNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MapNode.hpp; sourceTree = "<group>"; };
+		07D5BDFC23AA06BD00896EDB /* LinkedNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LinkedNode.hpp; sourceTree = "<group>"; };
+		07D5BDFF23AA377100896EDB /* HashNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HashNode.hpp; sourceTree = "<group>"; };
 		07D6149D2380059A00C3EE38 /* BinaryTreeLevelOrderPrinter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BinaryTreeLevelOrderPrinter.hpp; sourceTree = "<group>"; };
 		07F272C323A63E2700B27338 /* TreeMap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TreeMap.hpp; sourceTree = "<group>"; };
 		07F272C623A67E5A00B27338 /* TreeSet.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TreeSet.hpp; sourceTree = "<group>"; };
-		07F272CC23A7CF9A00B27338 /* Person.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Person.cpp; sourceTree = "<group>"; };
 		07F272CD23A7CF9A00B27338 /* Person.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Person.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,7 +137,8 @@
 		07A7333D237A617200FE5E6A /* BinarySearchTree */ = {
 			isa = PBXGroup;
 			children = (
-				07F272C823A7CBEB00B27338 /* person */,
+				07D5BDF723A8FCB200896EDB /* Node */,
+				07F272C823A7CBEB00B27338 /* model */,
 				07F272C123A63E1B00B27338 /* map */,
 				07A4EBC023A627A800613278 /* set */,
 				07A4EBBF23A6270F00613278 /* printer */,
@@ -142,21 +151,37 @@
 			path = BinarySearchTree;
 			sourceTree = "<group>";
 		};
+		07D5BDF723A8FCB200896EDB /* Node */ = {
+			isa = PBXGroup;
+			children = (
+				07D5BDF923A8FCC300896EDB /* MapNode.hpp */,
+				07D5BDFC23AA06BD00896EDB /* LinkedNode.hpp */,
+				07D5BDFF23AA377100896EDB /* HashNode.hpp */,
+			);
+			path = Node;
+			sourceTree = "<group>";
+		};
 		07F272C123A63E1B00B27338 /* map */ = {
 			isa = PBXGroup;
 			children = (
 				07F272C323A63E2700B27338 /* TreeMap.hpp */,
+				07D5BDEF23A8FADB00896EDB /* LinkHashMap.hpp */,
+				07D5BDF223A8FAF600896EDB /* HashMapV0.hpp */,
+				07D5BDF523A8FB1400896EDB /* HashMapV1.hpp */,
 			);
 			path = map;
 			sourceTree = "<group>";
 		};
-		07F272C823A7CBEB00B27338 /* person */ = {
+		07F272C823A7CBEB00B27338 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				07F272CC23A7CF9A00B27338 /* Person.cpp */,
 				07F272CD23A7CF9A00B27338 /* Person.hpp */,
+				07D5BDE323A8F61C00896EDB /* Student.hpp */,
+				07D5BDE623A8F74000896EDB /* Key.hpp */,
+				07D5BDE923A8F81E00896EDB /* SubKey1.hpp */,
+				07D5BDEC23A8F92F00896EDB /* SubKey2.hpp */,
 			);
-			path = person;
+			path = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,7 +241,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07F272CE23A7CF9A00B27338 /* Person.cpp in Sources */,
 				07A7333F237A617200FE5E6A /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

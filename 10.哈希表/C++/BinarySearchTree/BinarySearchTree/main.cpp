@@ -21,6 +21,13 @@
 #include "TreeSet.hpp"
 #include <thread>
 #include "Person.hpp"
+#include <map>
+#include <unordered_map>
+#include "Student.hpp"
+#include "Key.hpp"
+#include "SubKey1.hpp"
+#include "LinkHashMap.hpp"
+#include "HashMapV0.hpp"
 
 using namespace std;
 
@@ -275,6 +282,74 @@ void thread02()
     TimeTool::checkTime("TreeSet", lamb2);
 }
 
+void testLinkedSetAndTreeSet(){
+    thread task01(thread01);
+    thread task02(thread02);
+    task01.join();
+    task02.join();
+}
+
+
+class Person1{
+public:
+    string name;
+    int age;
+
+    Person1(string n, int a){
+        name = n;
+        age = a;
+    }
+
+    bool operator==(const Person1 & p) const
+    {
+        return name == p.name && age == p.age;
+    }
+};
+
+struct hash_name{
+    size_t operator()(const Person1 & p) const{
+        return hash<string>()(p.name) ^ hash<int>()(p.age);// hash<string>()(p.name)就是求这个string对应hash值得方法
+    }
+};
+
+
+void testPersonHashMap(){
+    //    https://www.cnblogs.com/wangshaowei/p/10891116.html
+        unordered_map<Person , string,hash_name1> ids; //不需要把哈希函数传入构造器
+       
+        ids[Person(10,20.0,"forest")] = "forest";
+        ids[Person(10,20.0,"forest")] = "forest1";
+        ids[Person(10,20.0,"forest")] = "forest3";
+        cout <<"哈希表存储的元素有:" << ids.size() << endl;
+        for ( auto ii = ids.begin() ; ii != ids.end() ; ii++ ){
+               cout << ii->first.name
+               << " " << ii->first.age
+                << " " << ii->first.height
+               << " : " << ii->second
+               << endl;
+        }
+        
+        //下面这个不行，不知道为什么
+    //    unordered_map<Person * , string,hash_name1> ids1; //不需要把哈希函数传入构造器
+    //
+    //       Person *person = new Person(10,20.0,"forest");
+    //       Person *person1 = new Person(10,20.0,"forest1");
+    //       Person *person2 = new Person(10,20.0,"forest2");
+    //
+    //       ids1[person] = "forest";
+    //       ids1[person1] = "forest1";
+    //       ids1[person2] = "forest3";
+    //       cout <<"哈希表存储的元素有:" << ids1.size() << endl;
+    //       for ( auto ii = ids1.begin() ; ii != ids1.end() ; ii++ ){
+    //           cout << ii->first->name
+    //           << " " << ii->first->age
+    //           << " " << ii->first->height
+    //          << " : " << ii->second
+    //          << endl;
+    //       }
+           
+}
+
 int main(int argc, const char * argv[]) {
    
     
@@ -289,10 +364,8 @@ int main(int argc, const char * argv[]) {
 //    testTreeSet1();
 //    testRBTree1();
 //    testTreeMap();
+   
+
     
-    thread task01(thread01);
-    thread task02(thread02);
-    task01.join();
-    task02.join();
     return 0;
 }

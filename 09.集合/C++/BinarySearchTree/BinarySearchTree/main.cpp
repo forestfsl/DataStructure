@@ -274,6 +274,14 @@ void thread02()
     TimeTool::checkTime("TreeSet", lamb2);
 }
 
+
+void testLinkedSetAndTreeSet(){
+    thread task01(thread01);
+   thread task02(thread02);
+   task01.join();
+   task02.join();
+}
+
 int main(int argc, const char * argv[]) {
    
     
@@ -289,9 +297,6 @@ int main(int argc, const char * argv[]) {
 //    testRBTree1();
 //    testTreeMap();
     
-    thread task01(thread01);
-    thread task02(thread02);
-    task01.join();
-    task02.join();
+   
     return 0;
 }
