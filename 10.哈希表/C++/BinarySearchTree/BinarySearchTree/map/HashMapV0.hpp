@@ -16,6 +16,7 @@
 
 
 
+
 template<class K,class V>
 
 class HashMapV0{
@@ -28,6 +29,8 @@ public:
         table = new HashNode<K, V>[DEFAULT_LOAD_CAPACITY]{};
     }
     
+   
+    
     int fetchSize(){
         return size;
     }
@@ -37,16 +40,144 @@ public:
     }
     
     void clear(){
-        if (size == 0) return;
+        if (size == 0) return; //防止size等于0的时候还需要q循环清空table
         size = 0;
-        for (int i = 0; i < size; i++) {
+        int len = sizeof(table) / sizeof(table[0]);
+        cout << "哈希数组的长度:" << len << endl;
+        for (int i = 0; i < len; i++) {
             table[i] = nullptr;
         }
     }
     
+    V put(K key,V value){
+        int index = index(key);
+        //取出index位置的红黑树根节点
+        HashNode<K,V> *root = table[index];
+        if (root == nullptr) {
+            root = new HashNode<K,V>(key,value,nullptr);
+            table[index] = root;
+            size++;
+            afterput(root);
+            return nullptr;
+        }
+        
+        //添加新的节点到红黑树上面
+        HashNode<K,V> *parent = root;
+        HashNode<K,V> *node = root;
+        int cmp = 0;
+        K k1 = key;
+        int h1 = 0;
+        if (hash(k1) != 0) {
+            h1 = hash(k1);
+        }
+        HashNode<K,V> *result = nullptr;
+        bool searched = false;//是否已经搜过这个key
+       do {
+           parent = node;
+           K k2 = node->key;
+           int h2 = node->hash;
+           if (h1 > h2) {
+               cmp = 1;
+           }else if(h1 < h2){
+               cmp = -1;
+           }else if(k1 != nullptr && k2 != nullptr){
+               
+           }else if(searched){
+               //内存地址对比
+               //todo
+               cmp = int(&k1 - &k2);
+           }else{
+               // searched == false; 还没有扫描，然后再根据内存地址大小决定左右
+               if ((node->left != nullptr && (result = node(node->left,k1)) != nullptr) || (node->right != nullptr && (result = node(node->right,k1)) != nullptr)) {
+                   //已经存在这个key
+                   node = result;
+                   cmp = 0;
+               }else {
+                   //不存在这个key
+                   searched = true;
+                   //内存地址对比
+                   //todo
+                   cmp = int(&k1 - &k2);
+               }
+           }
+            if (cmp > 0) {
+                node = node->right;
+            } else if (cmp < 0) {
+                node = node->left;
+            } else { // 相等
+                V oldValue = node->value;
+                node->key = key;
+                node->value = value;
+                node->hash = h1;
+                return oldValue;
+            }
+        } while (node != nullptr);
+                   
+           // 看看插入到父节点的哪个位置
+           HashNode<K, V> *newNode = new HashNode<K,V>(key, value, parent);
+           if (cmp > 0) {
+               parent->right = newNode;
+           } else {
+               parent->left = newNode;
+           }
+           size++;
+           
+           // 新添加节点之后的处理
+           afterPut(newNode);
+           return nullptr;
+        
+    }
+    
+    HashNode<K, V> *node(HashNode<K, V>*node,K k1){
+        int h1 = 0;
+        //存储查找结果
+        HashNode<K,V> *result = nullptr;
+        if (hash(k1) > 0) {
+            h1 = hash(k1);
+        }
+        int cmp = 0;
+       
+        while (node != nullptr) {
+            K k2 = node->key;
+            int h2 = node->hash;
+            //先比较哈希值
+            if (h1 > h2) {
+                node = node->right;
+            }else if(h1 < h2){
+                node = node->left;
+            }else if(k1 == k2){
+                return node;
+            }else if(k1 != nullptr && k2 != nullptr && k1 != k2 && typeid(k1 ).name() == typeid(k2).name()){
+                //todo
+                node = cmp > 0 ? node->right : node->left;
+                
+            }else if(node->right != nullptr && (result = node(node->right,k1)) != nullptr){
+                return result;
+            }else{ //只能往左边找
+                node = node->left;
+            }
+        }
+        return nullptr;
+                   
+    }
+    
+    int index(K key){
+        int len = sizeof(table) / sizeof(table[0]);
+        return hash(key) & (len - 1);
+    }
+    
+    
+    int hash(K key){
+        if (key == nullptr) return 0;
+        int hash = (K)::hash<K>();
+        return hash ^ (hash >> 16);
+    }
+    
     
     int index(HashNode<K,V> *node){
-           return node->hash & (size - 1);
+        int len = sizeof(table) / sizeof(table[0]);
+               cout << "哈希数组的长度:" << len << endl;
+           return node->hash & (len - 1);
        }
        
        HashNode<K,V> * hashColor(HashNode<K,V> *node ,bool color){

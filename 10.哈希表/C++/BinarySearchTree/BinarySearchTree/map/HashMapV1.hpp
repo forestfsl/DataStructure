@@ -34,9 +34,10 @@ public:
     void clear(){
         if (size == 0) return;
         size = 0;
-        for (int i = 0; i < size; i++) {
-            table[i] = nullptr;
-        }
+          int len = sizeof(table) / sizeof(table[0]);
+          for (int i = 0; i < len; i++) {
+              table[i] = nullptr;
+          }
     }
     
     
