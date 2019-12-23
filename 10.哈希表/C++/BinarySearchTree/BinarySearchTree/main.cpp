@@ -25,10 +25,10 @@
 #include <unordered_map>
 #include "Student.hpp"
 #include "Key.hpp"
-#include "SubKey1.hpp"
-#include "LinkHashMap.hpp"
+
 #include "HashMapV0.hpp"
 #include "HashMapV1.hpp"
+
 
 using namespace std;
 
@@ -351,6 +351,17 @@ void testPersonHashMap(){
            
 }
 
+    
+void  testHashMap1(){
+    HashMapV0<Key, int> hashMap =  HashMapV0<Key, int>();
+    for (int i = 1; i < 20; i++) {
+        hashMap.put(Key(i), i);
+    }
+    cout << hashMap.get(Key(1)) << endl;
+    cout << hashMap.get(Key(11)) << endl;
+    cout << hashMap.get(Key(12)) << endl;
+}
+
 int main(int argc, const char * argv[]) {
    
     
@@ -366,7 +377,7 @@ int main(int argc, const char * argv[]) {
 //    testRBTree1();
 //    testTreeMap();
    
-
+    testHashMap1();
     
     return 0;
 }

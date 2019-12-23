@@ -14,14 +14,27 @@
 class Key{
 public:
     int value;
+    string identifier;
+    Key(){
+        
+    }
     Key(int value){
         this->value = value;
+        identifier = "test";
     }
-   virtual bool operator==(const Key & key) const
+    bool operator==(const Key & key) const
     {
         return key.value == value;
     }
-   
+    static int hashName(const Key & key){
+        return key.value / 10;
+    }
+    
+//    bool operator!=(Key & key) const
+//       {
+//           return key != nullptr;
+//       }
+//   
 
 };
 

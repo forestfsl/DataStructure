@@ -22,13 +22,14 @@ template<class K,class V>
 class HashMapV0{
 public:
     int size;
-    HashNode<K, V> *table;
+    HashNode<K, V>* table[1000];
+     typedef bool(*Visitor)(K,V);
     static const int DEFAULT_LOAD_CAPACITY = 1 << 4;
     constexpr static const float DEFAULT_LOAD_FACTOR = 0.75f;
-    HashMapV0(){
-        table = new HashNode<K, V>[DEFAULT_LOAD_CAPACITY]{};
-    }
-    
+//    HashMapV0(){
+//        table = new HashNode<K, V>[DEFAULT_LOAD_CAPACITY]{};
+//    }
+
    
     
     int fetchSize(){
@@ -43,27 +44,27 @@ public:
         if (size == 0) return; //防止size等于0的时候还需要q循环清空table
         size = 0;
         int len = sizeof(table) / sizeof(table[0]);
-        cout << "哈希数组的长度:" << len << endl;
+//        cout << "哈希数组的长度:" << len << endl;
         for (int i = 0; i < len; i++) {
             table[i] = nullptr;
         }
     }
     
     V put(K key,V value){
-        int index = index(key);
+        int indexPath = fetchindex(key);
         //取出index位置的红黑树根节点
-        HashNode<K,V> *root = table[index];
+        HashNode<K,V> *root = table[indexPath];
         if (root == nullptr) {
             root = new HashNode<K,V>(key,value,nullptr);
-            table[index] = root;
+            table[indexPath] = root;
             size++;
-            afterput(root);
-            return nullptr;
+            fixAfterPut(root);
+            return 0;
         }
         
         //添加新的节点到红黑树上面
         HashNode<K,V> *parent = root;
-        HashNode<K,V> *node = root;
+        HashNode<K,V> *node =  root;
         int cmp = 0;
         K k1 = key;
         int h1 = 0;
@@ -73,6 +74,7 @@ public:
         HashNode<K,V> *result = nullptr;
         bool searched = false;//是否已经搜过这个key
        do {
+//           cout << "类名:" << typeid(k1).name() << endl;
            parent = node;
            K k2 = node->key;
            int h2 = node->hash;
@@ -80,15 +82,18 @@ public:
                cmp = 1;
            }else if(h1 < h2){
                cmp = -1;
-           }else if(k1 != nullptr && k2 != nullptr){
-               
-           }else if(searched){
+           }else if (k1 == k2){
+               cmp = 0;
+           }else if(typeid(k1).name() == typeid(k2).name() && k1.identifier == "test" && k2.identifier == "test" && k1 == k2){
+               cout << "k1 k2 name 相同" << endl;
+            }
+           else if(searched){
                //内存地址对比
                //todo
                cmp = int(&k1 - &k2);
            }else{
                // searched == false; 还没有扫描，然后再根据内存地址大小决定左右
-               if ((node->left != nullptr && (result = node(node->left,k1)) != nullptr) || (node->right != nullptr && (result = node(node->right,k1)) != nullptr)) {
+               if ((node->left != nullptr && (result = fetchNodeWithK(node->left,k1)) != nullptr) || (node->right != nullptr && (result = fetchNodeWithK(node->right,k1)) != nullptr)) {
                    //已经存在这个key
                    node = result;
                    cmp = 0;
@@ -104,7 +109,7 @@ public:
                 node = node->right;
             } else if (cmp < 0) {
                 node = node->left;
-            } else { // 相等
+            } else { // 哈希值相等之后，找到对应的key相等
                 V oldValue = node->value;
                 node->key = key;
                 node->value = value;
@@ -123,16 +128,150 @@ public:
            size++;
            
            // 新添加节点之后的处理
-           afterPut(newNode);
-           return nullptr;
+           fixAfterPut(newNode);
+           return 0;
         
     }
     
-    HashNode<K, V> *node(HashNode<K, V>*node,K k1){
+    
+    V get(K key){
+        HashNode<K, V> *node = fetchNode(key);
+        if (node != nullptr) {
+            return node->value;
+        }
+        return 0;
+        
+    }
+    
+    V remove(K key){
+        return remove(node(key));
+    }
+    
+    V remove(HashNode<K, V> *node){
+        if (node == nullptr) return nullptr;
+        size--;
+        V oldValue = node->value;
+        
+        if (node->hasTwoChildren()) {//度为2的节点
+            //找到后继节点
+            HashNode<K, V> *s = successor(node);
+            //用后继节点的值覆盖度为2的节点的值
+            node->key = s->key;
+            node->value = s->value;
+            node->hash = s->hash;
+            //删除后继节点
+            node = s;
+        }
+        //删除node节点(node 的度必然是1或者0)
+        HashNode<K, V> *replacement = node->left != nullptr ? node->left : node->right;
+        int index = index(node);
+        if (replacement != nullptr) { //node 是度为1 的节点
+            //更改parent
+            replacement->parent = node->parent;
+            //更改parent的left，right的指向
+            if (node->parent == nullptr) {//node 是度为1的节点并且是根节点
+                table[index] = replacement;
+            }else if (node == node->parent->left){
+                node->parent->left = replacement;
+            }else{
+                node->parent->right = replacement;
+            }
+            //删除节点之后的处理
+            fixAfterRemove(replacement);
+        }else if (node->parent == nullptr){
+            //node 是叶子节点并且是根节点
+            table[index] = nullptr;
+        }else{//node 是叶子节点但不是根节点
+            if (node == node->parent->left) {
+                node->parent->left = nullptr;
+            }else{//node == node->parent->right
+                node->parent->right = nullptr;
+            }
+            //删除节点之后的处理
+            fixAfterRemove(node);
+        }
+        return oldValue;
+    }
+    
+    bool containsKey(K key){
+        return node(key) != nullptr;
+    }
+    
+    bool containsValue(V value){
+        if (size == 0) return false;
+        queue<HashNode<K, V> *> hashQueue;
+         int len = sizeof(table) / sizeof(table[0]);
+        for (int i = 0; i < len; i++) {
+            if (table[i] == nullptr) continue;
+            hashQueue.push(table[i]);
+            while (!hashQueue.empty()) {
+                HashNode<K, V> *node = hashQueue.front();
+                hashQueue.pop();
+                if (value == node->value) return true;
+                
+                if (node->left != nullptr) {
+                    hashQueue.push(node->left);
+                }
+                if (node->right != nullptr) {
+                    hashQueue.push(node->right);
+                }
+            }
+        }
+    }
+    
+    void traversal(Visitor visitor){
+        if (size == 0 || visitor == nullptr) return;
+        queue<HashNode<K, V> *>hashQueue;
+         int len = sizeof(table) / sizeof(table[0]);
+        for (int i = 0; i < len ; i++) {
+            if (table[i] == nullptr) continue;
+            
+            hashQueue.push(table[i]);
+            while (!hashQueue.empty()) {
+                HashNode<K, V> *node = hashQueue.front();
+                hashQueue.pop();
+                isFinish = visitor(node->key,node->value);
+                if (isFinish) return;
+                if (node->left != nullptr) {
+                    hashQueue.push(node->left);
+                }
+                if (node->right != nullptr) {
+                    hashQueue.push(node->right);
+                }
+            }
+        }
+    }
+    
+    HashNode<K, V> successor(HashNode<K, V> *node){
+        if (node == nullptr) return nullptr;
+        
+        //前驱节点在左子树当中(right->left->left->left......)
+        HashNode<K, V> *p = node->right;
+        if (p != nullptr) {
+            while (p->left != nullptr) {
+                p = p->left;
+            }
+            return p;
+        }
+        
+        //从父节点，祖父节点寻找前驱节点
+        while (node->parent != nullptr && node == node->parent->right) {
+            node = node->parent;
+        }
+        return node->parent;
+    }
+    
+    HashNode<K, V>* fetchNode(K key){
+        HashNode<K, V> *root = table[fetchindex(key)];
+        return root == nullptr ? nullptr : fetchNodeWithK(root,key);
+    }
+    
+    
+    HashNode<K, V> *fetchNodeWithK(HashNode<K, V>*node,K k1){
         int h1 = 0;
         //存储查找结果
         HashNode<K,V> *result = nullptr;
-        if (hash(k1) > 0) {
+        if (hash(k1) != 0) {
             h1 = hash(k1);
         }
         int cmp = 0;
@@ -147,11 +286,11 @@ public:
                 node = node->left;
             }else if(k1 == k2){
                 return node;
-            }else if(k1 != nullptr && k2 != nullptr && k1 != k2 && typeid(k1 ).name() == typeid(k2).name()){
+            }else if(typeid(k1).name() == typeid(k2).name() && k1.identifier == "test" && k2.identifier == "test" && k1 == k2){
                 //todo
                 node = cmp > 0 ? node->right : node->left;
                 
-            }else if(node->right != nullptr && (result = node(node->right,k1)) != nullptr){
+            }else if(node->right != nullptr && (result = fetchNodeWithK(node->right,k1)) != nullptr){
                 return result;
             }else{ //只能往左边找
                 node = node->left;
@@ -161,22 +300,24 @@ public:
                    
     }
     
-    int index(K key){
+    int fetchindex(K key){
         int len = sizeof(table) / sizeof(table[0]);
+//        int index = hash(key) & (len - 1);
+//        cout <<"index"<< index << endl;
         return hash(key) & (len - 1);
     }
     
     
     int hash(K key){
-        if (key == nullptr) return 0;
-        int hash = (K)::hash<K>();
-        return hash ^ (hash >> 16);
+       
+        int hash = Key::hashName(key);
+        return int(hash ^ (hash >> 16));
     }
     
     
     int index(HashNode<K,V> *node){
         int len = sizeof(table) / sizeof(table[0]);
-               cout << "哈希数组的长度:" << len << endl;
+//               cout << "哈希数组的长度:" << len << endl;
            return node->hash & (len - 1);
        }
        
@@ -187,23 +328,23 @@ public:
        }
        
        HashNode<K,V> *red(HashNode<K,V> *node){
-           return hashColor(node,kRED);
+           return hashColor(node,RED);
        }
        
        HashNode<K,V>* black(HashNode<K,V> *node){
-           return hashColor(node,KBlack);
+           return hashColor(node,BLACK);
        }
        
        bool colorOf(HashNode<K,V> *node){
-           return node == nullptr ? KBlack : node->color;
+           return node == nullptr ? BLACK : node->color;
        }
        
        bool isBlack(HashNode<K,V> *node){
-           return colorOf(node) == KBlack;
+           return colorOf(node) == BLACK;
        }
        
        bool isRed(HashNode<K,V> *node){
-           return colorOf(node) == kRED;
+           return colorOf(node) == RED;
        }
     
     void fixAfterRemove(HashNode<K, V> *node){

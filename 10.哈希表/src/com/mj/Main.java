@@ -57,18 +57,15 @@ public class Main {
 		for (int i = 1; i <= 20; i++) {
 			map.put(new Key(i), i);
 		}
-		
-		System.out.println(new Key(1));
 		for (int i = 5; i <= 7; i++) {
 			map.put(new Key(i), i + 5);
 		}
-		System.out.println(new Key(1));
-//		Asserts.test(map.size() == 20);
-//		Asserts.test(map.get(new Key(4)) == 4);
-//		Asserts.test(map.get(new Key(5)) == 10);
-//		Asserts.test(map.get(new Key(6)) == 11);
-//		Asserts.test(map.get(new Key(7)) == 12);
-//		Asserts.test(map.get(new Key(8)) == 8);
+		Asserts.test(map.size() == 20);
+		Asserts.test(map.get(new Key(4)) == 4);
+		Asserts.test(map.get(new Key(5)) == 10);
+		Asserts.test(map.get(new Key(6)) == 11);
+		Asserts.test(map.get(new Key(7)) == 12);
+		Asserts.test(map.get(new Key(8)) == 8);
 	}
 	
 	static void test3(HashMap<Object, Integer> map) {
@@ -138,19 +135,19 @@ public class Main {
 	
 	public static void main(String[] args) { 
 //		test1();
-		test2(new HashMap<>());
+//		test2(new HashMap<>());
 //		test3(new HashMap<>());
 //		test4(new HashMap<>());
 //		test5(new HashMap<>());
 		
-//		test1();
-//		test2(new LinkedHashMap<>());
-//		test3(new LinkedHashMap<>());
-//		test4(new LinkedHashMap<>());
-//		test5(new LinkedHashMap<>());
-//		
-//		java.util.HashMap<String, String> map;
-//		java.util.LinkedHashMap<String, String> map2;
+		test1();
+		test2(new LinkedHashMap<>());
+		test3(new LinkedHashMap<>());
+		test4(new LinkedHashMap<>());
+		test5(new LinkedHashMap<>());
+		
+		java.util.HashMap<String, String> map;
+		java.util.LinkedHashMap<String, String> map2;
 	}
 
 }

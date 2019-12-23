@@ -11,24 +11,37 @@
 
 #include <stdio.h>
 
+
 template <class K,class V>
 
 class HashNode{
 public:
     int hash ;
-    K key;
+    K  key;
     V value;
-    bool color = kRED;
+    bool color = RED;
     HashNode<K,V> *left;
     HashNode<K,V> *right;
     HashNode<K,V> *parent;
-    HashNode(K key,V value,HashNode<K,V>*parent){
+    HashNode<K,V>(K key,V value,HashNode<K,V>*parent):key(0){
         this->key = key;
         this->value = value;
-        this->parnet = parent;
+        this->parent = parent;
         this->hash = HashNodeHash(key);
+        this->left = nullptr;
+        this->right = nullptr;
         
     }
+    HashNode<K,V> (K key,V value){
+        this->key = key;
+        this->value = value;
+        this->parent = nullptr;
+        this->hash = HashNodeHash(key);
+        this->left = nullptr;
+        this->right = nullptr;
+    }
+    
+   
     
     bool hasTwoChildren(){
         return left != nullptr && right != nullptr;
@@ -42,7 +55,7 @@ public:
         return parent != nullptr && this == parent->right;
     }
     
-    HashNode<K,V> sibling(){
+    HashNode<K,V>* sibling(){
         if (isLeftChild()) {
             return parent->right;
         }
@@ -53,7 +66,7 @@ public:
     }
     
     int HashNodeHash(K key){
-           int hashCode = (K)::hash<K>();
+           int hashCode = Key::hashName(key);
            
            return hashCode ^ (hashCode >> 16);
        }
