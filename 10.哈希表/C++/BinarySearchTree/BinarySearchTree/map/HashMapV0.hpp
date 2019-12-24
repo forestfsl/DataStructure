@@ -13,6 +13,7 @@
 
 #include <stdio.h>
 #include "HashNode.hpp"
+#include "BinarySearchTree.hpp"
 
 
 
@@ -22,13 +23,15 @@ template<class K,class V>
 class HashMapV0{
 public:
     int size;
-    HashNode<K, V>* table[1000];
+   
      typedef bool(*Visitor)(K,V);
     static const int DEFAULT_LOAD_CAPACITY = 1 << 4;
     constexpr static const float DEFAULT_LOAD_FACTOR = 0.75f;
-//    HashMapV0(){
-//        table = new HashNode<K, V>[DEFAULT_LOAD_CAPACITY]{};
-//    }
+    //TODO wait for fix
+    HashNode<K, V>** table;
+    HashMapV0(){
+        table = new HashNode<K, V> *[DEFAULT_LOAD_CAPACITY]{};
+    }
 
    
     
@@ -36,11 +39,16 @@ public:
         return size;
     }
     
+    int fetchTableLength(){
+        int len = sizeof(**table) / sizeof(table[0]);
+        return len;
+    }
+    
     bool isEmpty(){
         return size == 0;
     }
     
-    void clear(){
+     void clear(){
         if (size == 0) return; //防止size等于0的时候还需要q循环清空table
         size = 0;
         int len = sizeof(table) / sizeof(table[0]);
@@ -49,13 +57,17 @@ public:
             table[i] = nullptr;
         }
     }
+    virtual HashNode<K, V> * createNode(K key,V value,HashNode<K, V> *parent){
+        return new HashNode<K, V>(key,value,parent);
+    }
     
     V put(K key,V value){
+        resize();
         int indexPath = fetchindex(key);
         //取出index位置的红黑树根节点
         HashNode<K,V> *root = table[indexPath];
         if (root == nullptr) {
-            root = new HashNode<K,V>(key,value,nullptr);
+            root = createNode(key,value,nullptr);
             table[indexPath] = root;
             size++;
             fixAfterPut(root);
@@ -119,7 +131,7 @@ public:
         } while (node != nullptr);
                    
            // 看看插入到父节点的哪个位置
-           HashNode<K, V> *newNode = new HashNode<K,V>(key, value, parent);
+           HashNode<K, V> *newNode = createNode(key,value,parent);
            if (cmp > 0) {
                parent->right = newNode;
            } else {
@@ -144,11 +156,12 @@ public:
     }
     
     V remove(K key){
-        return remove(node(key));
+        return remove(fetchNode(key));
     }
     
     V remove(HashNode<K, V> *node){
-        if (node == nullptr) return nullptr;
+        if (node == nullptr) return 0;
+        HashNode<K, V> *willNode = node;
         size--;
         V oldValue = node->value;
         
@@ -164,13 +177,13 @@ public:
         }
         //删除node节点(node 的度必然是1或者0)
         HashNode<K, V> *replacement = node->left != nullptr ? node->left : node->right;
-        int index = index(node);
+        int indexPath = index(node);
         if (replacement != nullptr) { //node 是度为1 的节点
             //更改parent
             replacement->parent = node->parent;
             //更改parent的left，right的指向
             if (node->parent == nullptr) {//node 是度为1的节点并且是根节点
-                table[index] = replacement;
+                table[indexPath] = replacement;
             }else if (node == node->parent->left){
                 node->parent->left = replacement;
             }else{
@@ -180,7 +193,7 @@ public:
             fixAfterRemove(replacement);
         }else if (node->parent == nullptr){
             //node 是叶子节点并且是根节点
-            table[index] = nullptr;
+            table[indexPath] = nullptr;
         }else{//node 是叶子节点但不是根节点
             if (node == node->parent->left) {
                 node->parent->left = nullptr;
@@ -190,8 +203,13 @@ public:
             //删除节点之后的处理
             fixAfterRemove(node);
         }
+        
+        //交给子类去扩展的方法
+        afterRemove(willNode,node);
         return oldValue;
     }
+    
+    virtual void afterRemove(HashNode<K, V>*willNode, HashNode<K, V>*removeNode){};
     
     bool containsKey(K key){
         return node(key) != nullptr;
@@ -218,6 +236,88 @@ public:
             }
         }
     }
+    void resize(){
+           int len = sizeof(**table) / sizeof(table[0]);
+           if (size / len <= DEFAULT_LOAD_FACTOR) return;
+        HashNode<K, V>* oldTable[DEFAULT_LOAD_CAPACITY];
+        for (int i = 0; i < len; i++) {
+            oldTable[i] = table[i];
+        }
+        
+          
+        table =  new HashNode<K, V> *[len << 1]{};
+           queue<HashNode<K, V> *> hashQueue;
+           for (int i = 0; i < len; i++) {
+               if (oldTable[i] == nullptr) continue;
+               
+               hashQueue.push(oldTable[i]);
+               while (!hashQueue.empty()) {
+                   HashNode<K, V> *node = hashQueue.front();
+                   hashQueue.pop();
+                   if (node->left != nullptr) {
+                       hashQueue.push(node->left);
+                   }
+                   if (node->right != nullptr) {
+                       hashQueue.push(node->right);
+                   }
+                   //挪动代码放到最后面
+                   moveNode(node);
+               }
+           }
+       }
+       
+       void moveNode(HashNode<K, V> *newNode){
+           //重置
+           newNode->parent = nullptr;
+           newNode->left = nullptr;
+           newNode->right = nullptr;
+           newNode->color = RED;
+           int indexPath = index(newNode);
+           //取出index位置的红黑树根节点
+           HashNode<K, V> *root = table[indexPath];
+           if (root == nullptr) {
+               root = newNode;
+               table[indexPath] = root;
+               fixAfterPut(root);
+               return;
+           }
+           
+           //添加新的节点到红黑树节点
+           HashNode<K, V> *parent = root;
+           HashNode<K, V> *node = root;
+           int cmp = 0;
+           K k1 = newNode->key;
+           int h1 = newNode->hash;
+           do {
+               parent = node;
+               K k2 = node->key;
+               int h2 = node->hash;
+               if (h1 > h2) {
+                   cmp = 1;
+               }else if (h1 < h2){
+                   cmp = -1;
+               }else{
+                   cmp = (int)(&k1 - &k2);
+               }
+               
+               if (cmp > 0) {
+                   node = node->right;
+               }else if (cmp < 0){
+                   node = node->left;
+               }
+           } while (node != nullptr);
+           
+           //看看插入到父节点的哪个位置
+           newNode->parent = parent;
+           if (cmp > 0) {
+               parent->right = newNode;
+           }else{
+               parent->left = newNode;
+           }
+           //新添加节点之后的处理
+           fixAfterPut(newNode);
+       }
+           
     
     void traversal(Visitor visitor){
         if (size == 0 || visitor == nullptr) return;
@@ -242,7 +342,7 @@ public:
         }
     }
     
-    HashNode<K, V> successor(HashNode<K, V> *node){
+    HashNode<K, V>* successor(HashNode<K, V> *node){
         if (node == nullptr) return nullptr;
         
         //前驱节点在左子树当中(right->left->left->left......)
@@ -317,7 +417,6 @@ public:
     
     int index(HashNode<K,V> *node){
         int len = sizeof(table) / sizeof(table[0]);
-//               cout << "哈希数组的长度:" << len << endl;
            return node->hash & (len - 1);
        }
        

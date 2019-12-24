@@ -10,11 +10,13 @@
 #define Key_hpp
 
 #include <stdio.h>
+#include <iostream>
 
 class Key{
 public:
     int value;
     string identifier;
+   
     Key(){
         
     }
@@ -26,15 +28,18 @@ public:
     {
         return key.value == value;
     }
+//    friend ostream &operator <<(ostream &os,Key &key);
+    
+   friend ostream & operator<<(ostream &os,Key &key)
+     {
+             return    os << key.value;
+     }
+    
     static int hashName(const Key & key){
         return key.value / 10;
     }
     
-//    bool operator!=(Key & key) const
-//       {
-//           return key != nullptr;
-//       }
-//   
+ 
 
 };
 

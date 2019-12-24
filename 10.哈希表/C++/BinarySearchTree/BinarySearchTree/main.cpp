@@ -25,9 +25,8 @@
 #include <unordered_map>
 #include "Student.hpp"
 #include "Key.hpp"
-
 #include "HashMapV0.hpp"
-#include "HashMapV1.hpp"
+#include "LinkedHashMap.hpp"
 
 
 using namespace std;
@@ -357,9 +356,35 @@ void  testHashMap1(){
     for (int i = 1; i < 20; i++) {
         hashMap.put(Key(i), i);
     }
-    cout << hashMap.get(Key(1)) << endl;
-    cout << hashMap.get(Key(11)) << endl;
-    cout << hashMap.get(Key(12)) << endl;
+//    cout << hashMap.get(Key(1)) << endl;
+//    cout << hashMap.get(Key(11)) << endl;
+//    cout << hashMap.get(Key(12)) << endl;
+   
+    hashMap.traversal([] (Key key,int value) -> bool{
+        cout << key <<"_" << value << endl;
+        return false;
+    });
+    
+//    cout << "hashMapSize:" << hashMap.fetchSize() << endl;
+//    cout << "hashMapTableLen:" << hashMap.fetchTableLength() << endl;
+
+}
+    
+void testLinkedHashMap(){
+    LinkedHashMap<Key, int> hashMap =  LinkedHashMap<Key, int>();
+    for (int i = 1; i < 20; i++) {
+        hashMap.put(Key(i), i);
+    }
+//    cout << hashMap.get(Key(1)) << endl;
+//    cout << hashMap.get(Key(11)) << endl;
+//    cout << hashMap.get(Key(12)) << endl;
+    for (int i = 5; i < 7; i++) {
+           hashMap.remove(Key(i));
+       }
+   hashMap.traversal([] (Key key,int value) -> bool{
+         cout << key <<"_" << value << endl;
+         return false;
+     });
 }
 
 int main(int argc, const char * argv[]) {
@@ -378,6 +403,7 @@ int main(int argc, const char * argv[]) {
 //    testTreeMap();
    
     testHashMap1();
-    
+    cout << "------------------------------" << endl;
+    testLinkedHashMap();
     return 0;
 }
