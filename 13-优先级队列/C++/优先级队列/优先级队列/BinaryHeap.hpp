@@ -10,16 +10,16 @@
 #define BinaryHeap_hpp
 
 #include <stdio.h>
-#include "BinaryTree.hpp"
-
+#include <iostream>
 using namespace std;
 
 
+
 template <class E>
-class BinaryHeap:public BinaryTree<E> {
+class BinaryHeap{
 public:
-//     int m_size;
-     typedef int(*CompareElement)(int,int);
+     int m_size;
+     typedef int(*CompareElement)(E,E);
      CompareElement localCompareBlock;
     E *elements;
     static const int DEFAULT_CAPACITY = 10;
@@ -56,13 +56,16 @@ public:
             }
             this->m_size = 0;
         }
+    bool isEmpty(){
+        return this->m_size == 0;
+    }
     
     int fetchSize(){
         return this->m_size;
     }
     
         void add(E element){
-            elementNotNullCheck(element);
+//            elementNotNullCheck(element);
             ensureCapacity(this->m_size + 1);
             elements[this->m_size++] = element;
             siftUp(this->m_size - 1);
@@ -79,15 +82,15 @@ public:
             int lastIndex = --this->m_size;
             E root = elements[0];
             elements[0] = elements[lastIndex];
-            elements[lastIndex] = nullptr;
+            elements[lastIndex] = Person();
             siftDown(0);
-            
+            cout << root << endl;
             return root;
         }
         
         
         E rplace(E element){
-            elementNotNullCheck(element);
+//            elementNotNullCheck(element);
             E root = nullptr;
             if (this->m_size == 0) {
                 if (this->m_size == 0) {
@@ -206,16 +209,9 @@ public:
         
         int compare(E e1,E e2){
                  if (localCompareBlock != nullptr) {
-                        return localCompareBlock(atoi(e1.c_str()),atoi(e2.c_str()));
-                 }else{
-                     if (e1 > e2) {
-                         return 1;
-                     }else if (e1 == e2){
-                         return 0;
-                     }else{
-                         return -1;
-                     }
+                        return localCompareBlock(e1,e2);
                  }
+            return 0;
             }
         
           E  leftNode(E node){
