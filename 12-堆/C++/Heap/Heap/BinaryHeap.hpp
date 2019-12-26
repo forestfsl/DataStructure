@@ -10,11 +10,12 @@
 #define BinaryHeap_hpp
 
 #include <stdio.h>
+#include "BinaryTree.hpp"
 
 template <class E>
-class BinaryHeap{
+class BinaryHeap:public BinaryTree<E>{
 public:
-     int m_size;
+//     int m_size;
      typedef int(*CompareElement)(int,int);
      CompareElement localCompareBlock;
     E *elements;
@@ -54,7 +55,7 @@ public:
         }
     
     int fetchSize(){
-        return m_size;
+        return this->m_size;
     }
     
         void add(E element){
@@ -214,21 +215,25 @@ public:
                  }
             }
         
-          E * leftNode(E *node){
-              int index = ((int)node << 1) + 1;
-              return index >= this->m_size ? 0 : index;
+          E  leftNode(E node){
+              int index = (atoi(node.c_str()) << 1) + 1;
+              return to_string(index >= this->m_size ? 9999 : index);
                
             }
-           E * rightNode(E *node){
-                int index = ((int)node << 1) + 1;
-               return index >= this->m_size ? 0 : index;
+           E  rightNode(E node){
+               int index = (atoi(node.c_str()) << 1) + 2;
+               return to_string(index >= this->m_size ? 9999 : index);
                 
             }
-            E  *rootNode(){
-                return 0;
+            E  rootNode(){
+                return "0";
             }
-            E *nodeElement(E *node){
-                return elements[(int)node];
+            E nodeElement(E node){
+                int index = atoi(node.c_str());
+                if (index >= this->m_size || index == 9999) {
+                    return "nullptr";//代表不存在的数值
+                }
+                return elements[index];
                 
             }
 

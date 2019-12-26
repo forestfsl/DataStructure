@@ -27,6 +27,9 @@
 		07BD109A23B44D0D005E86E6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		07BD10A223B44E47005E86E6 /* BaseHeap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BaseHeap.hpp; sourceTree = "<group>"; };
 		07BD10AE23B47409005E86E6 /* BinaryHeap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BinaryHeap.hpp; sourceTree = "<group>"; };
+		07BD10B123B481E6005E86E6 /* BinaryTreeLevelOrderPrinter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BinaryTreeLevelOrderPrinter.hpp; sourceTree = "<group>"; };
+		07BD10B223B481E6005E86E6 /* BinaryTree.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BinaryTree.hpp; sourceTree = "<group>"; };
+		07BD10B323B481E6005E86E6 /* Node.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Node.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,11 +62,22 @@
 		07BD109923B44D0D005E86E6 /* Heap */ = {
 			isa = PBXGroup;
 			children = (
+				07BD10B023B481E6005E86E6 /* printer */,
 				07BD109A23B44D0D005E86E6 /* main.cpp */,
 				07BD10AE23B47409005E86E6 /* BinaryHeap.hpp */,
 				07BD10A223B44E47005E86E6 /* BaseHeap.hpp */,
 			);
 			path = Heap;
+			sourceTree = "<group>";
+		};
+		07BD10B023B481E6005E86E6 /* printer */ = {
+			isa = PBXGroup;
+			children = (
+				07BD10B123B481E6005E86E6 /* BinaryTreeLevelOrderPrinter.hpp */,
+				07BD10B223B481E6005E86E6 /* BinaryTree.hpp */,
+				07BD10B323B481E6005E86E6 /* Node.hpp */,
+			);
+			path = printer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

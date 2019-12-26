@@ -8,7 +8,9 @@
 
 #include <iostream>
 #include "BinaryHeap.hpp"
+#include "BinaryTreeLevelOrderPrinter.hpp"
 using namespace std;
+
 
 
 auto lamb = [] (int a,int b) -> int{
@@ -36,7 +38,7 @@ void testMaxHeap(){
 }
 
 void testMinHeap(){
-    string data [] = {"05","09","11","23","22","31","33","35","01","02","03","04"};
+    string data [] = {"05","09","11"};
          int len = sizeof(data) / sizeof(string);
 
 
@@ -46,9 +48,12 @@ void testMinHeap(){
              heap->add(data[i]);
          }
        
+     
+    
        for (int i = 0; i < heap->m_size; i++) {
            cout << heap->elements[i] << endl;
        }
+    BinaryTreeLevelOrderPrinter<string>::printerWithTree(heap);
 }
 
 void testTopK(){
@@ -78,6 +83,6 @@ void testTopK(){
 
 int main(int argc, const char * argv[]) {
   
-
+    testMinHeap();
     return 0;
 }

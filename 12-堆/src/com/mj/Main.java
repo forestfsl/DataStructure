@@ -70,7 +70,12 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		test4();
+//		test4();
+		BinaryHeap<Integer> heap = new BinaryHeap<>();
+		heap.add(5);
+		heap.add(9);
+		heap.add(11);
+		BinaryTrees.println(heap);
 	}
 
 }
