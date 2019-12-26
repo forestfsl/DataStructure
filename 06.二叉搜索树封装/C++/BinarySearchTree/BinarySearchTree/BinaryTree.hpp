@@ -12,6 +12,7 @@
 #include <iostream>
 #include "Node.hpp"
 #include <queue>
+#include <stack>
 
 using namespace std;
 
@@ -50,33 +51,46 @@ public:
         preorder(node->right,visitor);
     }
     
-    //中序遍历
-    void inorder(Visitor visitor){
-        isFinish = false;
-        if (visitor == nullptr) return ;
-        inorder(this->root, visitor);
+    void preorder1(Visitor visitor){
+        if (visitor == nullptr || root == nullptr) return;
+        stack<Node<E>*> *prestack = new stack<Node<E>*>();
+        prestack->push(root);
+        while (!prestack->empty()) {
+            Node<E> *node = prestack->top();
+            prestack->pop();
+            //访问node节点
+            visitor(node->element);
+            if(node->right != nullptr){
+                prestack->push(node->right);
+            }
+            if(node->left != nullptr){
+                prestack->push(node->left);
+            }
+        }
     }
     
-    void inorder(Node<E> *node, Visitor visitor){
-        if (node == nullptr || visitor == nullptr || isFinish) return;
-        inorder(node->left, visitor);
-        if (isFinish) return;
-        isFinish = visitor(node->element);
-        inorder(node->right,visitor);
-    }
-    
-    void postorder(Visitor visitor){
-        isFinish = false;
-        if (visitor == nullptr) return;
-        postorder(this->root,visitor);
-    }
-    
-    void postorder(Node<E> *node,Visitor visitor){
-        if (node == nullptr || isFinish) return;
-        postorder(node->left, visitor);
-        postorder(node->right,visitor);
-        if (isFinish) return;
-        isFinish = visitor(node->element);
+    void preorder2(Visitor visitor){
+        if (visitor == nullptr || root == nullptr) return;
+        stack<Node<E>*> *prestack = new stack<Node<E>*>();
+        Node<E> *node = root;
+        while (true) {
+            if (node != nullptr) {
+                //访问node节点
+                visitor(node->element);
+                //将右子节点入栈
+                if (node->right != nullptr) {
+                    prestack->push(node->right);
+                }
+                //向左走
+                node = node->left;
+            }else if (prestack->empty()){
+                return;
+            }else{
+                //处理右边
+                node = prestack->top();
+                prestack->pop();
+            }
+        }
     }
     
     void levelorder(Visitor visitor){
@@ -96,6 +110,85 @@ public:
             }
         }
         
+    }
+    
+    
+    //中序遍历
+    void inorder(Visitor visitor){
+        isFinish = false;
+        if (visitor == nullptr) return ;
+        inorder(this->root, visitor);
+    }
+    
+    void inorder(Node<E> *node, Visitor visitor){
+        if (node == nullptr || visitor == nullptr || isFinish) return;
+        inorder(node->left, visitor);
+        if (isFinish) return;
+        isFinish = visitor(node->element);
+        inorder(node->right,visitor);
+    }
+    
+    void inorder1(Visitor visitor){
+         if (this->root == nullptr || visitor == nullptr) return;
+        Node<E> *node = root;
+         stack<Node<E>*> *instack = new stack<Node<E>*>();
+        while (true) {
+            if (node != nullptr) {
+                instack->push(node);
+                //向左走
+                node = node->left;
+            }else if (instack->empty()){
+                return;
+            }else{
+                node = instack->top();
+                instack->pop();
+                //访问node节点
+                visitor(node->element);
+                //让右节点进行中序遍历
+                node = node->right;
+            }
+        }
+    }
+    
+    
+    
+    void postorder(Visitor visitor){
+        isFinish = false;
+        if (visitor == nullptr) return;
+        postorder(this->root,visitor);
+    }
+    
+    void postorder(Node<E> *node,Visitor visitor){
+        if (node == nullptr || isFinish) return;
+        postorder(node->left, visitor);
+        postorder(node->right,visitor);
+        if (isFinish) return;
+        isFinish = visitor(node->element);
+    }
+    
+    
+    void postorder1(Visitor visitor){
+         if (this->root == nullptr || visitor == nullptr) return;
+       //记录上一次弹出访问的节点
+        Node<E> *prev = nullptr;
+        stack<Node<E>*> *poststack = new stack<Node<E>*>();
+        poststack->push(root);
+        while (!poststack->empty()) {
+            Node<E> *top = poststack->top();
+            if (top->isLeaf() || (prev != nullptr && prev->parent == top)) {
+                prev = poststack->top();;
+                poststack->pop();
+                //访问节点
+                visitor(prev->element);
+            }else{
+                if (top->right != nullptr){
+                    poststack->push(top->right);
+                }
+                if (top->left != nullptr) {
+                    poststack->push(top->left);
+                }
+            }
+        }
     }
     
     Node<E>* predecessor(Node<E> *node){
