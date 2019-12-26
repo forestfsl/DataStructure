@@ -88,7 +88,6 @@
 			children = (
 				07A73346237A618400FE5E6A /* BinarySearchTree.hpp */,
 				07BDE45423801A8600708805 /* Node.hpp */,
-				0779A89B2392D78700A32072 /* BinaryTree.hpp */,
 				0779A89E239362D900A32072 /* AVLTree.hpp */,
 				070E7931239E639800B17928 /* BBST.hpp */,
 				070E7934239F862600B17928 /* RBTree.hpp */,
@@ -100,6 +99,7 @@
 		07A4EBBF23A6270F00613278 /* printer */ = {
 			isa = PBXGroup;
 			children = (
+				0779A89B2392D78700A32072 /* BinaryTree.hpp */,
 				07D6149D2380059A00C3EE38 /* BinaryTreeLevelOrderPrinter.hpp */,
 			);
 			path = printer;
