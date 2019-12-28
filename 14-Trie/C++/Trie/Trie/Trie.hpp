@@ -12,17 +12,25 @@
 #include <stdio.h>
 #include "Node.hpp"
 #include <unordered_map>
+#include <map>
 
+//https://zhuanlan.zhihu.com/p/34747612
 template <class V>
 class Trie{
 public:
     static const int DEFAULTNUMBER = 99999;
-    int size;
+      int size ;
     //如果Node中为空的时候可以赋值这个
      unordered_map<char, Node<V>*> children1;
     Node<V>* root;
     
+    Trie<V>(){
+        size = 0;
+    }
+    
     int fetchSize(){
+        cout << "fetchSize" << size << endl;
+   
         return size;
     }
     
@@ -30,7 +38,7 @@ public:
         return size == 0;
     }
     void clear(){
-        size == 0;
+        size = 0;
         root = nullptr;
     }
     
@@ -45,6 +53,7 @@ public:
     }
     
     V add(string key,V value){
+          size = size + 1;
         KeyCheck(key);
         //创建根节点
         if (root == nullptr) {
@@ -56,9 +65,18 @@ public:
             char c = key[i];
             bool emptyChildren = node->children.empty();
           
-           
-            Node<V> *childNode = emptyChildren ? nullptr :(Node<V>*)node->children[c];
+
+//            node->children[c] C++ 不知道为什么这个方法会导致insert进入node->children 里面，所以有了下面的遍历删除nullptr 的secode
+            Node<V> *childNode =  emptyChildren ? nullptr :(Node<V>*)node->children[c];
             
+            for(typename unordered_map<char, Node<V>*>::iterator iter = node->children.begin(); iter != node->children.end(); iter++)
+                {
+                    if (iter->second == nullptr) {
+                        node->children.erase(iter);
+                    }
+                   
+                }
+         
             if (childNode == nullptr) {
                 childNode = new Node<V>(node);
                 childNode->character = c;
@@ -71,12 +89,14 @@ public:
         if (node->word) {//已经存在这个单词
             V oldValue = node->value;
             node->value = value;
+              size = size - 1;
             return oldValue;
         }
         //新增一个单词
         node->word = true;
         node->value = value;
-        size++;
+      
+        cout << "add:" << size << endl;
         return 99999;
     }
     

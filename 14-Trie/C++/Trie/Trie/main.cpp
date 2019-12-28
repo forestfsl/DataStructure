@@ -14,10 +14,12 @@ using namespace std;
 void test1(){
     Trie<int> trie =  Trie<int>();
     trie.add("cat", 1);
+//    cout << trie.get("cat") << endl;
     trie.add("dog",2);
     trie.add("catalog", 3);
     trie.add("cast", 4);
-    trie.add("宋林", 5);
+    trie.add("dogggy", 5);
+      cout << trie.get("dogggy") << endl;
     assert(trie.fetchSize() == 5);
     assert(trie.startsWith("do"));
     assert(trie.startsWith("c"));
@@ -25,7 +27,7 @@ void test1(){
     assert(trie.startsWith("cat"));
     assert(trie.startsWith("cata"));
     assert(!trie.startsWith("hehe"));
-    assert(trie.get("宋林") == 5);
+    assert(trie.get("dogggy") == 5);
     assert(trie.remove("cat") == 1);
     assert(trie.remove("catalog") == 3);
     assert(trie.remove("cast") == 4);
