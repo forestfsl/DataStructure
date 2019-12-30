@@ -16,13 +16,46 @@ int sum(int a,int b){
     return a+b;
 }
 
+
+//         ┌──────08──────┐
+//         |              |
+//    ┌───04──┐         ┌─13
+//    |       |         |
+// ┌─02─┐   ┌─06─┐   ┌─10─┐
+// |    |   |    |   |    |
+//01    03 05    07 09  ┌─12
+//                      |
+//                     11
+//前序遍历开始:08 04 02 01 03 06 05 07 13 10 09 12 11 前序遍历结束
 void testPreOrder(BinarySearchTree<string> *tree){
     cout <<"前序遍历开始:";
     tree->preorder([] (string element) -> bool{
         cout << element << " ";
-        return element == "04" ? true : false;
+//        return element == "04" ? true : false;
+        return false;
     });
     cout << "前序遍历结束" << endl;
+}
+
+void testPreOrder1(BinarySearchTree<string> *tree){
+     cout <<"前序遍历1开始:";
+        tree->preorder1([] (string element) -> bool{
+            cout << element << " ";
+    //        return element == "04" ? true : false;
+            return false;
+        });
+        cout << "前序遍历1结束" << endl;
+}
+
+
+void testPreOrder2(BinarySearchTree<string> *tree){
+     cout <<"前序遍历2开始:";
+        tree->preorder1([] (string element) -> bool{
+            cout << element << " ";
+    //        return element == "04" ? true : false;
+            return false;
+        });
+        cout << "前序遍历2结束" << endl;
 }
 
 void testInOrder(BinarySearchTree<string> *tree){
@@ -35,6 +68,16 @@ void testInOrder(BinarySearchTree<string> *tree){
      cout << "中序遍历结束" << endl;
 }
 
+void testInOrder1(BinarySearchTree<string> *tree){
+    cout <<"中序遍历1开始:";
+    tree->inorder1([] (string element) -> bool{
+        cout << element << " ";
+        return false;
+    });
+    
+     cout << "中序遍历1结束" << endl;
+}
+
 void testPostOrder(BinarySearchTree<string> *tree){
     cout <<"后续遍历开始:";
     tree->postorder([] (string element) -> bool{
@@ -43,6 +86,16 @@ void testPostOrder(BinarySearchTree<string> *tree){
     });
     
     cout << "后续遍历结束" << endl;
+}
+
+void testPostOrder1(BinarySearchTree<string> *tree){
+    cout <<"后续遍历1开始:";
+    tree->postorder1([] (string element) -> bool{
+        cout << element << " ";
+        return false;
+    });
+    
+    cout << "后续遍历1结束" << endl;
 }
 
 void testLevelOrder(BinarySearchTree<string> *tree){
@@ -71,24 +124,29 @@ int main(int argc, const char * argv[]) {
     BinaryTreeLevelOrderPrinter<string>::printerWithTree(tree);
     
     testPreOrder(tree);
+    testPreOrder1(tree);
+    testPreOrder2(tree);
+
+    
 
     testInOrder(tree);
+    testInOrder1(tree);
 
     testPostOrder(tree);
+    testPostOrder1(tree);
+//
+//    testLevelOrder(tree);
+//
+//    cout << "树的高度是" << tree->heightRecursive() << endl;
+//    cout << "树的高度是" << tree->heightLevelOrder() << endl;
+//    cout << "树是否是完全二叉树:" << tree->isCompleteTree() << endl;
+//
+//
+//    tree->remove("11");
+//
+    
+    
 
-    testLevelOrder(tree);
-
-    cout << "树的高度是" << tree->heightRecursive() << endl;
-    cout << "树的高度是" << tree->heightLevelOrder() << endl;
-    cout << "树是否是完全二叉树:" << tree->isCompleteTree() << endl;
-    
-    
-    tree->remove("11");
-    
-     BinaryTreeLevelOrderPrinter<string>::printerWithTree(tree);
-    
-    
-//    cout << "debug test node element" << endl;
     
     return 0;
 }
