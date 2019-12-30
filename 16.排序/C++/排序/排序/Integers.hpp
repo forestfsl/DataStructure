@@ -21,8 +21,8 @@ public:
         for (int i = 0; i < count; i++) {
             array[i] = min + (int)(rand() * delta);
         }
-        g_array = array;
-        return g_array;
+//        g_array = array;
+        return array;
     }
     
     static int * combine(int array1[], int array2[]){

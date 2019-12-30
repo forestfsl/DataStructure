@@ -15,6 +15,9 @@
 template <class T>
 class SelectionSort:public Sort<T> {
 public:
+    SelectionSort(int len,string name):Sort<T>(len,name){
+        
+    }
     void extensionSort(){
         int len = this->getArrayLen();
 //        for (int end = len - 1; end > 0; end--) {
