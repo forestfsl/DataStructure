@@ -12,13 +12,22 @@
 #include <stdio.h>
 #include <chrono>
 #include <iostream>
+#include <time.h>
+#include <iostream>
+#include<sys/timeb.h>
 using namespace std;
 
 template <class T>
 class Sort{
 public:
-    int cmpCount;
-    int swapCount;
+    long long systemtime()
+    {
+        timeb t;
+        ftime(&t);
+        return t.time*1000+t.millitm;
+    }
+    double cmpCount;
+    double swapCount;
     long time;
     T *array;
     int m_len;
@@ -28,6 +37,8 @@ public:
         array = new T[len]{};
         this->name = name;
         this->m_len = len;
+        cmpCount = 0;
+        swapCount = 0;
     }
     
      void sort(const T array [],int len){
@@ -37,16 +48,32 @@ public:
          for (int i = 0; i < len; i++) {
              this->array[i] = array[i];
          }
-        auto beginTime = std::chrono::high_resolution_clock::now();
-        
-        extensionSort();
+         //time1
+//        auto beginTime = std::chrono::high_resolution_clock::now();
+//         extensionSort();
+//        auto endTime = std::chrono::high_resolution_clock::now();
+//        auto elapsedTime= std::chrono::duration_cast<std::chrono::seconds>(endTime - beginTime);
+//         std::cout  <<"elapsed time is " << elapsedTime.count() << " second" << std::endl;
+//              time = elapsedTime.count();
+//         std::cin.get();
          
-        auto endTime = std::chrono::high_resolution_clock::now();
-       auto elapsedTime= std::chrono::duration_cast<std::chrono::seconds>(endTime - beginTime);
-        std::cout  <<"elapsed time is " << elapsedTime.count() << " second" << std::endl;
-         time = elapsedTime.count();
-        std::cin.get();
+         //time2
+//         clock_t start,ends;
+//         start=clock();
+//         extensionSort();
+//
+//
+//         ends=clock();
+//
+//         time = ends-start;
         
+         
+         //time3
+         long long start=systemtime();
+        extensionSort();
+//        cout<<systemtime()-start<<" 毫秒";
+         time = systemtime()-start;
+     
         
         
     }
@@ -55,16 +82,16 @@ public:
         cout << "父类" << endl;
     }
     
-    int compareTo(Sort &o){
-        int result = (int)(time - o.time);
-        if (result != 0) return result;
-        
-        result = cmpCount - o.cmpCount;
-        if (result != 0) return result;
-        
-        return swapCount - o.swapCount;
-    }
-    
+//    int compareTo(Sort &o){
+//        int result = (int)(time - o.time);
+//        if (result != 0) return result;
+//
+//        result = cmpCount - o.cmpCount;
+//        if (result != 0) return result;
+//
+//        return swapCount - o.swapCount;
+//    }
+//
     
 //    int cmp(int i1, int i2){
 //        cmpCount++;
@@ -79,20 +106,25 @@ public:
     
     int cmp(T v1, T v2){
         cmpCount++;
-        if (array[v1] > array[v2]) {
+        if (this->array[v1] > this->array[v2]) {
             return 1;
-        }else if (array[v1] < array[v2]){
+        }else if (this->array[v1] < this->array[v2]){
             return -1;
         }else{
             return 0;
         }
     }
     
+    int heapCmp(T v1,T v2){
+        cmpCount++;
+        return v1 - v2;
+    }
+    
     void swap(int i1,int i2){
         swapCount++;
-        T tmp = array[i1];
-        array[i1] = array[i2];
-        array[i2] = tmp;
+        T tmp = this->array[i1];
+        this->array[i1] = this->array[i2];
+        this->array[i2] = tmp;
     }
     
     string toString(){
@@ -100,7 +132,7 @@ public:
         string compareCountStr = "比较" + numberString(cmpCount);
         string swapCountStr = "交换" + numberString(swapCount);
         string stableStr = "稳定性:" + to_string(isStable());
-        return  this->name + "\n" + stableStr + "\n" + timeStr + "\n" + compareCountStr + "\n" + swapCountStr + "\n" + "--------------------------------------------";
+        return  this->name + "\t" + stableStr + "\t" + timeStr + "\t" + compareCountStr + "\t" + swapCountStr + "\n" + "----------------------------------------------------------------";
     }
     
     string numberString(int number){
@@ -110,7 +142,7 @@ public:
     }
     
     bool isStable(){
-        if (this->name == "isStable") return false;
+        if (this->name == "SelectionSort") return false;
         
         return true;
     }
@@ -118,7 +150,7 @@ public:
     int getArrayLen()
     {
 //      return (sizeof(*array) / sizeof(T));
-        cout << "数组的长度是:" << this->m_len << endl;
+//        cout << "数组的长度是:" << this->m_len << endl;
         return this->m_len;
     }
 

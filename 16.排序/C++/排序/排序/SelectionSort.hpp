@@ -30,7 +30,7 @@ public:
 //        }
 //        this->swap(max, end);
 //    }
-        
+        //找到最大值的索引，然后将最大值的索引的值和最后一位交换，其实这个方法和冒泡排序相差不大，只不过这里是少了交换的次数而已
         for (int end = len - 1 ; end > 0; end--) {
             int max = 0;
             for (int begin = 1; begin <= end; begin++) {
@@ -38,6 +38,7 @@ public:
                    max = begin;
                 }
             }
+//            cout << "-------------SelectionSort--------------------" << endl;
             this->swap(max, end);
         }
     }

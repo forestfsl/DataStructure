@@ -11,59 +11,75 @@
 
 #include <stdio.h>
 
+//要取得[a,b)的随机整数，使用(rand() % (b-a))+ a;
+//要取得[a,b]的随机整数，使用(rand() % (b-a+1))+ a;
+//要取得(a,b]的随机整数，使用(rand() % (b-a))+ a + 1;
 class Integers {
 public:
-    static int *g_array;
-    static int* randomArray(int count, int min,int max){
-        if (count <= 0 || min > max) return {};
-         int  array[count];
-        int delta = max - min + 1;
-        for (int i = 0; i < count; i++) {
-            array[i] = min + (int)(rand() * delta);
-        }
-//        g_array = array;
-        return array;
+    int *localArray;
+    
+     int* randomArray(int count, int min,int max){
+        //random 1
+//        if (count <= 0 || min > max) return {};
+//         int  array[count];
+//        int delta = max - min + 1;
+//        for (int i = 0; i < count; i++) {
+//            array[i] = min + (int)(rand() * delta);
+//        }
+//        return array;
+        
+        //random2
+         if (count <= 0 || min > max) return {};
+         localArray = new int[count]{};
+                
+                for (int i = 0; i < count; i++) {
+                    localArray[i] =  (int)((rand() % (max - min)) + min);
+//                    cout << localArray[i] << endl;
+                }
+        return localArray;
     }
     
-    static int * combine(int array1[], int array2[]){
+     int * combine(int array1[], int array2[]){
+       
         if (array1 == nullptr || array2 == nullptr) return nullptr;
          int arrayLen1 = (sizeof(*array1) / sizeof(array1[0]));
         int arrayLen2 = (sizeof(*array2) / sizeof(array2[0]));
-
-        int array[arrayLen1 + arrayLen2];
+ 
+     
+           localArray = new int[arrayLen1 + arrayLen2]{};
         for (int i = 0; i < arrayLen1; i++) {
-            array[i] = array1[i];
+            localArray[i] = array1[i];
         }
         for (int i = 0; i < arrayLen2; i++) {
-            array[i + arrayLen1] = array2[i];
+            localArray[i + arrayLen1] = array2[i];
         }
-        g_array = array;
-        return g_array;
+
+        return localArray;
     }
     
-    static int *same(int count, int unsameCount){
+     int *same(int count, int unsameCount){
         if (count <= 0 || unsameCount > count) return nullptr;
-        int array[count];
-        
+         localArray = new int[count]{};
         for (int i = 0; i < unsameCount; i++) {
-            array[i] = unsameCount - i;
+            localArray[i] = unsameCount - i;
         }
         for (int i = unsameCount; i < count; i++) {
-            array[i] = unsameCount + 1;
+            localArray[i] = unsameCount + 1;
         }
-        g_array = array;
-        return g_array;
+       
+        return localArray;
     }
     
-    static int *ascOrder(int min,int max){
+     int *ascOrder(int min,int max){
+          
         if (min > max) return nullptr;
-        int array[max - min + 1];
+        localArray = new int[max - min + 1]{};
         int len = max - min + 1;
         for (int i = 0; i < len ; i++) {
-            array[i] = min++;
+            localArray[i] = min++;
         }
-        g_array = array;
-        return g_array;
+       
+        return localArray;
     }
     
     static void reverse(int array[],int begin,int end){
@@ -89,13 +105,14 @@ public:
     
     static int * copy(int array[]){
          int len = (sizeof(*array) / sizeof(array[0]));
+         static int *g_array;
         for (int i = 0; i < len; i++) {
             g_array[i] = array[i];
         }
         return g_array;
     }
     
-    static int * headTailAscOrder(int min ,int max,int disorderCount){
+     int * headTailAscOrder(int min ,int max,int disorderCount){
         int* array = ascOrder(min, max);
          int len = (sizeof(*array) / sizeof(array[0]));
         
@@ -104,7 +121,7 @@ public:
         return array;
     }
     
-    static int * centerAscOrder(int min,int max,int disorderCount){
+     int * centerAscOrder(int min,int max,int disorderCount){
         int *array = ascOrder(min, max);
          int len = (sizeof(*array) / sizeof(array[0]));
         if (disorderCount > len) return array;
@@ -116,15 +133,15 @@ public:
         return array;
     }
     
-    static int *headAscOrder(int min,int max,int disorderCount){
-        int *array = ascOrder(min, max);
+     int *headAscOrder(int min,int max,int disorderCount){
+        int *array = ascOrder(min,max);
           int len = (sizeof(*array) / sizeof(array[0]));
         if (disorderCount > len) return array;
         reverse(array, len - disorderCount, len);
         return array;
     }
     
-    static int * tailAscOrder(int min,int max,int disorderCount){
+     int * tailAscOrder(int min,int max,int disorderCount){
         int *array = ascOrder(min, max);
          int len = (sizeof(*array) / sizeof(array[0]));
         if (disorderCount > len) return array;
@@ -132,7 +149,7 @@ public:
         return array;
     }
     
-    static void printlnStr(int array[]){
+     void printlnStr(int array[]){
         if (array == nullptr) return;
         string content;
          int len = (sizeof(*array) / sizeof(array[0]));

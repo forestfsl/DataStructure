@@ -15,6 +15,15 @@
 template <class T>
 class BubbleSort3: public Sort<T>{
 public:
+    BubbleSort3(int len,string name):Sort<T>(len,name){
+        
+    }
+    /**
+     这个优化是记录最后一次交换的索引值
+     
+          10  4 1 3 2 5 7 8 9-->4 1 3 2 5 7 8 9 10
+        第二轮比较可以看到交换的索引值实在3，那么第三轮end的值就直接编程了0 -- 3 ，减少了交换的次数
+     */
     void extensionSort(){
          int len = this->getArrayLen();
         for (int end = len - 1; end > 0; end--) {
