@@ -18,6 +18,9 @@ public:
       InsertionSort1(int len,string name):Sort<T>(len,name){
             
         }
+    /*
+     一个个比较然后交换
+     */
         void extensionSort(){
             int len = this->getArrayLen();
             for (int begin = 1; begin < len; begin++) {

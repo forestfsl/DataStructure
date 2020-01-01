@@ -15,6 +15,9 @@
 #include "RadixSort.hpp"
 #include "Integers.hpp"
 #include "InsertionSort1.hpp"
+#include "InsertionSort2.hpp"
+#include "InsertionSort3.hpp"
+#include "MergeSort.hpp"
 using namespace std;
 
 
@@ -29,10 +32,10 @@ static void testSorts1(int localLen, int *array, Sort<int>*sort){
 //    }
     sort->sort(array,len);
     cout << "----------------------------------------------------------------" << endl;
-    for (int i = 0; i < len; i++) {
-        cout << sort->array[i] << endl;
-       
-    }
+//    for (int i = 0; i < len; i++) {
+//        cout << sort->array[i] << endl;
+//       
+//    }
      cout << sort->toString() << endl;
 }
 
@@ -135,6 +138,30 @@ void customInsertionSort1(){
     
 }
 
+void customInsertionSort2(){
+    int testarray [] = {7,3,5,8,6,7,4,5};
+          int len = fetchArrayLen(testarray);
+       Sort<int> *selectionSort1 = new InsertionSort2<int>(len,"InsertionSort2");
+       testSorts1(len,testarray, selectionSort1);
+    
+}
+void customInsertionSort3(){
+    int testarray [] = {7,3,5,8,6,7,4,5};
+          int len = fetchArrayLen(testarray);
+       Sort<int> *selectionSort1 = new InsertionSort3<int>(len,"InsertionSort3");
+       testSorts1(len,testarray, selectionSort1);
+    
+}
+
+void customMergeSort(){
+    int testarray [] = {7,3,5,8,6,7,4,5};
+          int len = fetchArrayLen(testarray);
+       Sort<int> *selectionSort1 = new MergeSort<int>(len,"MergeSort");
+       testSorts1(len,testarray, selectionSort1);
+    
+}
+
+
 
 //##################################################################3
 void testBubbleSort1(){
@@ -217,9 +244,11 @@ int main(int argc, const char * argv[]) {
 //    customBubbleSort1();
 //    customBubbleSort2();
 //    customBubbleSort3();
-    customHeapSort();
+//    customHeapSort();
 //    customSelectionSort();
-//    customInsertionSort1();
-
+    customInsertionSort1();
+    customInsertionSort2();
+    customInsertionSort3();
+    customMergeSort();
     return 0;
 }

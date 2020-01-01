@@ -34,6 +34,9 @@
 		0789C30723B8EB8000354D9C /* RadixSort.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RadixSort.hpp; sourceTree = "<group>"; };
 		0789C30923B8EDD400354D9C /* TimeTool.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TimeTool.hpp; sourceTree = "<group>"; };
 		0789C30B23B8EE1500354D9C /* Integers.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Integers.hpp; sourceTree = "<group>"; };
+		0789C31023BCCD3D00354D9C /* InsertionSort2.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InsertionSort2.hpp; sourceTree = "<group>"; };
+		0789C31323BCD82E00354D9C /* InsertionSort3.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InsertionSort3.hpp; sourceTree = "<group>"; };
+		0789C31623BCDE4500354D9C /* MergeSort.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MergeSort.hpp; sourceTree = "<group>"; };
 		07E3426A23BADE8100F8F58A /* InsertionSort1.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InsertionSort1.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +72,8 @@
 			children = (
 				0789C2ED23B8D8E400354D9C /* main.cpp */,
 				07E3426A23BADE8100F8F58A /* InsertionSort1.hpp */,
+				0789C31023BCCD3D00354D9C /* InsertionSort2.hpp */,
+				0789C31323BCD82E00354D9C /* InsertionSort3.hpp */,
 				0789C2F823B8E37A00354D9C /* SelectionSort.hpp */,
 				0789C2F523B8D91D00354D9C /* Sort.hpp */,
 				0789C2FB23B8E62C00354D9C /* BubbleSort1.hpp */,
@@ -78,6 +83,7 @@
 				0789C30723B8EB8000354D9C /* RadixSort.hpp */,
 				0789C30923B8EDD400354D9C /* TimeTool.hpp */,
 				0789C30B23B8EE1500354D9C /* Integers.hpp */,
+				0789C31623BCDE4500354D9C /* MergeSort.hpp */,
 			);
 			path = "排序";
 			sourceTree = "<group>";
