@@ -18,6 +18,8 @@
 #include "InsertionSort2.hpp"
 #include "InsertionSort3.hpp"
 #include "MergeSort.hpp"
+#include "QuickSort.hpp"
+#include "ShellSort.hpp"
 using namespace std;
 
 
@@ -161,6 +163,19 @@ void customMergeSort(){
     
 }
 
+void customQuickSort(){
+    int testarray [] = {7,3,5,8,6,7,4,5};
+       int len = fetchArrayLen(testarray);
+    Sort<int> *selectionSort1 = new QuickSort<int>(len,"QuickSort");
+    testSorts1(len,testarray, selectionSort1);
+}
+
+void customShellSort(){
+    int testarray [] = {7,3,5,8,6,7,4,5};
+       int len = fetchArrayLen(testarray);
+    Sort<int> *selectionSort1 = new ShellSort<int>(len,"ShellSort");
+    testSorts1(len,testarray, selectionSort1);
+}
 
 
 //##################################################################3
@@ -246,9 +261,11 @@ int main(int argc, const char * argv[]) {
 //    customBubbleSort3();
 //    customHeapSort();
 //    customSelectionSort();
-    customInsertionSort1();
-    customInsertionSort2();
-    customInsertionSort3();
+//    customInsertionSort1();
+//    customInsertionSort2();
+//    customInsertionSort3();
     customMergeSort();
+    customQuickSort();
+    customShellSort();
     return 0;
 }

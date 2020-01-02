@@ -38,6 +38,8 @@
 		0789C31323BCD82E00354D9C /* InsertionSort3.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InsertionSort3.hpp; sourceTree = "<group>"; };
 		0789C31623BCDE4500354D9C /* MergeSort.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MergeSort.hpp; sourceTree = "<group>"; };
 		07E3426A23BADE8100F8F58A /* InsertionSort1.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InsertionSort1.hpp; sourceTree = "<group>"; };
+		07E3429923BDC8D400F8F58A /* QuickSort.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = QuickSort.hpp; sourceTree = "<group>"; };
+		07E3429C23BDCF5A00F8F58A /* ShellSort.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ShellSort.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,8 @@
 				0789C30923B8EDD400354D9C /* TimeTool.hpp */,
 				0789C30B23B8EE1500354D9C /* Integers.hpp */,
 				0789C31623BCDE4500354D9C /* MergeSort.hpp */,
+				07E3429923BDC8D400F8F58A /* QuickSort.hpp */,
+				07E3429C23BDCF5A00F8F58A /* ShellSort.hpp */,
 			);
 			path = "排序";
 			sourceTree = "<group>";
