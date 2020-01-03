@@ -20,6 +20,7 @@
 #include "MergeSort.hpp"
 #include "QuickSort.hpp"
 #include "ShellSort.hpp"
+#include "CountingSort.hpp"
 using namespace std;
 
 
@@ -34,10 +35,10 @@ static void testSorts1(int localLen, int *array, Sort<int>*sort){
 //    }
     sort->sort(array,len);
     cout << "----------------------------------------------------------------" << endl;
-//    for (int i = 0; i < len; i++) {
-//        cout << sort->array[i] << endl;
-//       
-//    }
+    for (int i = 0; i < len; i++) {
+        cout << sort->array[i] << endl;
+
+    }
      cout << sort->toString() << endl;
 }
 
@@ -177,6 +178,19 @@ void customShellSort(){
     testSorts1(len,testarray, selectionSort1);
 }
 
+void customRadixSort(){
+    int testarray [] = {7,3,5,8,6,7,4,5};
+       int len = fetchArrayLen(testarray);
+    Sort<int> *selectionSort1 = new RadixSort<int>(len,"RadixSort");
+    testSorts1(len,testarray, selectionSort1);
+}
+void customCountingSortSort(){
+    int testarray [] = {7,3,5,8,6,7,4,5};
+       int len = fetchArrayLen(testarray);
+    Sort<int> *selectionSort1 = new CountingSort<int>(len,"CountingSort");
+    testSorts1(len,testarray, selectionSort1);
+}
+
 
 //##################################################################3
 void testBubbleSort1(){
@@ -223,6 +237,7 @@ void testInsertionSort1(){
        testSorts1(localLen,randomrray, selectionSort1);
     
 }
+
 /*
 【MergeSort】
 稳定性：true     耗时：0.0s(0ms)     比较：537     交换：0
@@ -264,8 +279,10 @@ int main(int argc, const char * argv[]) {
 //    customInsertionSort1();
 //    customInsertionSort2();
 //    customInsertionSort3();
-    customMergeSort();
-    customQuickSort();
-    customShellSort();
+//    customMergeSort();
+//    customQuickSort();
+//    customShellSort();
+//    customRadixSort();
+    customCountingSortSort();
     return 0;
 }
