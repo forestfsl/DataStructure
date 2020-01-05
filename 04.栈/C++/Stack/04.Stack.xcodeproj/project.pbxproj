@@ -7,22 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		075CE5AB2266C6E7001D81A1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 075CE5AA2266C6E7001D81A1 /* main.cpp */; };
-		075CE5B32266C93A001D81A1 /* TimeTool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 075CE5B12266C93A001D81A1 /* TimeTool.cpp */; };
+		07DFE8B723718744001C027F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07DFE8B623718744001C027F /* main.cpp */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		07EF788D23C185AB0018764F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07EF788923C185AB0018764F /* 02.动态数组.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 075CE6E422677354001D81A1;
-			remoteInfo = "02.动态数组";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
-		075CE5A52266C6E7001D81A1 /* CopyFiles */ = {
+		07DFE8B123718744001C027F /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -34,15 +23,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		075CE5A72266C6E7001D81A1 /* 01.复杂度初探 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "01.复杂度初探"; sourceTree = BUILT_PRODUCTS_DIR; };
-		075CE5AA2266C6E7001D81A1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		075CE5B12266C93A001D81A1 /* TimeTool.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TimeTool.cpp; sourceTree = "<group>"; };
-		075CE5B22266C93A001D81A1 /* TimeTool.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TimeTool.hpp; sourceTree = "<group>"; };
-		07EF788923C185AB0018764F /* 02.动态数组.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "02.动态数组.xcodeproj"; path = "../../../02.动态数组/C++/02.动态数组/02.动态数组.xcodeproj"; sourceTree = "<group>"; };
+		07DFE8B323718744001C027F /* 04.Stack */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 04.Stack; sourceTree = BUILT_PRODUCTS_DIR; };
+		07DFE8B623718744001C027F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		07DFE8BD23718752001C027F /* LinkedList2.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LinkedList2.hpp; sourceTree = "<group>"; };
+		07DFE8BF23718776001C027F /* Stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Stack.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		075CE5A42266C6E7001D81A1 /* Frameworks */ = {
+		07DFE8B023718744001C027F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -52,122 +40,96 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		075CE59E2266C6E6001D81A1 = {
+		07DFE8AA23718744001C027F = {
 			isa = PBXGroup;
 			children = (
-				07EF788923C185AB0018764F /* 02.动态数组.xcodeproj */,
-				075CE5A92266C6E7001D81A1 /* 01.复杂度初探 */,
-				075CE5A82266C6E7001D81A1 /* Products */,
+				07DFE8B523718744001C027F /* Stack */,
+				07DFE8B423718744001C027F /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		075CE5A82266C6E7001D81A1 /* Products */ = {
+		07DFE8B423718744001C027F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				075CE5A72266C6E7001D81A1 /* 01.复杂度初探 */,
+				07DFE8B323718744001C027F /* 04.Stack */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		075CE5A92266C6E7001D81A1 /* 01.复杂度初探 */ = {
+		07DFE8B523718744001C027F /* Stack */ = {
 			isa = PBXGroup;
 			children = (
-				075CE5AA2266C6E7001D81A1 /* main.cpp */,
-				075CE5B12266C93A001D81A1 /* TimeTool.cpp */,
-				075CE5B22266C93A001D81A1 /* TimeTool.hpp */,
+				07DFE8B623718744001C027F /* main.cpp */,
+				07DFE8BD23718752001C027F /* LinkedList2.hpp */,
+				07DFE8BF23718776001C027F /* Stack.hpp */,
 			);
-			path = "01.复杂度初探";
-			sourceTree = "<group>";
-		};
-		07EF788A23C185AB0018764F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				07EF788E23C185AB0018764F /* 02.动态数组 */,
-			);
-			name = Products;
+			path = Stack;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		075CE5A62266C6E7001D81A1 /* 01.复杂度初探 */ = {
+		07DFE8B223718744001C027F /* 04.Stack */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 075CE5AE2266C6E7001D81A1 /* Build configuration list for PBXNativeTarget "01.复杂度初探" */;
+			buildConfigurationList = 07DFE8BA23718744001C027F /* Build configuration list for PBXNativeTarget "04.Stack" */;
 			buildPhases = (
-				075CE5A32266C6E7001D81A1 /* Sources */,
-				075CE5A42266C6E7001D81A1 /* Frameworks */,
-				075CE5A52266C6E7001D81A1 /* CopyFiles */,
+				07DFE8AF23718744001C027F /* Sources */,
+				07DFE8B023718744001C027F /* Frameworks */,
+				07DFE8B123718744001C027F /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "01.复杂度初探";
-			productName = "01.复杂度初探";
-			productReference = 075CE5A72266C6E7001D81A1 /* 01.复杂度初探 */;
+			name = 04.Stack;
+			productName = Stack;
+			productReference = 07DFE8B323718744001C027F /* 04.Stack */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		075CE59F2266C6E6001D81A1 /* Project object */ = {
+		07DFE8AB23718744001C027F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = songlin;
 				TargetAttributes = {
-					075CE5A62266C6E7001D81A1 = {
-						CreatedOnToolsVersion = 10.1;
+					07DFE8B223718744001C027F = {
+						CreatedOnToolsVersion = 10.2;
 					};
 				};
 			};
-			buildConfigurationList = 075CE5A22266C6E6001D81A1 /* Build configuration list for PBXProject "01.复杂度初探" */;
+			buildConfigurationList = 07DFE8AE23718744001C027F /* Build configuration list for PBXProject "04.Stack" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 075CE59E2266C6E6001D81A1;
-			productRefGroup = 075CE5A82266C6E7001D81A1 /* Products */;
+			mainGroup = 07DFE8AA23718744001C027F;
+			productRefGroup = 07DFE8B423718744001C027F /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 07EF788A23C185AB0018764F /* Products */;
-					ProjectRef = 07EF788923C185AB0018764F /* 02.动态数组.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
-				075CE5A62266C6E7001D81A1 /* 01.复杂度初探 */,
+				07DFE8B223718744001C027F /* 04.Stack */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		07EF788E23C185AB0018764F /* 02.动态数组 */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = "02.动态数组";
-			remoteRef = 07EF788D23C185AB0018764F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXSourcesBuildPhase section */
-		075CE5A32266C6E7001D81A1 /* Sources */ = {
+		07DFE8AF23718744001C027F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				075CE5B32266C93A001D81A1 /* TimeTool.cpp in Sources */,
-				075CE5AB2266C6E7001D81A1 /* main.cpp in Sources */,
+				07DFE8B723718744001C027F /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		075CE5AC2266C6E7001D81A1 /* Debug */ = {
+		07DFE8B823718744001C027F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -218,7 +180,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -226,7 +188,7 @@
 			};
 			name = Debug;
 		};
-		075CE5AD2266C6E7001D81A1 /* Release */ = {
+		07DFE8B923718744001C027F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -271,14 +233,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 			};
 			name = Release;
 		};
-		075CE5AF2266C6E7001D81A1 /* Debug */ = {
+		07DFE8BB23718744001C027F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -286,7 +248,7 @@
 			};
 			name = Debug;
 		};
-		075CE5B02266C6E7001D81A1 /* Release */ = {
+		07DFE8BC23718744001C027F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -297,25 +259,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		075CE5A22266C6E6001D81A1 /* Build configuration list for PBXProject "01.复杂度初探" */ = {
+		07DFE8AE23718744001C027F /* Build configuration list for PBXProject "04.Stack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				075CE5AC2266C6E7001D81A1 /* Debug */,
-				075CE5AD2266C6E7001D81A1 /* Release */,
+				07DFE8B823718744001C027F /* Debug */,
+				07DFE8B923718744001C027F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		075CE5AE2266C6E7001D81A1 /* Build configuration list for PBXNativeTarget "01.复杂度初探" */ = {
+		07DFE8BA23718744001C027F /* Build configuration list for PBXNativeTarget "04.Stack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				075CE5AF2266C6E7001D81A1 /* Debug */,
-				075CE5B02266C6E7001D81A1 /* Release */,
+				07DFE8BB23718744001C027F /* Debug */,
+				07DFE8BC23718744001C027F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 075CE59F2266C6E6001D81A1 /* Project object */;
+	rootObject = 07DFE8AB23718744001C027F /* Project object */;
 }

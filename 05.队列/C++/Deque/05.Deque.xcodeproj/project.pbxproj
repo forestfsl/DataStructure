@@ -7,22 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		075CE5AB2266C6E7001D81A1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 075CE5AA2266C6E7001D81A1 /* main.cpp */; };
-		075CE5B32266C93A001D81A1 /* TimeTool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 075CE5B12266C93A001D81A1 /* TimeTool.cpp */; };
+		070DF57423764B5400132BF5 /* Queue.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BF718223751EA20016851B /* Queue.hpp */; };
+		070DF57523764B5400132BF5 /* CircleQueue.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 070DF5722376495F00132BF5 /* CircleQueue.hpp */; };
+		07BF717F23751BF20016851B /* LinkedList2.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EAC19323751AF500BB250B /* LinkedList2.hpp */; };
+		07BF718023751BF20016851B /* Deque.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EAC19523751B0C00BB250B /* Deque.hpp */; };
+		07EAC18D23751AD300BB250B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EAC18C23751AD300BB250B /* main.cpp */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		07EF788D23C185AB0018764F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07EF788923C185AB0018764F /* 02.动态数组.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 075CE6E422677354001D81A1;
-			remoteInfo = "02.动态数组";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
-		075CE5A52266C6E7001D81A1 /* CopyFiles */ = {
+		07EAC18723751AD300BB250B /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -34,15 +27,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		075CE5A72266C6E7001D81A1 /* 01.复杂度初探 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "01.复杂度初探"; sourceTree = BUILT_PRODUCTS_DIR; };
-		075CE5AA2266C6E7001D81A1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		075CE5B12266C93A001D81A1 /* TimeTool.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TimeTool.cpp; sourceTree = "<group>"; };
-		075CE5B22266C93A001D81A1 /* TimeTool.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TimeTool.hpp; sourceTree = "<group>"; };
-		07EF788923C185AB0018764F /* 02.动态数组.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "02.动态数组.xcodeproj"; path = "../../../02.动态数组/C++/02.动态数组/02.动态数组.xcodeproj"; sourceTree = "<group>"; };
+		070DF5722376495F00132BF5 /* CircleQueue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CircleQueue.hpp; sourceTree = "<group>"; };
+		072A4B3D2378190D00CAC44D /* CircleDeque.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CircleDeque.hpp; sourceTree = "<group>"; };
+		07BF718223751EA20016851B /* Queue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Queue.hpp; sourceTree = "<group>"; };
+		07EAC18923751AD300BB250B /* 05.Deque */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 05.Deque; sourceTree = BUILT_PRODUCTS_DIR; };
+		07EAC18C23751AD300BB250B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		07EAC19323751AF500BB250B /* LinkedList2.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LinkedList2.hpp; sourceTree = "<group>"; };
+		07EAC19523751B0C00BB250B /* Deque.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Deque.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		075CE5A42266C6E7001D81A1 /* Frameworks */ = {
+		07EAC18623751AD300BB250B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -52,122 +47,103 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		075CE59E2266C6E6001D81A1 = {
+		07EAC18023751AD300BB250B = {
 			isa = PBXGroup;
 			children = (
-				07EF788923C185AB0018764F /* 02.动态数组.xcodeproj */,
-				075CE5A92266C6E7001D81A1 /* 01.复杂度初探 */,
-				075CE5A82266C6E7001D81A1 /* Products */,
+				07EAC18B23751AD300BB250B /* Deque */,
+				07EAC18A23751AD300BB250B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		075CE5A82266C6E7001D81A1 /* Products */ = {
+		07EAC18A23751AD300BB250B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				075CE5A72266C6E7001D81A1 /* 01.复杂度初探 */,
+				07EAC18923751AD300BB250B /* 05.Deque */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		075CE5A92266C6E7001D81A1 /* 01.复杂度初探 */ = {
+		07EAC18B23751AD300BB250B /* Deque */ = {
 			isa = PBXGroup;
 			children = (
-				075CE5AA2266C6E7001D81A1 /* main.cpp */,
-				075CE5B12266C93A001D81A1 /* TimeTool.cpp */,
-				075CE5B22266C93A001D81A1 /* TimeTool.hpp */,
+				07EAC18C23751AD300BB250B /* main.cpp */,
+				07EAC19323751AF500BB250B /* LinkedList2.hpp */,
+				07EAC19523751B0C00BB250B /* Deque.hpp */,
+				07BF718223751EA20016851B /* Queue.hpp */,
+				070DF5722376495F00132BF5 /* CircleQueue.hpp */,
+				072A4B3D2378190D00CAC44D /* CircleDeque.hpp */,
 			);
-			path = "01.复杂度初探";
-			sourceTree = "<group>";
-		};
-		07EF788A23C185AB0018764F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				07EF788E23C185AB0018764F /* 02.动态数组 */,
-			);
-			name = Products;
+			path = Deque;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		075CE5A62266C6E7001D81A1 /* 01.复杂度初探 */ = {
+		07EAC18823751AD300BB250B /* 05.Deque */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 075CE5AE2266C6E7001D81A1 /* Build configuration list for PBXNativeTarget "01.复杂度初探" */;
+			buildConfigurationList = 07EAC19023751AD300BB250B /* Build configuration list for PBXNativeTarget "05.Deque" */;
 			buildPhases = (
-				075CE5A32266C6E7001D81A1 /* Sources */,
-				075CE5A42266C6E7001D81A1 /* Frameworks */,
-				075CE5A52266C6E7001D81A1 /* CopyFiles */,
+				07EAC18523751AD300BB250B /* Sources */,
+				07EAC18623751AD300BB250B /* Frameworks */,
+				07EAC18723751AD300BB250B /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "01.复杂度初探";
-			productName = "01.复杂度初探";
-			productReference = 075CE5A72266C6E7001D81A1 /* 01.复杂度初探 */;
+			name = 05.Deque;
+			productName = Deque;
+			productReference = 07EAC18923751AD300BB250B /* 05.Deque */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		075CE59F2266C6E6001D81A1 /* Project object */ = {
+		07EAC18123751AD300BB250B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = songlin;
 				TargetAttributes = {
-					075CE5A62266C6E7001D81A1 = {
-						CreatedOnToolsVersion = 10.1;
+					07EAC18823751AD300BB250B = {
+						CreatedOnToolsVersion = 10.2;
 					};
 				};
 			};
-			buildConfigurationList = 075CE5A22266C6E6001D81A1 /* Build configuration list for PBXProject "01.复杂度初探" */;
+			buildConfigurationList = 07EAC18423751AD300BB250B /* Build configuration list for PBXProject "05.Deque" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 075CE59E2266C6E6001D81A1;
-			productRefGroup = 075CE5A82266C6E7001D81A1 /* Products */;
+			mainGroup = 07EAC18023751AD300BB250B;
+			productRefGroup = 07EAC18A23751AD300BB250B /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 07EF788A23C185AB0018764F /* Products */;
-					ProjectRef = 07EF788923C185AB0018764F /* 02.动态数组.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
-				075CE5A62266C6E7001D81A1 /* 01.复杂度初探 */,
+				07EAC18823751AD300BB250B /* 05.Deque */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		07EF788E23C185AB0018764F /* 02.动态数组 */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = "02.动态数组";
-			remoteRef = 07EF788D23C185AB0018764F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXSourcesBuildPhase section */
-		075CE5A32266C6E7001D81A1 /* Sources */ = {
+		07EAC18523751AD300BB250B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				075CE5B32266C93A001D81A1 /* TimeTool.cpp in Sources */,
-				075CE5AB2266C6E7001D81A1 /* main.cpp in Sources */,
+				070DF57423764B5400132BF5 /* Queue.hpp in Sources */,
+				070DF57523764B5400132BF5 /* CircleQueue.hpp in Sources */,
+				07BF717F23751BF20016851B /* LinkedList2.hpp in Sources */,
+				07BF718023751BF20016851B /* Deque.hpp in Sources */,
+				07EAC18D23751AD300BB250B /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		075CE5AC2266C6E7001D81A1 /* Debug */ = {
+		07EAC18E23751AD300BB250B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -218,7 +194,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -226,7 +202,7 @@
 			};
 			name = Debug;
 		};
-		075CE5AD2266C6E7001D81A1 /* Release */ = {
+		07EAC18F23751AD300BB250B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -271,14 +247,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 			};
 			name = Release;
 		};
-		075CE5AF2266C6E7001D81A1 /* Debug */ = {
+		07EAC19123751AD300BB250B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -286,7 +262,7 @@
 			};
 			name = Debug;
 		};
-		075CE5B02266C6E7001D81A1 /* Release */ = {
+		07EAC19223751AD300BB250B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -297,25 +273,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		075CE5A22266C6E6001D81A1 /* Build configuration list for PBXProject "01.复杂度初探" */ = {
+		07EAC18423751AD300BB250B /* Build configuration list for PBXProject "05.Deque" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				075CE5AC2266C6E7001D81A1 /* Debug */,
-				075CE5AD2266C6E7001D81A1 /* Release */,
+				07EAC18E23751AD300BB250B /* Debug */,
+				07EAC18F23751AD300BB250B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		075CE5AE2266C6E7001D81A1 /* Build configuration list for PBXNativeTarget "01.复杂度初探" */ = {
+		07EAC19023751AD300BB250B /* Build configuration list for PBXNativeTarget "05.Deque" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				075CE5AF2266C6E7001D81A1 /* Debug */,
-				075CE5B02266C6E7001D81A1 /* Release */,
+				07EAC19123751AD300BB250B /* Debug */,
+				07EAC19223751AD300BB250B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 075CE59F2266C6E6001D81A1 /* Project object */;
+	rootObject = 07EAC18123751AD300BB250B /* Project object */;
 }
