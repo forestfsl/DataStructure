@@ -11,16 +11,6 @@
 		075CE6F0226773DE001D81A1 /* Person.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 075CE6EE226773DE001D81A1 /* Person.cpp */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		07EF789323C1863E0018764F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07EF788F23C1863E0018764F /* BinarySearchTree.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07A7333B237A617200FE5E6A;
-			remoteInfo = BinarySearchTree;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		075CE6E222677354001D81A1 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -39,7 +29,6 @@
 		075CE6EE226773DE001D81A1 /* Person.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Person.cpp; sourceTree = "<group>"; };
 		075CE6EF226773DE001D81A1 /* Person.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Person.hpp; sourceTree = "<group>"; };
 		075CE6F222677809001D81A1 /* ArrayList.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ArrayList.hpp; sourceTree = "<group>"; };
-		07EF788F23C1863E0018764F /* BinarySearchTree.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BinarySearchTree.xcodeproj; path = "../../../06.二叉搜索树/C++/BinarySearchTree/BinarySearchTree.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +47,6 @@
 			children = (
 				075CE6E622677354001D81A1 /* 02.动态数组 */,
 				075CE6E522677354001D81A1 /* Products */,
-				07EF788F23C1863E0018764F /* BinarySearchTree.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,14 +67,6 @@
 				075CE6F222677809001D81A1 /* ArrayList.hpp */,
 			);
 			path = "02.动态数组";
-			sourceTree = "<group>";
-		};
-		07EF789023C1863E0018764F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				07EF789423C1863E0018764F /* BinarySearchTree */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,28 +113,12 @@
 			mainGroup = 075CE6DB22677354001D81A1;
 			productRefGroup = 075CE6E522677354001D81A1 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 07EF789023C1863E0018764F /* Products */;
-					ProjectRef = 07EF788F23C1863E0018764F /* BinarySearchTree.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				075CE6E322677354001D81A1 /* 02.动态数组 */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		07EF789423C1863E0018764F /* BinarySearchTree */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = BinarySearchTree;
-			remoteRef = 07EF789323C1863E0018764F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		075CE6E022677354001D81A1 /* Sources */ = {
