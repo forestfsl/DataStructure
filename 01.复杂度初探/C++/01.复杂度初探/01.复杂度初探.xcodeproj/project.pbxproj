@@ -11,16 +11,6 @@
 		075CE5B32266C93A001D81A1 /* TimeTool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 075CE5B12266C93A001D81A1 /* TimeTool.cpp */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		07EF788D23C185AB0018764F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07EF788923C185AB0018764F /* 02.动态数组.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 075CE6E422677354001D81A1;
-			remoteInfo = "02.动态数组";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		075CE5A52266C6E7001D81A1 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -38,7 +28,6 @@
 		075CE5AA2266C6E7001D81A1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		075CE5B12266C93A001D81A1 /* TimeTool.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TimeTool.cpp; sourceTree = "<group>"; };
 		075CE5B22266C93A001D81A1 /* TimeTool.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TimeTool.hpp; sourceTree = "<group>"; };
-		07EF788923C185AB0018764F /* 02.动态数组.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "02.动态数组.xcodeproj"; path = "../../../02.动态数组/C++/02.动态数组/02.动态数组.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +44,6 @@
 		075CE59E2266C6E6001D81A1 = {
 			isa = PBXGroup;
 			children = (
-				07EF788923C185AB0018764F /* 02.动态数组.xcodeproj */,
 				075CE5A92266C6E7001D81A1 /* 01.复杂度初探 */,
 				075CE5A82266C6E7001D81A1 /* Products */,
 			);
@@ -77,14 +65,6 @@
 				075CE5B22266C93A001D81A1 /* TimeTool.hpp */,
 			);
 			path = "01.复杂度初探";
-			sourceTree = "<group>";
-		};
-		07EF788A23C185AB0018764F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				07EF788E23C185AB0018764F /* 02.动态数组 */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,28 +111,12 @@
 			mainGroup = 075CE59E2266C6E6001D81A1;
 			productRefGroup = 075CE5A82266C6E7001D81A1 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 07EF788A23C185AB0018764F /* Products */;
-					ProjectRef = 07EF788923C185AB0018764F /* 02.动态数组.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				075CE5A62266C6E7001D81A1 /* 01.复杂度初探 */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		07EF788E23C185AB0018764F /* 02.动态数组 */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = "02.动态数组";
-			remoteRef = 07EF788D23C185AB0018764F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		075CE5A32266C6E7001D81A1 /* Sources */ = {

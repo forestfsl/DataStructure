@@ -15,6 +15,9 @@
 //定义一个指向函数类型为void()(int n) 函数的指针
 typedef void (*Func)(int n);
 
+typedef void (*FuncVoid)(void);
+
+
 typedef void(^FuncBlock)(int n);
 
 class TimeTool {
@@ -23,6 +26,8 @@ class TimeTool {
 public:
     //公共方法定义，在这里我定义一个C++类的静态方法
     static void task(const char *title,int n,Func func);
+    
+    static void task2(const char *title,FuncVoid func)
     
     static void check(const char * title,int n, FuncBlock funcBlock);
 };
