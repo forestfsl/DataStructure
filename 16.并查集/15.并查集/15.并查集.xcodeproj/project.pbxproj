@@ -28,6 +28,12 @@
 		0773E80623C37D62008D97EF /* UnionFind_QF.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UnionFind_QF.hpp; sourceTree = "<group>"; };
 		07EF789E23C187490018764F /* 15.并查集 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "15.并查集"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07EF78A123C187490018764F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		07FD018C23C42F4800B43F77 /* UnionFind_QU.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UnionFind_QU.hpp; sourceTree = "<group>"; };
+		07FD018F23C4329B00B43F77 /* UnionFind_QU_S.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UnionFind_QU_S.hpp; sourceTree = "<group>"; };
+		07FD019223C435CE00B43F77 /* UnionFind_QU_R.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UnionFind_QU_R.hpp; sourceTree = "<group>"; };
+		07FD019523C439D600B43F77 /* UnionFind_QU_R_PC.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UnionFind_QU_R_PC.hpp; sourceTree = "<group>"; };
+		07FD019823C457CA00B43F77 /* UnionFind_QU_R_PH.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UnionFind_QU_R_PH.hpp; sourceTree = "<group>"; };
+		07FD019B23C45F4000B43F77 /* UnionFind_QU_R_PS.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UnionFind_QU_R_PS.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +59,6 @@
 			isa = PBXGroup;
 			children = (
 				0773E80323C37B97008D97EF /* UnionFind.hpp */,
-				0773E80623C37D62008D97EF /* UnionFind_QF.hpp */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -77,11 +82,26 @@
 		07EF78A023C187490018764F /* 15.并查集 */ = {
 			isa = PBXGroup;
 			children = (
+				07FD018A23C42F3800B43F77 /* Union */,
 				0773E80123C37B8D008D97EF /* Base */,
 				0773E7FF23C379C6008D97EF /* Tools */,
 				07EF78A123C187490018764F /* main.cpp */,
 			);
 			path = "15.并查集";
+			sourceTree = "<group>";
+		};
+		07FD018A23C42F3800B43F77 /* Union */ = {
+			isa = PBXGroup;
+			children = (
+				0773E80623C37D62008D97EF /* UnionFind_QF.hpp */,
+				07FD018C23C42F4800B43F77 /* UnionFind_QU.hpp */,
+				07FD018F23C4329B00B43F77 /* UnionFind_QU_S.hpp */,
+				07FD019223C435CE00B43F77 /* UnionFind_QU_R.hpp */,
+				07FD019523C439D600B43F77 /* UnionFind_QU_R_PC.hpp */,
+				07FD019823C457CA00B43F77 /* UnionFind_QU_R_PH.hpp */,
+				07FD019B23C45F4000B43F77 /* UnionFind_QU_R_PS.hpp */,
+			);
+			path = Union;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -25,13 +25,20 @@
 #include <iostream>
 #include "TimeTool.hpp"
 #include "UnionFind_QF.hpp"
+#include "UnionFind_QU.hpp"
+#include "UnionFind_QU_S.hpp"
+#include "UnionFind_QU_R_PC.hpp"
+#include "UnionFind_QU_R.hpp"
+#include "UnionFind_QU_R_PH.hpp"
+#include "UnionFind_QU_R_PS.hpp"
 #include <assert.h>
+#include <thread>
 
 using namespace std;
 
-#define count  100000
+#define count  1000000
 
-void testTime(UnionFind *uf){
+void testTime(UnionFind *uf,string title){
     
     
         uf->unionElement(0, 1);
@@ -51,7 +58,7 @@ void testTime(UnionFind *uf){
         assert(uf->isSame(2, 7));
         
    
-    TimeTool::checkTime("UnionFind_QF", [](UnionFind *uf){
+    TimeTool::checkTime(title, [](UnionFind *uf){
         for (int i = 0; i < count; i++) {
             int v1 = rand() % count;
             int v2 = rand() % count;
@@ -60,8 +67,65 @@ void testTime(UnionFind *uf){
     },uf);
 }
 
+
+void thread01()
+{
+
+     testTime(new UnionFind_QF(count),"UnionFind_QF");
+}
+    
+void thread02()
+{
+
+    testTime(new UnionFind_QU(count),"UnionFind_QU");
+}
+
+void thread03()
+{
+
+    testTime(new UnionFind_QU_S(count),"UnionFind_QU_S");
+}
+
+void thread04()
+{
+
+     testTime(new UnionFind_QU_R(count),"UnionFind_QU_R");
+}
+
+void thread05(){
+    testTime(new UnionFind_QU_R_PC(count),"UnionFind_QU_R_PC");
+    
+}
+
+void thread06(){
+     testTime(new UnionFind_QU_R_PH(count),"UnionFind_QU_R_PH");
+}
+
+void thread07(){
+     testTime(new UnionFind_QU_R_PS(count),"UnionFind_QU_R_PS");
+}
+
+
+
+void testUnion(){
+    thread task01(thread01);
+    thread task02(thread02);
+    thread task03(thread03);
+    thread task04(thread04);
+    thread task05(thread05);
+    thread task06(thread06);
+    thread task07(thread07);
+    task01.join();
+    task02.join();
+    task03.join();
+    task04.join();
+    task05.join();
+    task06.join();
+    task07.join();
+}
 int main(int argc, const char * argv[]) {
   
-    testTime(new UnionFind_QF(count));
+     testUnion();
+   
     return 0;
 }
