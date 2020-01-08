@@ -82,7 +82,8 @@ public:
                 childNode->character = c;
                 node->children = emptyChildren ? children1 : node->children;
                
-                node->children.insert(pair<char, Node<V>*>(c,childNode));
+                auto pr = node->children.insert(pair<char, Node<V>*>(c,childNode));
+                 std:: cout << "Element " << (pr.second ? "was" : "was not") << " inserted." << std::endl;
             }
             node = childNode;
         }

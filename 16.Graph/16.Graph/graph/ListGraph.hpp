@@ -20,7 +20,7 @@ class ListGraph:public Graph<V,E> {
     
 public:
      unordered_map<V, Vertex<V, E>*> vertices =  unordered_map<V, Vertex<V, E>*>();
-    unordered_map<V,Edge<V, E>*> edges =  unordered_map<V,Edge<V, E>*>();
+    set<Edge<V, E>*> edges =  set<Edge<V, E>*>();
     
     ListGraph(){
         
@@ -31,14 +31,22 @@ public:
         for(const auto& vertex : vertices){
             cout << vertex.first << endl;
             cout << "out-------------------" << endl;
-            cout << vertex.second.outEdges << endl;
+            for(typename set<Edge<V, E>*>::iterator iter = vertex.second->outEdges.begin(); iter != vertex.second->outEdges.end(); iter++)
+            {
+                Edge<V, E> *edge = *iter;
+                cout <<"Edge [from=" << edge->fromVertex->value << ", to=" << edge->toVertex->value <<", weight="<<edge->weight  << endl;
+                }
             cout << "in--------------------" << endl;
-            cout << vertex.second.inEdges << endl;
+            for(typename set<Edge<V, E>*>::iterator iter = vertex.second->inEdges.begin(); iter != vertex.second->inEdges.end(); iter++){
+                Edge<V, E> *edge = *iter;
+                cout <<"Edge [from=" << edge->fromVertex->value << ", to=" << edge->toVertex->value <<", weight="<<edge->weight  << endl;
+            }
         }
         
         cout << "边-----------------------------" << endl;
-        for(const auto& edge: edges){
-             cout << edge << endl;
+        for(typename set<Edge<V, E>*>::iterator iter = edges.begin(); iter != edges.end(); iter++){
+            Edge<V, E> *edge = *iter;
+            cout <<"Edge [from=" << edge->fromVertex->value << ", to=" << edge->toVertex->value <<", weight="<<edge->weight  << endl;
         }
     }
     
@@ -54,31 +62,38 @@ public:
     void addVertex(V v){
         if (vertices.find(v) != vertices.end()) return;
         Vertex<V, E> *vertex =  new Vertex<V, E>(v);
-        vertices.insert(pair<V,Vertex<V, E>*>(v,vertex));
+        vertices[v] = vertex;
+        
     }
     //添加边
     void addEdge(V from,V to){
         addEdge(from, to,0);
     }
     void addEdge(V from,V to,E weight){
-        Vertex<V, E> *fromVertex = vertices[from];
+        Vertex<V, E>* fromVertex = vertices[from];
+        
+        
         if (fromVertex == nullptr) {
             fromVertex = new Vertex<V, E>(from);
-            vertices.insert(pair<V, Vertex<V, E>*>(from,fromVertex));
+            vertices[from] = fromVertex;
+//            auto pr = vertices.insert(pair<V, Vertex<V, E>*>{from,fromVertex});
+//
+//            std:: cout << "Element " << (pr.second ? "was" : "was not") << " inserted." << std::endl;
         }
         
         Vertex<V, E> *toVertex = vertices[to];
         if (toVertex == nullptr) {
             toVertex =  new Vertex<V, E>(to);
-            vertices.insert(pair<V, Vertex<V, E>*>(to,toVertex));
+            vertices[to] = toVertex;
         }
         
         Edge<V, E> *edge = new Edge<V, E>(fromVertex,toVertex);
         edge->weight = weight;
      
-        for(typename unordered_map<V, Edge<V, E>*>::iterator iter = fromVertex->outEdges.begin(); iter != fromVertex->outEdges.end(); iter++)
+        for(typename set<Edge<V, E>*>::iterator iter = fromVertex->outEdges.begin(); iter != fromVertex->outEdges.end(); iter++)
                          {
-                            if (iter->second == edge) {
+                             Edge<V, E> *tempEdge = *iter;
+                            if (tempEdge->toVertex->value == edge->toVertex->value) {
                                                 fromVertex->outEdges.erase(iter);
                                             }
                             
@@ -86,23 +101,30 @@ public:
         
        
         
-        for(typename unordered_map<V,Edge<V, E>*>::iterator iter = toVertex->inEdges.begin(); iter != toVertex->outEdges.end(); iter++)
+        for(typename set<Edge<V, E>*>::iterator iter = toVertex->inEdges.begin(); iter != toVertex->inEdges.end(); iter++)
              {
-                 if (iter->second == edge) {
+                  Edge<V, E> *tempEdge = *iter;
+                 if (tempEdge->fromVertex->value == edge->fromVertex->value) {
                      toVertex->inEdges.erase(iter);
+                     break;
                  }
         }
         
-        for(typename unordered_map<V,Edge<V, E>*>::iterator iter = edges.begin(); iter != edges.end(); iter++)
+        for(typename set<Edge<V, E>*>::iterator iter = edges.begin(); iter != edges.end(); iter++)
                     {
-                        if (iter->second == edge) {
+                         Edge<V, E> *tempEdge = *iter;
+                        if (tempEdge->toVertex->value == edge->toVertex->value && tempEdge->fromVertex->value == edge->fromVertex->value) {
                             edges.erase(iter);
+                            break;
                         }
                }
-        
-        fromVertex->outEdges.insert(pair<V, Edge<V, E>*>("test",edge));
-        toVertex->inEdges.insert(pair<V, Edge<V, E>*>("test",edge));
-        edges.insert(pair<V, Edge<V, E>*>("test",edge));
+        fromVertex->outEdges.insert(edge);
+//        fromVertex->outEdges["test"] = edge;
+        toVertex->inEdges.insert(edge);
+//        toVertex->inEdges["test"] = edge;
+        edges.insert(edge);
+//        edges["test"] = edge;
+       
         
     }
     //移除顶点
@@ -110,28 +132,29 @@ public:
         Vertex<V, E> *fromVertex = vertices[v];
         for(typename unordered_map<V, Vertex<V, E>*>::iterator iter = vertices.begin(); iter != vertices.end(); iter++)
                    {
-                       if (iter->second == fromVertex) {
+                       if (iter->second->value == fromVertex->value) {
                            vertices.erase(iter);
+                        
                        }
         }
         
-        Vertex<V, E> *vertex = vertices[v];
-        if (vertex == nullptr) return;
+      
+        if (fromVertex == nullptr) return;
         
-        for(typename unordered_map<V,Edge<V, E>*>::iterator iter = vertex->outEdges.begin(); iter != vertex->outEdges.end(); iter++)
+        for(typename set<Edge<V, E>*>::iterator iter = fromVertex->outEdges.begin(); iter != fromVertex->outEdges.end(); iter++)
                            {
-                               Edge<V, E> *edge = iter->second;
-                            edges.erase(iter);
-                            edge->toVertex->inEdges.erase(iter);
-                               
+                               Edge<V, E> *edge = *iter;
+                            edges.erase(edge);
+                            edge->toVertex->inEdges.erase(edge);
+                              
                       }
         
-        for(typename unordered_map<V,Edge<V, E>*>::iterator iter = vertex->inEdges.begin(); iter != vertex->inEdges.end(); iter++)
+        for(typename set<Edge<V, E>*>::iterator iter = fromVertex->inEdges.begin(); iter != fromVertex->inEdges.end(); iter++)
                                   {
-                                     Edge<V, E> *edge = iter->second;
-                                    edges.erase(iter);
-                                   edge->fromVertex->outEdges.erase(iter);
-                                      
+                                     Edge<V, E> *edge = *iter;
+                                    edges.erase(edge);
+                                   edge->fromVertex->outEdges.erase(edge);
+                                    
                              }
               
     }
@@ -145,25 +168,31 @@ public:
         
         Edge<V, E> *edge =new Edge<V,E>(fromVertex,toVertex);
         
-        for(typename unordered_map<V,Edge<V, E>*>::iterator iter = fromVertex->outEdges.begin(); iter != fromVertex->outEdges.end(); iter++)
+        for(typename set<Edge<V, E>*>::iterator iter = fromVertex->outEdges.begin(); iter != fromVertex->outEdges.end(); iter++)
                     {
-                        if (iter->second == edge) {
-                            fromVertex->outEdges.erase(iter);
+                        Edge<V, E> *tempEdge = *iter;
+                        if (tempEdge->toVertex->value == edge->toVertex->value) {
+                            fromVertex->outEdges.erase(tempEdge);
+                            break;
                         }
                        
                }
                
-               for(typename unordered_map<V,Edge<V, E>*>::iterator iter = toVertex->inEdges.begin(); iter != toVertex->outEdges.end(); iter++)
+               for(typename set<Edge<V, E>*>::iterator iter = toVertex->inEdges.begin(); iter != toVertex->inEdges.end(); iter++)
                     {
-                        if (iter->second == edge) {
+                         Edge<V, E> *tempEdge = *iter;
+                        if (tempEdge->fromVertex->value == edge->fromVertex->value) {
                             toVertex->inEdges.erase(iter);
+                            break;
                         }
                }
                
-               for(typename unordered_map<V,Edge<V, E>*>::iterator iter = edges.begin(); iter != edges.end(); iter++)
+               for(typename set<Edge<V, E>*>::iterator iter = edges.begin(); iter != edges.end(); iter++)
                            {
-                               if (iter->second == edge) {
+                                Edge<V, E> *tempEdge = *iter;
+                               if (tempEdge->toVertex->value == edge->toVertex->value && tempEdge->fromVertex->value == edge->fromVertex->value) {
                                    edges.erase(iter);
+                                   break;
                                }
                       }
     }

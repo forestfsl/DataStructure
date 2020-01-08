@@ -10,6 +10,10 @@
 #define Edge_hpp
 
 #include <stdio.h>
+#include <iostream>
+#include <string>
+
+using namespace std;
 
 
 
@@ -30,6 +34,13 @@ public:
     }
     
      int hashCode(int value);
+    
+    bool operator==(const Edge& s);
+       
+//   friend ostream &operator <<(ostream &os,Edge &p1)
+//       {
+//                 return      os << ;
+//       }
 };
 
 #endif /* Edge_hpp */

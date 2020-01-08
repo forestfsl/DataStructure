@@ -14,3 +14,11 @@ int Edge<V,E>::hashCode(int value){
 
     return hashCode ^ (hashCode >> 16);
 }
+
+template<class V,class E>
+bool  Edge<V,E>::operator==(const Edge<V,E>& s)
+{
+   
+        return s.fromVertex->value = fromVertex->value && s.toVertex->value = toVertex->value;
+    
+}
