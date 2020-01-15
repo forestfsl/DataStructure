@@ -19,6 +19,6 @@ template<class V,class E>
 bool  Edge<V,E>::operator==(const Edge<V,E>& s)
 {
    
-        return s.fromVertex->value = fromVertex->value && s.toVertex->value = toVertex->value;
+        return s.from->value = from->value && s.to->value = to->value;
     
 }

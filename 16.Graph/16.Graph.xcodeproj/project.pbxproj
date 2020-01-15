@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0767A1EB23CDAA6E00585AA1 /* EdgeInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0767A1E923CDAA6E00585AA1 /* EdgeInfo.cpp */; };
+		0767A1EE23CDC72500585AA1 /* MinHeap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0767A1EC23CDC72500585AA1 /* MinHeap.cpp */; };
 		07FD01AA23C462D600B43F77 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FD01A923C462D600B43F77 /* main.cpp */; };
 		07FD01C023C4720200B43F77 /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FD01BE23C4720200B43F77 /* Vertex.cpp */; };
 		07FD01C323C474CB00B43F77 /* Edge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FD01C123C474CB00B43F77 /* Edge.cpp */; };
@@ -25,6 +27,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0767A1E723CDA96B00585AA1 /* WeightManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WeightManager.hpp; sourceTree = "<group>"; };
+		0767A1E923CDAA6E00585AA1 /* EdgeInfo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EdgeInfo.cpp; sourceTree = "<group>"; };
+		0767A1EA23CDAA6E00585AA1 /* EdgeInfo.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EdgeInfo.hpp; sourceTree = "<group>"; };
+		0767A1EC23CDC72500585AA1 /* MinHeap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MinHeap.cpp; sourceTree = "<group>"; };
+		0767A1ED23CDC72500585AA1 /* MinHeap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MinHeap.hpp; sourceTree = "<group>"; };
+		07C5E7BD23CF086F00EEC2CB /* UnionFind.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UnionFind.hpp; sourceTree = "<group>"; };
+		07C5E7C023CF092700EEC2CB /* UnionNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UnionNode.hpp; sourceTree = "<group>"; };
 		07FD01A623C462D600B43F77 /* 16.Graph */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 16.Graph; sourceTree = BUILT_PRODUCTS_DIR; };
 		07FD01A923C462D600B43F77 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		07FD01B123C462EB00B43F77 /* Graph.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Graph.hpp; sourceTree = "<group>"; };
@@ -46,6 +55,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0767A1DF23CDA69500585AA1 /* miniheap */ = {
+			isa = PBXGroup;
+			children = (
+				0767A1EC23CDC72500585AA1 /* MinHeap.cpp */,
+				0767A1ED23CDC72500585AA1 /* MinHeap.hpp */,
+			);
+			path = miniheap;
+			sourceTree = "<group>";
+		};
+		07C5E7BB23CF086100EEC2CB /* unionFind */ = {
+			isa = PBXGroup;
+			children = (
+				07C5E7BD23CF086F00EEC2CB /* UnionFind.hpp */,
+				07C5E7C023CF092700EEC2CB /* UnionNode.hpp */,
+			);
+			path = unionFind;
+			sourceTree = "<group>";
+		};
 		07FD019D23C462D600B43F77 = {
 			isa = PBXGroup;
 			children = (
@@ -65,6 +92,8 @@
 		07FD01A823C462D600B43F77 /* 16.Graph */ = {
 			isa = PBXGroup;
 			children = (
+				07C5E7BB23CF086100EEC2CB /* unionFind */,
+				0767A1DF23CDA69500585AA1 /* miniheap */,
 				07FD01B723C46E0C00B43F77 /* model */,
 				07FD01B323C462F300B43F77 /* graph */,
 				07FD01A923C462D600B43F77 /* main.cpp */,
@@ -77,6 +106,7 @@
 			children = (
 				07FD01B123C462EB00B43F77 /* Graph.hpp */,
 				07FD01B523C46CEC00B43F77 /* ListGraph.hpp */,
+				0767A1E723CDA96B00585AA1 /* WeightManager.hpp */,
 			);
 			path = graph;
 			sourceTree = "<group>";
@@ -88,6 +118,8 @@
 				07FD01BF23C4720200B43F77 /* Vertex.hpp */,
 				07FD01C123C474CB00B43F77 /* Edge.cpp */,
 				07FD01C223C474CB00B43F77 /* Edge.hpp */,
+				0767A1E923CDAA6E00585AA1 /* EdgeInfo.cpp */,
+				0767A1EA23CDAA6E00585AA1 /* EdgeInfo.hpp */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -151,6 +183,8 @@
 			files = (
 				07FD01C323C474CB00B43F77 /* Edge.cpp in Sources */,
 				07FD01AA23C462D600B43F77 /* main.cpp in Sources */,
+				0767A1EE23CDC72500585AA1 /* MinHeap.cpp in Sources */,
+				0767A1EB23CDAA6E00585AA1 /* EdgeInfo.cpp in Sources */,
 				07FD01C023C4720200B43F77 /* Vertex.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -21,16 +21,20 @@ template <class V,class E>
 class Vertex;
 
 template <class V,class E>
+class EdgeInfo;
+
+
+template <class V,class E>
 
 class Edge{
 public:
     
-    Vertex<V,E> *fromVertex;
-    Vertex<V,E> *toVertex;
+    Vertex<V,E> *from;
+    Vertex<V,E> *to;
     E weight;
     Edge(Vertex<V,E>* from,Vertex <V,E>* to){
-        this->fromVertex = from;
-        this->toVertex = to;
+        this->from = from;
+        this->to = to;
     }
     
      int hashCode(int value);
@@ -41,6 +45,10 @@ public:
 //       {
 //                 return      os << ;
 //       }
+    
+    EdgeInfo<V, E>* info(){
+        return new EdgeInfo<V, E>(from->value,to->value,weight);
+    }
 };
 
 #endif /* Edge_hpp */

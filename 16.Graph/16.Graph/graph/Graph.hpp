@@ -10,6 +10,8 @@
 #define Graph_hpp
 
 #include <stdio.h>
+#include "WeightManager.hpp"
+#include "EdgeInfo.hpp"
 
 /*
  图由顶点vertex和边edge组成，通常标识为G = (V,E)
@@ -67,9 +69,14 @@
 
 template <class V,class E>
 class Graph {
+   
 public:
+     
     Graph(){
         
+    }
+    Graph(WeightManager weightManager){
+        this->weightManager = weightManager;
     }
     
     //边的数量
