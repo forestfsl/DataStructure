@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0767A1EB23CDAA6E00585AA1 /* EdgeInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0767A1E923CDAA6E00585AA1 /* EdgeInfo.cpp */; };
 		0767A1EE23CDC72500585AA1 /* MinHeap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0767A1EC23CDC72500585AA1 /* MinHeap.cpp */; };
+		076DF38B23D3204000EE64F0 /* PathInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076DF38923D3204000EE64F0 /* PathInfo.cpp */; };
 		07FD01AA23C462D600B43F77 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FD01A923C462D600B43F77 /* main.cpp */; };
 		07FD01C023C4720200B43F77 /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FD01BE23C4720200B43F77 /* Vertex.cpp */; };
 		07FD01C323C474CB00B43F77 /* Edge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FD01C123C474CB00B43F77 /* Edge.cpp */; };
@@ -32,6 +33,8 @@
 		0767A1EA23CDAA6E00585AA1 /* EdgeInfo.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EdgeInfo.hpp; sourceTree = "<group>"; };
 		0767A1EC23CDC72500585AA1 /* MinHeap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MinHeap.cpp; sourceTree = "<group>"; };
 		0767A1ED23CDC72500585AA1 /* MinHeap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MinHeap.hpp; sourceTree = "<group>"; };
+		076DF38923D3204000EE64F0 /* PathInfo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PathInfo.cpp; sourceTree = "<group>"; };
+		076DF38A23D3204000EE64F0 /* PathInfo.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PathInfo.hpp; sourceTree = "<group>"; };
 		07C5E7BD23CF086F00EEC2CB /* UnionFind.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UnionFind.hpp; sourceTree = "<group>"; };
 		07C5E7C023CF092700EEC2CB /* UnionNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UnionNode.hpp; sourceTree = "<group>"; };
 		07FD01A623C462D600B43F77 /* 16.Graph */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 16.Graph; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +123,8 @@
 				07FD01C223C474CB00B43F77 /* Edge.hpp */,
 				0767A1E923CDAA6E00585AA1 /* EdgeInfo.cpp */,
 				0767A1EA23CDAA6E00585AA1 /* EdgeInfo.hpp */,
+				076DF38923D3204000EE64F0 /* PathInfo.cpp */,
+				076DF38A23D3204000EE64F0 /* PathInfo.hpp */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 			files = (
 				07FD01C323C474CB00B43F77 /* Edge.cpp in Sources */,
 				07FD01AA23C462D600B43F77 /* main.cpp in Sources */,
+				076DF38B23D3204000EE64F0 /* PathInfo.cpp in Sources */,
 				0767A1EE23CDC72500585AA1 /* MinHeap.cpp in Sources */,
 				0767A1EB23CDAA6E00585AA1 /* EdgeInfo.cpp in Sources */,
 				07FD01C023C4720200B43F77 /* Vertex.cpp in Sources */,

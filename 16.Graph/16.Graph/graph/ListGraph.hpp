@@ -18,7 +18,7 @@
 #include <unordered_map>
 #include "MinHeap.hpp"
 #include "UnionFind.hpp"
-
+#include "PathInfo.hpp"
 
 
 template <class V,class E>
@@ -334,6 +334,151 @@ public:
         }
         return edgeInfos;
     }
+    
+    /*
+     - 最短路径：是指两顶点之间权值之和最小的路径(有向图，无向图均适用，不能有负权环)
+     - 最短路径-无权图(无权图相当于是全部边权值为1的有权图)
+     - 最短路径-负权边
+        - 有负权边，但没有负权环时，存在最短路径
+    - 最短路径-负权环
+        - 有负权环时，不存在最短路径
+     
+     Dijkstra 属于单源最短路径算法，用于计算一个顶点到其他所有顶点的最短路径，使用前提是不能有负权边，时间复杂度可优化至O(ElogV),E是边数量，V是节点数量
+     */
+    
+    unordered_map<V, PathInfo<V, E> *> * shortestPath(V begin){
+        return dijkstra(begin);
+    }
+    
+    
+    unordered_map<V, PathInfo<V, E> *>* dijkstra(V begin){
+        Vertex<V, E>* beginVertex = vertices[begin];
+   
+        
+        unordered_map<V, PathInfo<V, E> *> *selectedPaths = new unordered_map<V, PathInfo<V, E>*>();
+        unordered_map<Vertex<V, E>*, PathInfo<V, E>*> *paths = new unordered_map<Vertex<V, E>*, PathInfo<V, E>*>();
+        
+        PathInfo<V, E> *newPathInfo = new PathInfo<V, E>(0);
+        paths->insert(pair<Vertex<V, E>*, PathInfo<V, E>*>(beginVertex,newPathInfo));
+//        paths[beginVertex] = newPathInfo;
+        
+        while (!paths->empty()) {
+            //minVertex 离开桌面
+            Vertex<V, E> *minVertex = getMinKeyPath(paths);
+            PathInfo<V, E> *minValue = getMinValuePath(paths);
+            selectedPaths->insert(pair<V, PathInfo<V, E> *>(minVertex->value,minValue));
+//            selectedPaths[minVertex->value] = minValue;
+          paths->erase(minVertex);
+          //对它的minVertex的outEdges进行松弛操作
+          for(const auto& edge : minVertex->outEdges){
+              //如果edge.to 已经离开桌面，就没有必要进行松弛
+              if(selectedPaths->find(edge->to->value) != selectedPaths->end()) continue;
+              relaxForDijkstra(edge,minValue,paths);
+          }
+  
+        }
+        selectedPaths->erase(begin);
+        return selectedPaths;
+    }
+    /*
+     relasForDijkstrl 松弛
+     @param edge 需要进行松弛的边
+     @param fromPath edge 的from的最短路径
+     @param paths 存放着其他店(对于dijkstra来说，就是没有离开桌面的点)的最短路径信息
+     */
+    void relaxForDijkstra(Edge<V, E> *edge,PathInfo<V, E> *fromPath,unordered_map<Vertex<V, E>*, PathInfo<V, E>*>*paths){
+        //新的可选择的最短路径:beginVertex到edge.from 的最短路径 + edge.weight
+        E newWeight = fromPath->weight + edge->weight;
+        //以前的最短路径:beginVertex 到edge.to的最短路径
+        PathInfo<V, E> *oldPath = nullptr;
+        Vertex<V, E> *oldKey;
+        for(typename  unordered_map<Vertex<V, E>*, PathInfo<V, E>*>::iterator iter = paths->begin(); iter != paths->end(); iter++){
+            oldKey = iter->first;
+            if (oldKey->value == edge->to->value) {
+                oldPath = iter->second;
+            }
+        }
+       
+        
+        if (oldPath != nullptr){
+            int delta = newWeight - oldPath->weight;
+            if (delta >= 0) {
+                return;
+            }
+        }
+        
+        if (oldPath == nullptr) {
+            oldPath = new PathInfo<V, E>();
+            paths->insert(pair<Vertex<V,E> *, PathInfo<V, E> *>(edge->to,oldPath));
+     
+        }else{
+            for(typename  set<EdgeInfo<V, E>*>::iterator iter = fromPath->edgeInfos->begin(); iter != fromPath->edgeInfos->end(); iter++){
+                
+            }
+            oldPath->edgeInfos->clear();
+        }
+        oldPath->weight = newWeight;
+
+        for(typename  set<EdgeInfo<V, E>*>::iterator iter = fromPath->edgeInfos->begin(); iter != fromPath->edgeInfos->end(); iter++){
+            EdgeInfo<V, E>* edgeInfo = *iter;
+//            cout << edgeInfo->from << edgeInfo->to<<edgeInfo->weight << endl;
+            oldPath->edgeInfos->insert(edgeInfo);
+        }
+        
+        oldPath->edgeInfos->insert(edge->info());
+    }
+    
+    
+    Vertex<V, E> *getMinKeyPath(unordered_map<Vertex<V, E>*, PathInfo<V, E>*> *paths){
+   
+       Vertex<V,E> *minKey;
+       PathInfo<V,E> *minValue;
+       Vertex<V,E>*entryKey;
+       PathInfo<V,E>*entryValue;
+       for(typename  unordered_map<Vertex<V, E>*, PathInfo<V, E>*>::iterator iter = paths->begin(); iter != paths->end(); iter++){
+           minKey = iter->first;
+           minValue = iter->second;
+           break;
+       }
+       for(typename  unordered_map<Vertex<V, E>*, PathInfo<V, E>*>::iterator iter = paths->begin(); iter != paths->end(); iter++){
+           entryKey = iter->first;
+           entryValue = iter->second;
+           int weightDelta = entryValue->weight - minValue->weight;
+            if (weightDelta < 0) {
+                minKey = entryKey;
+            }
+       }
+
+       return minKey;
+
+    }
+    
+    /*
+     从paths中挑一个最小的路径出来
+     */
+    PathInfo<V, E>* getMinValuePath(unordered_map<Vertex<V, E>*, PathInfo<V, E>*> *paths){
+    Vertex<V,E>*minKey;
+      PathInfo<V, E>*minValue;
+      Vertex<V,E>*entryKey;
+      PathInfo<V,E>*entryValue;
+      for(typename  unordered_map<Vertex<V, E>*, PathInfo<V, E>*>::iterator iter = paths->begin(); iter != paths->end(); iter++){
+          minKey = iter->first;
+          minValue = iter->second;
+          break;
+      }
+      for(typename  unordered_map<Vertex<V, E>*, PathInfo<V, E>*>::iterator iter = paths->begin(); iter != paths->end(); iter++){
+          entryKey = iter->first;
+          entryValue = iter->second;
+          int weightDelta = entryValue->weight - minValue->weight;
+           if (weightDelta < 0) {
+               minValue = entryValue;
+           }
+      }
+
+      return minValue;
+        
+    }
 };
+
 
 #endif /* ListGraph_hpp */

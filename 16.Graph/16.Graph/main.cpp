@@ -314,13 +314,68 @@ void testMst1(){
        }
 }
 
+/*
+ Java
+B - PathInfo [weight=10.0, edgeInfos=[EdgeInfo [from=A, to=B, weight=10.0]]]
+C - PathInfo [weight=50.0, edgeInfos=[EdgeInfo [from=A, to=D, weight=30.0], EdgeInfo [from=D, to=C, weight=20.0]]]
+D - PathInfo [weight=30.0, edgeInfos=[EdgeInfo [from=A, to=D, weight=30.0]]]
+E - PathInfo [weight=60.0, edgeInfos=[EdgeInfo [from=A, to=D, weight=30.0], EdgeInfo [from=D, to=C, weight=20.0], EdgeInfo [from=C, to=E, weight=10.0]]]
+ */
+/*
+ C++
+E - PathInfo [weight = 60,edgeInfos = [EdgeInfo [from = A to =D weight = 30],EdgeInfo [from = D to =C weight = 20],EdgeInfo [from = C to =E weight = 10]]]
+D - PathInfo [weight = 30,edgeInfos = [EdgeInfo [from = A to =D weight = 30]]]
+C - PathInfo [weight = 50,edgeInfos = [EdgeInfo [from = A to =D weight = 30],EdgeInfo [from = D to =C weight = 20]]]
+B - PathInfo [weight = 10,edgeInfos = [EdgeInfo [from = A to =B weight = 10]]]
+ */
+void testMst2(){
+    ListGraph<string, int> graph = ListGraph<string, int>();
+    graph.addEdge("A", "B", 10);
+    graph.addEdge("A", "D", 30);
+    graph.addEdge("A", "E", 100);
+    graph.addEdge("B", "C", 50);
+    graph.addEdge("C", "E", 10);
+    graph.addEdge("D", "C", 20);
+    graph.addEdge("D", "E", 60);
+    unordered_map<string, PathInfo<string, int> *> *infos = graph.shortestPath("A");
+    for(typename  unordered_map<string, PathInfo<string, int> *>::iterator iter = infos->begin(); iter != infos->end(); iter++){
+        PathInfo<string, int> *pathInfo = iter->second;
+        cout  <<iter->first << " - PathInfo [weight = "<< pathInfo->weight << ",edgeInfos = ";
+        cout << "[";
+        
+        int len = (int)pathInfo->edgeInfos->size() - 1;
+        int i = 0;
+        set<EdgeInfo<string, int>*>::iterator iter1 = pathInfo->edgeInfos->begin();
+                    while (iter1!=pathInfo->edgeInfos->end())
+                    {
+                       
+                        EdgeInfo<string, int> *edgeInfo = *iter1;
+                        if (len == i) {
+                             cout <<"EdgeInfo "<< "[from = " << edgeInfo->from<< " to =" << edgeInfo->to<< " weight = " << edgeInfo->weight<< "]";
+                        }else{
+                             cout <<"EdgeInfo "<< "[from = " << edgeInfo->from<< " to =" << edgeInfo->to<< " weight = " << edgeInfo->weight<< "],";
+                        }
+                       
+                        iter1++;
+                        i++;
+                    }
+//        for(typename  set<EdgeInfo<string, int>*>::iterator iter = pathInfo->edgeInfos->begin(); iter != pathInfo->edgeInfos->end(); iter++){
+//            EdgeInfo<string, int> *edgeInfo = *iter;
+//            cout <<"EdgeInfo "<< "[from = " << edgeInfo->from<< " to =" << edgeInfo->to<< " weight = " << edgeInfo->weight<< "]";
+//        }
+        cout <<"]]"<< endl;
+       
+    }
+}
+
 int main(int argc, const char * argv[]) {
 
 //    test();
 //    test1();
 //    testBfs();
 //    testDfs();
-//    testMst()
-    testMst1();
+//    testMst();
+//    testMst1();
+    testMst2();
     return 0;
 }
