@@ -478,6 +478,91 @@ public:
       return minValue;
         
     }
+    /*
+     Bellman-Ford 也属于单元最短路径算法，支持负权边，还能检测出是否有负权环
+     算法原理：对所有的边进行V-1 次松弛操作(V是节点数量),得到所有可能的最短路径
+     时间复杂度:O(EV),E是边数量，V是节点数量
+     最好情况是从左到右的顺序对边进行松弛操作
+     最坏情况是恰好每次都从右到左的顺序对边进行松弛操作
+     */
+    unordered_map<V,PathInfo<V, E>*> * bellmanFord(V begin){
+        Vertex<V, E> *beginVertex = vertices[begin];
+        if(beginVertex == nullptr) return nullptr;
+         unordered_map<V, PathInfo<V, E> *> *selectedPaths = new unordered_map<V, PathInfo<V, E>*>();
+        //为了确保后面遍历顺利进行，这里首先制造一个插进去selectedPaths
+        selectedPaths->insert(pair<V, PathInfo<V, E>*>(begin,new PathInfo<V, E>(0)));
+        //获取遍历次数
+        int count = (int)vertices.size() - 1;
+        for (int i = 0; i < count; i++) {// v - 1 次
+            for (Edge<V, E> *edge : edges) {
+                PathInfo<V, E> *fromPath = nullptr;
+                for(typename  unordered_map<V, PathInfo<V, E> *>::iterator iter = selectedPaths->begin(); iter != selectedPaths->end(); iter++){
+                    if (iter->first == edge->from->value) {
+                        fromPath = iter->second;
+                         break;
+                    }
+                   
+            }
+                if (fromPath == nullptr) continue;
+                relax(edge,fromPath,selectedPaths);
+                
+            }
+        }
+//        for (Edge<V, E> *edge : edges) {
+//           PathInfo<V, E> *fromPath = nullptr;
+//           for(typename  unordered_map<V, PathInfo<V, E> *>::iterator iter = selectedPaths->begin(); iter != selectedPaths->end(); iter++){
+//               if (iter->first == edge->from->value) {
+//                   fromPath = iter->second;
+//                    break;
+//               }
+//           }
+//
+//           if (fromPath == nullptr) continue;
+//           relax(edge,fromPath,selectedPaths);
+//            cout << "有负权环" << endl;
+//            return selectedPaths;
+//           }
+        selectedPaths->erase(begin);
+        return selectedPaths;
+    }
+    /*
+     松弛
+     @param edge 需要松弛的边
+     @param fromPath edge的from的最短路径信息
+     @param paths 存放着其他点(对于dijkstra来说，就是还没有离开桌面的点)最短的路径信息
+     */
+    bool relax(Edge<V, E> *edge,PathInfo<V, E>*fromPath,unordered_map<V, PathInfo<V, E>*>*paths){
+        //新的可选择的最短路径:beginVertex 到edge.from的最短路径 + edge.weight
+        E newWeight = fromPath->weight + edge->weight;
+        //以前的最短路径:beginVertex 到edge.to的u最短路径
+        PathInfo<V, E> *oldPath = nullptr;
+        for(typename  unordered_map<V,PathInfo<V, E>*>::iterator iter = paths->begin(); iter != paths->end(); iter++){
+              
+               if (iter->first == edge->to->value) {
+                   oldPath = iter->second;
+               }
+           }
+       
+        if (oldPath != nullptr && (newWeight - oldPath->weight) >= 0) return false;
+         if (oldPath == nullptr) {
+                   oldPath = new PathInfo<V, E>();
+                   paths->insert(pair<V, PathInfo<V, E>*>(edge->to->value,oldPath));
+            
+        }else{
+               for(typename  set<EdgeInfo<V, E>*>::iterator iter = fromPath->edgeInfos->begin(); iter != fromPath->edgeInfos->end(); iter++){
+                   
+               }
+               oldPath->edgeInfos->clear();
+        }
+        oldPath->weight = newWeight;
+         for(typename  set<EdgeInfo<V, E>*>::iterator iter = fromPath->edgeInfos->begin(); iter != fromPath->edgeInfos->end(); iter++){
+                EdgeInfo<V, E>* edgeInfo = *iter;
+
+                oldPath->edgeInfos->insert(edgeInfo);
+        }
+         oldPath->edgeInfos->insert(edge->info());
+        return true;
+    }
 };
 
 
