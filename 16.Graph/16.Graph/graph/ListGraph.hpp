@@ -563,6 +563,119 @@ public:
          oldPath->edgeInfos->insert(edge->info());
         return true;
     }
+    /*
+     Floyd 属于多远最短路径算法，能够求出2个顶点之间的最短路径，支持负权边
+     时间复杂度O(v^3),效率比执行V次Dijkstra算法要好(V是顶点数量）
+     算法原理:
+     从任意顶点i到任意顶点j的最短路径不外乎两种可能
+     1.直接从i到j
+     2.从i经过若干个顶点到j
+        - 假设dist(i,j)为顶点i到顶点j的最短路径距离
+        - 对于每一个顶点k，检查dist(i,k) + dist(k,j) < dist(i,j) 是否成立
+            - 如果成立，证明从i到k再到j的路径比i直接到j的路径短，设置dist(i,j) = dist(i,k) + dist(k,j_
+              当我们遍历完所有节点k，dist(i,j)中记录的便是i到j的最短路径距离
+     */
+    unordered_map<V, unordered_map<V, PathInfo<V, E> *>> *floydShortestPath(){
+        unordered_map<V,unordered_map<V, PathInfo<V, E>*>> *paths = new unordered_map<V,unordered_map<V, PathInfo<V, E>*>>();
+        //初始化
+        for(typename set<Edge<V, E>*>::iterator iter = edges.begin(); iter != edges.end(); iter++){
+            Edge<V, E> *edge = *iter;
+            unordered_map<V, PathInfo<V, E> *> *pathValue = new  unordered_map<V, PathInfo<V, E> *>();
+   
+            for(typename  unordered_map<V, unordered_map<V, PathInfo<V, E> *>>::iterator iter = paths->begin(); iter != paths->end(); iter++){
+                if (iter->first == edge->from->value) {
+                    pathValue = &iter->second;
+                    break;
+                }
+            }
+//            {
+//                pathValue = new  unordered_map<V, PathInfo<V, E> *>();
+//                paths->insert(pair<V,unordered_map<V, PathInfo<V, E>*>>(pathKey,pathValue));
+//            }
+            
+            
+            PathInfo<V, E> *pathInfo = new PathInfo<V, E>(edge->weight);
+            pathInfo->edgeInfos->insert(edge->info());
+            pathValue->insert(pair<V, PathInfo<V, E>*>(edge->to->value,pathInfo));
+            paths->insert(pair<V,unordered_map<V, PathInfo<V, E> *>>(edge->from->value,*pathValue));
+            
+        }
+        
+        for(const auto& vertex : vertices){
+            V v2 = vertex.first;
+            for(const auto& vertex : vertices){
+                V v1 = vertex.first;
+                for(const auto& vertex : vertices){
+                    V  v3 = vertex.first;
+                    if (v1 == v2 || v2 == v3 || v1 == v3) continue;
+                    
+                    //v1 -> v2
+                    PathInfo<V, E> *path12 = getPathInfos(v1, v2, paths);
+                    if (path12 == nullptr) continue ;
+                    
+                    //v2 -> v3
+                    PathInfo<V, E> *path23 = getPathInfos(v2, v3, paths);
+                    if (path23 == nullptr) continue;
+                    
+                    //v1 -> v3
+                    PathInfo<V, E> *path13 = getPathInfos(v1, v3, paths);
+                    
+                    E newWeight = path12->weight + path23->weight;
+                    if (path13 != nullptr && newWeight - path13->weight >= 0) continue;
+                    
+                    if (path13 == nullptr) {
+                        path13 = new PathInfo<V, E>();
+                        unordered_map<V, PathInfo<V, E> *> *pathValue = nullptr;
+                 
+                        for(typename  unordered_map<V, unordered_map<V, PathInfo<V, E> *>>::iterator iter = paths->begin(); iter != paths->end(); iter++){
+                        
+                            if (iter->first == v1) {
+                                pathValue = &iter->second;
+                                pathValue->insert(pair<V, PathInfo<V, E> *>(v3,path13));
+                                break;
+                            }
+                        }
+                    }else{
+                         path13->edgeInfos->clear();
+                    }
+                    path13->weight = newWeight;
+                 for(typename  set<EdgeInfo<V, E>*>::iterator iter = path12->edgeInfos->begin(); iter != path12->edgeInfos->end(); iter++){
+                            EdgeInfo<V, E>* edgeInfo = *iter;
+                     path13->edgeInfos->insert(edgeInfo);
+                 }
+                    for(typename  set<EdgeInfo<V, E>*>::iterator iter = path23->edgeInfos->begin(); iter != path23->edgeInfos->end(); iter++){
+                        EdgeInfo<V, E>* edgeInfo = *iter;
+                       path13->edgeInfos->insert(edgeInfo);
+                    }
+                }
+            }
+        }
+        return paths;
+    }
+    PathInfo<V, E> *getPathInfos(V from,V to,unordered_map<V,unordered_map<V, PathInfo<V, E>*>> *paths){
+        unordered_map<V, PathInfo<V, E>*> *pathValue = nullptr;
+ 
+        for(typename  unordered_map<V,unordered_map<V, PathInfo<V, E>*>>::iterator iter = paths->begin(); iter != paths->end(); iter++){
+           if (iter->first == from) {
+               pathValue = &iter->second;
+               break;
+            }
+        }
+        if (pathValue == nullptr) {
+            return nullptr;
+        }else{
+           PathInfo<V, E> *returnPathValue = nullptr;
+
+           for(typename  unordered_map<V, PathInfo<V, E>*>::iterator iter = pathValue->begin(); iter != pathValue->end(); iter++){
+
+              if (iter->first == to) {
+                  returnPathValue = iter->second;
+                  break;
+               }
+           }
+            return returnPathValue;
+        }
+    }
 };
 
 

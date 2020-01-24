@@ -210,6 +210,8 @@ void testDfs(){
 
 
 
+
+
 ListGraph<int, int> undirectedGraph(int data[12][3],int row,int colomn){
     ListGraph<int, int> graph = ListGraph<int, int>();
     
@@ -416,6 +418,86 @@ void testMst3(){
  B - PathInfo [weight = 10,edgeInfos = [EdgeInfo [from = A to =B weight = 10]]]
  */
 
+void testMultiSp(){
+    ListGraph<string, int> graph = ListGraph<string, int>();
+   graph.addEdge("A", "B", -1);
+   graph.addEdge("A", "C", 4);
+   graph.addEdge("B", "C", 3);
+   graph.addEdge("B", "D", 2);
+   graph.addEdge("B", "E", 2);
+   graph.addEdge("D", "B", 1);
+   graph.addEdge("D", "C", 5);
+   graph.addEdge("E", "D", -3);
+    unordered_map<string, unordered_map<string, PathInfo<string, int> *>> *sp = graph.floydShortestPath();
+    for(typename  unordered_map<string, unordered_map<string, PathInfo<string, int> *>>::iterator iter = sp->begin(); iter != sp->end(); iter++){
+        unordered_map<string, PathInfo<string, int> *> *paths = &iter->second;
+        cout << iter->first <<"______________________________________________________" << endl;
+        for(typename  unordered_map<string, PathInfo<string, int> *>::iterator iter = paths->begin(); iter != paths->end(); iter++){
+                    PathInfo<string, int> *pathInfo = iter->second;
+                    cout  <<iter->first << " - PathInfo [weight = "<< pathInfo->weight << ",edgeInfos = ";
+                    cout << "[";
+                    
+                    int len = (int)pathInfo->edgeInfos->size() - 1;
+                    int i = 0;
+                    set<EdgeInfo<string, int>*>::iterator iter1 = pathInfo->edgeInfos->begin();
+                                while (iter1!=pathInfo->edgeInfos->end())
+                                {
+                                   
+                                    EdgeInfo<string, int> *edgeInfo = *iter1;
+                                    if (len == i) {
+                                         cout <<"EdgeInfo "<< "[from = " << edgeInfo->from<< " to =" << edgeInfo->to<< " weight = " << edgeInfo->weight<< "]";
+                                    }else{
+                                         cout <<"EdgeInfo "<< "[from = " << edgeInfo->from<< " to =" << edgeInfo->to<< " weight = " << edgeInfo->weight<< "],";
+                                    }
+                                   
+                                    iter1++;
+                                    i++;
+                                }
+                    cout <<"]]"<< endl;
+
+        }
+        
+    }
+}
+/*
+ Java
+ A---------------------
+ B - PathInfo [weight=-1.0, edgeInfos=[EdgeInfo [from=A, to=B, weight=-1.0]]]
+ C - PathInfo [weight=2.0, edgeInfos=[EdgeInfo [from=A, to=B, weight=-1.0], EdgeInfo [from=B, to=C, weight=3.0]]]
+ D - PathInfo [weight=-2.0, edgeInfos=[EdgeInfo [from=A, to=B, weight=-1.0], EdgeInfo [from=B, to=E, weight=2.0], EdgeInfo [from=E, to=D, weight=-3.0]]]
+ E - PathInfo [weight=1.0, edgeInfos=[EdgeInfo [from=A, to=B, weight=-1.0], EdgeInfo [from=B, to=E, weight=2.0]]]
+ B---------------------
+ C - PathInfo [weight=3.0, edgeInfos=[EdgeInfo [from=B, to=C, weight=3.0]]]
+ D - PathInfo [weight=-1.0, edgeInfos=[EdgeInfo [from=B, to=E, weight=2.0], EdgeInfo [from=E, to=D, weight=-3.0]]]
+ E - PathInfo [weight=2.0, edgeInfos=[EdgeInfo [from=B, to=E, weight=2.0]]]
+ D---------------------
+ B - PathInfo [weight=1.0, edgeInfos=[EdgeInfo [from=D, to=B, weight=1.0]]]
+ C - PathInfo [weight=4.0, edgeInfos=[EdgeInfo [from=D, to=B, weight=1.0], EdgeInfo [from=B, to=C, weight=3.0]]]
+ E - PathInfo [weight=3.0, edgeInfos=[EdgeInfo [from=D, to=B, weight=1.0], EdgeInfo [from=B, to=E, weight=2.0]]]
+ E---------------------
+ B - PathInfo [weight=-2.0, edgeInfos=[EdgeInfo [from=E, to=D, weight=-3.0], EdgeInfo [from=D, to=B, weight=1.0]]]
+ C - PathInfo [weight=1.0, edgeInfos=[EdgeInfo [from=E, to=D, weight=-3.0], EdgeInfo [from=D, to=B, weight=1.0], EdgeInfo [from=B, to=C, weight=3.0]]]
+ D - PathInfo [weight=-3.0, edgeInfos=[EdgeInfo [from=E, to=D, weight=-3.0]]]
+
+ C++
+ E______________________________________________________
+ B - PathInfo [weight = -2,edgeInfos = [EdgeInfo [from = D to =B weight = 1],EdgeInfo [from = E to =D weight = -3]]]
+ C - PathInfo [weight = 1,edgeInfos = [EdgeInfo [from = B to =C weight = 3],EdgeInfo [from = D to =B weight = 1],EdgeInfo [from = E to =D weight = -3]]]
+ D - PathInfo [weight = -3,edgeInfos = [EdgeInfo [from = E to =D weight = -3]]]
+ D______________________________________________________
+ E - PathInfo [weight = 3,edgeInfos = [EdgeInfo [from = B to =E weight = 2],EdgeInfo [from = D to =B weight = 1]]]
+ C - PathInfo [weight = 4,edgeInfos = [EdgeInfo [from = B to =C weight = 3],EdgeInfo [from = D to =B weight = 1]]]
+ B - PathInfo [weight = 1,edgeInfos = [EdgeInfo [from = D to =B weight = 1]]]
+ B______________________________________________________
+ E - PathInfo [weight = 2,edgeInfos = [EdgeInfo [from = B to =E weight = 2]]]
+ D - PathInfo [weight = -1,edgeInfos = [EdgeInfo [from = B to =E weight = 2],EdgeInfo [from = E to =D weight = -3]]]
+ C - PathInfo [weight = 3,edgeInfos = [EdgeInfo [from = B to =C weight = 3]]]
+ A______________________________________________________
+ D - PathInfo [weight = -2,edgeInfos = [EdgeInfo [from = A to =B weight = -1],EdgeInfo [from = B to =E weight = 2],EdgeInfo [from = E to =D weight = -3]]]
+ E - PathInfo [weight = 1,edgeInfos = [EdgeInfo [from = A to =B weight = -1],EdgeInfo [from = B to =E weight = 2]]]
+ B - PathInfo [weight = -1,edgeInfos = [EdgeInfo [from = A to =B weight = -1]]]
+ C - PathInfo [weight = 2,edgeInfos = [EdgeInfo [from = A to =B weight = -1],EdgeInfo [from = B to =C weight = 3]]]
+ */
 
 int main(int argc, const char * argv[]) {
 
@@ -425,6 +507,7 @@ int main(int argc, const char * argv[]) {
 //    testDfs();
 //    testMst();
 //    testMst1();
-    testMst3();
+//    testMst3();
+    testMultiSp();
     return 0;
 }
