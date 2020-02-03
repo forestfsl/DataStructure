@@ -10,6 +10,8 @@
 #include "MaxSubArray.hpp"
 #include "CoinChange.hpp"
 #include "LIS.hpp"
+#include "LCS.hpp"
+#include "Knapsack.hpp"
 using namespace std;
 
 /*
@@ -55,10 +57,125 @@ void testLIS(){
     cout << lis.lengthOfLIS1() << endl;
 }
 
+void testLIS2(){
+    LIS lis = LIS();
+    cout << lis.lengthOfLIS2() << endl;
+}
+
+void testLIS3(){
+    LIS lis = LIS();
+    cout << lis.lengthOfLIS3() << endl;
+    
+}
+
+void testLCS(){
+    LCS lcs = LCS();
+    int nums1[] = {1, 3, 5, 9,10};
+    int nums1Len = sizeof(nums1) / sizeof(nums1[0]);
+    int nums2[] = {1,4,9,10};
+    int nums2Len = sizeof(nums2) / sizeof(nums2[0]);
+    cout << lcs.lcs1(nums1, nums1Len, nums2, nums2Len) << endl;
+}
+
+void testLCS2(){
+    LCS lcs = LCS();
+    int nums1[] = {1, 3, 5, 9,10};
+    int nums1Len = sizeof(nums1) / sizeof(nums1[0]);
+  
+    int nums2[] = {1,4,9,10};
+      int nums2Len = sizeof(nums2) / sizeof(nums2[0]);
+
+    cout << lcs.lcs2(nums1,nums1Len + 1, nums2,nums2Len + 1) << endl;
+}
+
+void testLCS3(){
+    LCS lcs = LCS();
+    int nums1[] = {1, 3, 5, 9,10};
+    int nums1Len = sizeof(nums1) / sizeof(nums1[0]);
+  
+    int nums2[] = {1,4,9,10};
+      int nums2Len = sizeof(nums2) / sizeof(nums2[0]);
+
+    cout << lcs.lcs3(nums1,nums1Len + 1, nums2,nums2Len + 1) << endl;
+}
+
+void testLCS4(){
+    LCS lcs = LCS();
+    int nums1[] = {1, 3, 5, 9,10};
+    int nums1Len = sizeof(nums1) / sizeof(nums1[0]);
+  
+    int nums2[] = {1,4,9,10};
+      int nums2Len = sizeof(nums2) / sizeof(nums2[0]);
+
+    cout << lcs.lcs4(nums1,nums1Len + 1, nums2,nums2Len + 1) << endl;
+}
+
+void testlongestCommonSubsequence(){
+    LCS lcs = LCS();
+    cout << lcs.longestCommonSubsequence() << endl;
+}
+
+void testlongestCommonSubsequence1(){
+    LCS lcs = LCS();
+    cout << lcs.longestCommonSubsequence1() << endl;
+}
+
+void testMaxValue1(){
+    int value[] = {6,3,5,4,6};
+    int weight[] = {2,2,6,5,4};
+    int valueLen = sizeof(value)/sizeof(value[0]) + 1;
+    int weightLen = sizeof(weight)/sizeof(weight[0]) + 1;
+    int capacity = 10;//代表有10件物品
+    Knapsack knapsack = Knapsack();
+    cout << knapsack.maxValue1(value, weight, capacity, valueLen, weightLen) << endl;
+}
+
+void testMaxValue2(){
+    int value[] = {6,3,5,4,6};
+    int weight[] = {2,2,6,5,4};
+    int valueLen = sizeof(value)/sizeof(value[0]) + 1;
+    int weightLen = sizeof(weight)/sizeof(weight[0]) + 1;
+    int capacity = 10;//代表有10件物品
+    Knapsack knapsack = Knapsack();
+    cout << knapsack.maxValue2(value, weight, capacity, valueLen, weightLen) << endl;
+}
+
+void testMaxValue3(){
+    int value[] = {6,3,5,4,6};
+    int weight[] = {2,2,6,5,4};
+    int valueLen = sizeof(value)/sizeof(value[0]) + 1;
+    int weightLen = sizeof(weight)/sizeof(weight[0]) + 1;
+    int capacity = 10;//代表有10件物品
+    Knapsack knapsack = Knapsack();
+    cout << knapsack.maxValue3(value, weight, capacity, valueLen, weightLen) << endl;
+}
+
+
+void testmaxValueExactly(){
+    int value[] = {6,3,5,4,6};
+    int weight[] = {2,2,6,5,4};
+    int valueLen = sizeof(value)/sizeof(value[0]) + 1;
+    int weightLen = sizeof(weight)/sizeof(weight[0]) + 1;
+    int capacity = 10;//代表有10件物品
+    Knapsack knapsack = Knapsack();
+    cout << knapsack.maxValueExactly(value, weight, capacity, valueLen, weightLen) << endl;
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
 //    testMaxSubArray();
 //    testCoinChange();
-    testLIS();
+//    testLIS();
+//    testLIS2();
+//    testLIS3();
+//    testLCS();
+//    testLCS2();
+//    testLCS3();
+//    testLCS4();
+//    testlongestCommonSubsequence();
+//    testlongestCommonSubsequence1();
+    testMaxValue1();
+    testMaxValue2();
+    testMaxValue3();
+    testmaxValueExactly();
     return 0;
 }

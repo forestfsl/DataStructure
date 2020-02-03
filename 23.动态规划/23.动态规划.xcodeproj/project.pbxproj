@@ -28,6 +28,8 @@
 		076DF41623E07E0700EE64F0 /* MaxSubArray.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MaxSubArray.hpp; sourceTree = "<group>"; };
 		076DF41923E0807800EE64F0 /* CoinChange.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CoinChange.hpp; sourceTree = "<group>"; };
 		076DF41C23E08D2200EE64F0 /* LIS.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LIS.hpp; sourceTree = "<group>"; };
+		076DF41F23E5C24500EE64F0 /* LCS.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LCS.hpp; sourceTree = "<group>"; };
+		076DF42223E706D300EE64F0 /* Knapsack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Knapsack.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,8 @@
 				076DF41623E07E0700EE64F0 /* MaxSubArray.hpp */,
 				076DF41923E0807800EE64F0 /* CoinChange.hpp */,
 				076DF41C23E08D2200EE64F0 /* LIS.hpp */,
+				076DF41F23E5C24500EE64F0 /* LCS.hpp */,
+				076DF42223E706D300EE64F0 /* Knapsack.hpp */,
 			);
 			path = "23.动态规划";
 			sourceTree = "<group>";
