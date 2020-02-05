@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:25.&#x5b57;&#x7b26;&#x4e32;/25.&#x5b57;&#x7b26;&#x4e32;.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:25.SkipList/25.SkipList.xcodeproj">
    </FileRef>
    <FileRef
