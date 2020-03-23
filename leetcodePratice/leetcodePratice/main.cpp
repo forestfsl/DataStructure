@@ -108,7 +108,7 @@ int main(int argc, const char * argv[]) {
 //    test114Flatten();
 //    test1TwoSum();
 //    test198Rob();
-//    test374KTop();
+    test374KTop();
 //    test36ValidSudoku();
     test20ValidSympol();
     return 0;

@@ -62,6 +62,8 @@ vector<int> Solution347::topKFrequent2(vector<int> &nums, int k){
             minHeap.pop();
         }
         //push map元素入栈
+//        https://blog.csdn.net/ding_yingzi/article/details/79973809
+//        https://blog.csdn.net/xie1xiao1jun/article/details/41486293
         minHeap.push(move(pair));
     }
     vector<int> res(minHeap.size());
