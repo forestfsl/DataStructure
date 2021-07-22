@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
         Integer[] array = Integers.random(1000,1,1000);//随机数组
 //        Integer[] array = Integers.ascOrder(1,10000);
-        testSorts(array,new Bubble1Sort(),new Bubble2Sort(),new Bubble3Sort(),new SelectionSort());
+        testSorts(array,new Bubble1Sort(),new Bubble2Sort(),new Bubble3Sort(),new SelectionSort(),new HeapSort());
     }
 
     static void testSorts(Integer[] array,Sort...sorts){
